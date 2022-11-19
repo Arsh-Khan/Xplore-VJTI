@@ -3,5 +3,6 @@
 
 
 ## App Designs 
-Xplore Vjti Designs – Figma
+Xplore VJTI Designs – Figma
+
 https://www.figma.com/file/r24ib6VOxrumG3LrkujS7p/Xplore-Vjti-Designs?node-id=0%3A1&t=S63k9j14GuxcB4iy-0
