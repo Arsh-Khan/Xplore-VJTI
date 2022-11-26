@@ -1,0 +1,4 @@
+#Sat Nov 26 23:27:52 IST 2022
+base.0=/Users/rutu/Desktop/xplorevjti/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
