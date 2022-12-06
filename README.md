@@ -1,6 +1,5 @@
 # Xplore-VJTI
-https://user-images.githubusercontent.com/103894553/204530106-a2f70871-9b13-4146-bc6c-5e10bcb3a525.jpg
-
+<img width="575" alt="image" src="https://user-images.githubusercontent.com/103894553/204530106-a2f70871-9b13-4146-bc6c-5e10bcb3a525.jpg">
 ## App Designs 
 Xplore VJTI Designs – Figma
 
