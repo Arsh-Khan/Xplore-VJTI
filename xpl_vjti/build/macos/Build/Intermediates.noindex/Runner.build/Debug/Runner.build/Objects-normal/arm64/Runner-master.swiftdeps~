@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
+options: "bfddb1e703c497693b437c96a18ba07ee0566f149191132a22788015312272c5"
+build_start_time: [1669824814, 824470043]
+build_end_time: [1669824814, 847982883]
+inputs:
+  "/Users/rutu/Desktop/xplorevjti/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1669824804, 682258844]
+  "/Users/rutu/Desktop/xplorevjti/macos/Runner/AppDelegate.swift": !private [1667365076, 0]
+  "/Users/rutu/Desktop/xplorevjti/macos/Runner/MainFlutterWindow.swift": !private [1667365076, 0]
