@@ -81,6 +81,19 @@ class _signUpState extends State<signUp> {
                   ),
                 ),
                 const SizedBox(height: 40),
+                FloatingActionButton.extended(
+                  backgroundColor: Color.fromARGB(85, 219, 112, 112),
+                  elevation: 0,
+                  label: Text('Not yet VJTIian?',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Poppins',
+                  )),                   
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/signupnonvjti');
+                  },
+                ),
+                const SizedBox(height: 40),
                 const Text('VJTI Students',
                     style: TextStyle(
                       color: Colors.black,

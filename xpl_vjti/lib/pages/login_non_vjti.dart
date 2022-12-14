@@ -59,6 +59,20 @@ class _loginNonVjtiState extends State<loginNonVjti> {
                   ),
                 ),
                 const SizedBox(height: 40),
+                FloatingActionButton.extended(
+                  backgroundColor: Color.fromARGB(85, 219, 112, 112),
+                  elevation: 0,
+                  label: Text('Are you VJTIian?',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Poppins',
+                  )),                   
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                ),
+                const SizedBox(height: 40),
+
                 const Text('-- non VJTI --',
                     style: TextStyle(
                       color: Colors.black,
@@ -173,7 +187,7 @@ class _loginNonVjtiState extends State<loginNonVjti> {
       
                         FloatingActionButton.extended(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/signUpvjti');
+                            Navigator.pushNamed(context, '/signupnonvjti');
                           },
                           backgroundColor: const Color.fromARGB(255, 124, 5, 5),
                           icon: const Icon(Icons.account_circle_sharp),

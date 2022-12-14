@@ -68,6 +68,15 @@ flutter:
     - assets/Logo_White.png
     - assets/Screenshot 2022-11-26 at 11.05.17.png
     - assets/Screenshot 2022-11-26 at 11.12.37.png
+    - assets/advice.png
+    - assets/extracurriculars.png
+    - assets/howtoget.png
+    - assets/notespyqs.png
+    - assets/about.png
+    - assets/gallery.png
+    - assets/VJTIlogoforappbar.jpeg
+    - assets/VJTI3.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
