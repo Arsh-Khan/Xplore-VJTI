@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
+import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
+import 'package:xplorevjtiofficialapp/views/seniors_advice.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_vjti.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
@@ -13,7 +16,7 @@ import 'package:xplorevjtiofficialapp/views/student_account.dart';
 import 'dart:developer' as devtools show log;
 import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     home: SplashScreen(),
@@ -27,6 +30,7 @@ void main() {
       signUpNonVJTIRoute: (context) => const SignUpNonVJTI(),
       aboutVJTIRoute: (context) => const AboutVJTIView(),
       studentAccountRoute:(context) => const StudentVJTI(),
+      howToGetVJTIRoute:(context) => const HowToGetVJTI(),
     },
   ));
 }

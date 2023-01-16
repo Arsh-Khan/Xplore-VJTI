@@ -9,3 +9,7 @@ const aboutVJTIRoute = '/About-VJTI/';
 const verifyEmailRoute = '/Verify-email-route/';
 const dashboardViewnonVJTIRoute = '/dashboard-non-VJTI/';
 const studentAccountRoute = '/student-profile-VJTI/';
+const howToGetVJTIRoute = '/how-to-get-VJTI/';
+
+const seniorsAdviceRoute = '/seniors-advice/';
+

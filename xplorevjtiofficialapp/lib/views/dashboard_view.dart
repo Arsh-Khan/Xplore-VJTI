@@ -93,7 +93,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   child: InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      //
+                      Navigator.pushNamed(context, seniorsAdviceRoute);
                     },
                     child: Center(
                       child: Column(
@@ -318,7 +318,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   child: InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      //
+                      Navigator.pushNamed(context, howToGetVJTIRoute);
                     },
                     child: Center(
                       child: Column(
