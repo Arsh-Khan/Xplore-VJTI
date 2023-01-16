@@ -133,7 +133,9 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                           },
                           child: const Text(
                             'Already have an account? Login instead!',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: 'Poppins',
                               fontSize: 15,
                               color: Colors.red,
                             ),

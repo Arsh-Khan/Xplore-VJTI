@@ -89,6 +89,19 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                   ),
                 ),
                 const SizedBox(height: 40),
+                FloatingActionButton.extended(
+                  backgroundColor: Color.fromARGB(85, 219, 112, 112),
+                  elevation: 0,
+                  label: Text('Are you VJTIian?',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Poppins',
+                  )),                   
+                  onPressed: () {
+                    Navigator.pushNamed(context, signUpVJTIRoute);
+                  },
+                ),
+                const SizedBox(height: 40),
                 const Text('Non - VJTI Students',
                     style: TextStyle(
                       color: Colors.black,
@@ -107,11 +120,13 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, '/login_non_vjti');
+                            Navigator.pushNamed(context, loginNonVJTIRoute);
                           },
                           child: const Text(
                             'Already have an account? Login instead!',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontFamily: 'Poppins',
                               fontSize: 15,
                               color: Colors.red,
                             ),
@@ -318,7 +333,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                                     // devtools.log(userCredential.toString());
                                     Navigator.of(context)
                                         .pushNamedAndRemoveUntil(
-                                            dashBoardRoute, (route) => false);
+                                            dashboardViewnonVJTIRoute, (route) => false);
                                   } else {
                                     await AuthService.firebase()
                                         .sendEmailVerification();

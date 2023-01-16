@@ -38,106 +38,47 @@ class _DashBoardViewState extends State<DashBoardView> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                border: Border.all(width: 5),
-                borderRadius: const BorderRadius.all(Radius.circular(30)),
-              ),
-              height: 200,
-              width: 371,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Welcome\n<name>',
-                      maxLines: 2,
-                      overflow: TextOverflow.fade,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                      ),
-                    ),
+            Material(
+              color: Colors.deepOrange[50],
+              child: InkWell(
+                onTap: () async {
+                  Navigator.pushNamed(context, studentAccountRoute);
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    border: Border.all(width: 5),
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
                   ),
-                  Image.asset(
-                    'assets/VJTilogoforappbar.jpeg',
-                    height: 200,
-                  )
-                ],
+                  height: 200,
+                  width: 500,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Welcome\n<name>',
+                          maxLines: 2,
+                          overflow: TextOverflow.fade,
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontFamily: 'Poppins',
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Image.asset(
+                        'assets/VJTilogoforappbar.jpeg',
+                        height: 300,
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 30),
-
-            // Stack(
-            //   children: <Widget>[
-            //     //SizedBox(height: 20),
-            //     Padding(
-            //       padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-            //       child: Center(
-            //         child: Container(
-            //           decoration: BoxDecoration(
-            //             image: DecorationImage(
-            //               image: ExactAssetImage('assets/VJTI.png'),
-            //               fit: BoxFit.fill,
-            //             ),
-            //             borderRadius: BorderRadius.all(Radius.circular(50)),
-            //             color: Colors.transparent,
-            //             border: Border.all(width: 5),
-
-            //           ),
-
-            //           child: Container(
-            //             decoration: BoxDecoration(
-            //               color: Colors.white.withOpacity(0.38),
-            //               borderRadius: BorderRadius.all(Radius.circular(40)),
-            //             ),
-            //             child: Padding(
-            //               padding: EdgeInsets.fromLTRB(250, 0, 0, 0),
-            //               child: Container(
-            //                 decoration: BoxDecoration(
-            //                   //color: Colors.transparent,
-            //                   shape: BoxShape.circle,
-            //                   image: DecorationImage(
-            //                     image: ExactAssetImage('assets/profilePic.jpg'),
-            //                     fit: BoxFit.cover,
-            //                   ),
-            //                   border: Border.all(
-            //                     width: 0,
-            //                   ),
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //           height: 150,
-            //           width: 384,
-            //         ),
-            //       ),
-            //     ),
-            //     Align(
-            //       alignment: Alignment(-0.7,0.9),
-            //       child: SizedBox(
-            //         height: 200,
-            //         width: 300,
-            //         child: Align(
-            //           alignment: Alignment(-1.1,-0.3),
-            //           child: Text(
-            //              '  Welcome!!',
-            //             maxLines: 2,
-            //             overflow: TextOverflow.fade,
-            //             style: TextStyle(
-            //               fontSize: 30,
-            //               fontFamily: 'Poppins',
-            //               color: Colors.black,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -275,7 +216,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   ),
                 ),
 
-                const SizedBox(width: 70),
+                const SizedBox(width: 90),
                 // ABOUT VJTI
                 Material(
                   color: Colors.deepOrange[50],
@@ -366,7 +307,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                   ),
                 ),
 
-                const SizedBox(width: 70),
+                const SizedBox(width: 80),
                 // HOW TO GET VJTI
                 Material(
                   color: Colors.deepOrange[50],
@@ -410,6 +351,31 @@ class _DashBoardViewState extends State<DashBoardView> {
                 ),
               ],
             ),
+            const SizedBox(height: 40),
+            Material(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromARGB(255, 124, 5, 5),
+                child: InkWell(
+                  onTap: () async {
+                    Navigator.of(context).pushNamed(loginVJTIRoute);
+                  },
+                  child: AnimatedContainer(
+                                duration: const Duration(seconds: 1),
+                                height: 50,
+                                width: 100,
+                                child: const Center(
+                                  child: Text(
+                                    'Logout',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                ),
+              ),
             const SizedBox(height: 30),
           ],
         ),

@@ -39,6 +39,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   google_sign_in: ^5.4.2
   intl: ^0.17.0
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -72,22 +73,35 @@ flutter:
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
-fonts:
-  - family: Poppins
-    fonts:
-      - asset: fonts/Poppins-Medium.ttf
-  - family: Vollkorn
-    fonts:
-      - asset: fonts/Vollkorn-Bold.ttf
-  - family: Playfair_Display
-    fonts:
-      - asset: fonts/PlayfairDisplay-Bold.ttf
-  - family: Playfair_Display_Black
-    fonts:
-      - asset: fonts/PlayfairDisplay-Black.ttf
-  - family: Playfair_Display_Extra_Bold
-    fonts:
-      - asset: fonts/PlayfairDisplay-ExtraBold.ttf
+  fonts:
+    - family: Tiro_Devanagari_Marathi
+      fonts:
+        - asset: fonts/TiroDevanagariMarathi-Regular.ttf
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Medium.ttf
+    - family: Vollkorn
+      fonts:
+        - asset: fonts/Vollkorn-Bold.ttf
+    - family: Playfair_Display
+      fonts:
+        - asset: fonts/PlayfairDisplay-Bold.ttf
+    - family: Playfair_Display_Black
+      fonts:
+        - asset: fonts/PlayfairDisplay-Black.ttf
+    - family: Playfair_Display_Extra_Bold
+      fonts:
+        - asset: fonts/PlayfairDisplay-ExtraBold.ttf
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Medium.ttf
+    - family: Vollkorn
+      fonts:
+        - asset: fonts/Vollkorn-Bold.ttf
+    - family: Playfair_Display
+      fonts:
+        - asset: fonts/PlayfairDisplay-Bold.ttf
+ 
       
   #
   # For details regarding fonts from package dependencies,

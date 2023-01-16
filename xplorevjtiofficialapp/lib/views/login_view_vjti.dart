@@ -254,7 +254,7 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                 }
                               },
                               child: AnimatedContainer(
-                                duration: const Duration(seconds: 1),
+                                duration: const Duration(seconds: 0),
                                 height: 50,
                                 width: 100,
                                 child: const Center(
