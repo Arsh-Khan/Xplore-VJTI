@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 
 class StudentVJTI extends StatefulWidget {
   const StudentVJTI({super.key});
@@ -16,12 +17,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
           backgroundColor: Colors.deepOrange[50],
           elevation: 0,
           //actions: <Widget>[
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.menu_sharp,
-                color: Colors.black,
-              )),
+          leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
           title: const Text(
             'VJTI',
             style: TextStyle(
@@ -39,7 +35,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
               const SizedBox(height: 10),
               Center(
                 child: const Text(
-                  'Your Account',
+                  'My Profile',
                     style: TextStyle(
                       fontSize: 30,
                       fontFamily: 'Poppins',
@@ -58,7 +54,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
                       children: <TextSpan>[
                         TextSpan(text: 'Name\n'),
                         TextSpan(
-                            text: 'Ruturaj Rao',
+                            text: 'Rushi Jani',
                             style: TextStyle(
                               fontSize: 30,
                             )),
@@ -67,7 +63,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
                           text: '\nYear\n',
                         ),
                         TextSpan(
-                            text: 'SY BTech',
+                            text: 'S.Y. B.Tech',
                             style: TextStyle(
                               fontSize: 30,
                             )),
@@ -88,31 +84,25 @@ class _StudentVJTIState extends State<StudentVJTI> {
                         TextSpan(text: '\n'),
                         TextSpan(text: '\nReg. ID\n'),
                         TextSpan(
-                            text: '211090007',
+                            text: '211090052',
                             style: TextStyle(
                               fontSize: 30,
                             )),
                         TextSpan(text: '\n'),
                         TextSpan(text: '\nVJTI Mail ID\n'),
                         TextSpan(
-                            text: 'rsrao_b21@et.vjti.ac.in',
+                            text: 'rvjani_b21@et.vjti.ac.in',
                             style: TextStyle(
                               fontSize: 22,
                             )),
                         TextSpan(text: '\n'),
                         TextSpan(text: '\nDate of Birth\n'),
                         TextSpan(
-                            text: '22 May 2004',
+                            text: '05 May 2004',
                             style: TextStyle(
                               fontSize: 30,
                             )),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\nCPI\n'),
-                        TextSpan(
-                            text: '9.8',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
+                        
                         
                       ]))
             ])));

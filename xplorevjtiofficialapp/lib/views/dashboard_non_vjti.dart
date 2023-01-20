@@ -276,31 +276,6 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
               ],
             ),
             const SizedBox(height: 40),
-            Material(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(255, 124, 5, 5),
-                child: InkWell(
-                  onTap: () async {
-                    Navigator.of(context).pushNamed(loginVJTIRoute);
-                  },
-                  child: AnimatedContainer(
-                                duration: const Duration(seconds: 1),
-                                height: 50,
-                                width: 100,
-                                child: const Center(
-                                  child: Text(
-                                    'Logout',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                ),
-              ),
-            const SizedBox(height: 30),
           ],
         ),
       ),

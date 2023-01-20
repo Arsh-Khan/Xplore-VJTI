@@ -12,4 +12,4 @@ const studentAccountRoute = '/student-profile-VJTI/';
 const howToGetVJTIRoute = '/how-to-get-VJTI/';
 const extracurricularsRoute = '/extracurriculars/';
 const seniorsAdviceRoute = '/seniors-advice/';
-
+const contactUsRoute = '/contact_us/';

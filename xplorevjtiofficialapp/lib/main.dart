@@ -1,7 +1,10 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
+import 'package:xplorevjtiofficialapp/views/contact_us.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
 import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
@@ -35,6 +38,7 @@ void main() async {
       studentAccountRoute:(context) => const StudentVJTI(),
       howToGetVJTIRoute:(context) => const HowToGetVJTI(),
       extracurricularsRoute:(context) =>  Extracurriculars(),
+      contactUsRoute:(context) => contact(),
     },
   ));
 }
