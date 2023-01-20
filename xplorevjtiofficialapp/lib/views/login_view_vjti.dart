@@ -189,7 +189,10 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                           ),
                           const SizedBox(height: 7),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  forgotPasswordRoute, (route) => false);
+                            },
                             child: const Text(
                               'Password bhul gaye kya?',
                               style: TextStyle(

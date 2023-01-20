@@ -1,5 +1,3 @@
-import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
-
 const loginVJTIRoute = '/Login-VJTI/';
 const loginNonVJTIRoute = '/Login-Non-VJTI/';
 const signUpVJTIRoute = '/Signup-VJTI/';
@@ -10,6 +8,6 @@ const verifyEmailRoute = '/Verify-email-route/';
 const dashboardViewnonVJTIRoute = '/dashboard-non-VJTI/';
 const studentAccountRoute = '/student-profile-VJTI/';
 const howToGetVJTIRoute = '/how-to-get-VJTI/';
+const forgotPasswordRoute = '/forgot-password';
 
 const seniorsAdviceRoute = '/seniors-advice/';
-

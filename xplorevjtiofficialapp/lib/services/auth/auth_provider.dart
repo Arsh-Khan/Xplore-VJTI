@@ -29,6 +29,8 @@ abstract class AuthProvider {
 
   Future<void> logOut();
   Future<void> sendEmailVerification();
+  Future<AuthUser> reAuthenticateEmail(
+      {required String email, required String password});
 
   Future<void> googleSignIn({required BuildContext context});
 

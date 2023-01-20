@@ -5,6 +5,7 @@ import 'package:xplorevjtiofficialapp/constants/app_constants.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_exceptions.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
+import 'package:xplorevjtiofficialapp/userDatabase/insert.dart';
 import 'package:xplorevjtiofficialapp/utilites/check_vjti_email.dart';
 import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
 
@@ -396,6 +397,9 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                               final password = _password.text;
                               final confirmPassword = _confirmpassword.text;
                               final name = _name.text;
+                              final regId = _regID.text;
+                              final dob = dateInput.text;
+                              final branch = branchesvalue;
                               try {
                                 final isVJTIEmailID = emailCheck(email);
                                 final isPasswordSame =
@@ -410,6 +414,17 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                                       email: email, password: password);
                                   final user =
                                       AuthService.firebase().currentUser;
+
+                                  final result = await insertUserData(
+                                      name: name,
+                                      email: email,
+                                      regId: regId,
+                                      branch: branch,
+                                      dob: dob,
+                                      password: password);
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(result)));
 
                                   if (user?.isEmailVerified ?? false) {
                                     // devtools.log(userCredential.toString());

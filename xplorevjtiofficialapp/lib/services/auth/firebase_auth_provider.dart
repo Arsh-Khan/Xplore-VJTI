@@ -8,6 +8,7 @@ import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'
     show
+        AuthCredential,
         EmailAuthProvider,
         FirebaseAuth,
         FirebaseAuthException,
@@ -192,6 +193,35 @@ class FirebaseAuthProvider implements AuthProvider {
     );
   }
 
+  @override
+  Future<AuthUser> reAuthenticateEmail(
+      {required String email, required String password}) async {
+    try {
+      // Create a credential
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+
+      // Reauthenticate
+      await FirebaseAuth.instance.currentUser!
+          .reauthenticateWithCredential(credential);
+      final user = currentUser;
+      if (user != null) {
+        return user;
+      } else {
+        throw UserNotLoggedInAuthException();
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw UserNotFoundAuthException();
+      } else if (e.code == 'wrong-password') {
+        throw WrongPasswordAuthException();
+      } else {
+        throw GenericAuthExceptions();
+      }
+    } catch (_) {
+      throw GenericAuthExceptions();
+    }
+  }
   // @override
   // Future<void> facebookSignIn({required BuildContext context}) async {
   //   try {

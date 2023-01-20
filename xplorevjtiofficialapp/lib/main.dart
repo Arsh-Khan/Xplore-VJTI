@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
+import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/mongodb.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
+import 'package:xplorevjtiofficialapp/views/forgot_password_view_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
@@ -18,6 +20,7 @@ import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await MongoDatabase.connect();
   runApp(MaterialApp(
     home: SplashScreen(),
     routes: {
@@ -29,8 +32,9 @@ void main() async {
       verifyEmailRoute: (context) => const VerifyEmailView(),
       signUpNonVJTIRoute: (context) => const SignUpNonVJTI(),
       aboutVJTIRoute: (context) => const AboutVJTIView(),
-      studentAccountRoute:(context) => const StudentVJTI(),
-      howToGetVJTIRoute:(context) => const HowToGetVJTI(),
+      studentAccountRoute: (context) => const StudentVJTI(),
+      howToGetVJTIRoute: (context) => const HowToGetVJTI(),
+      forgotPasswordRoute: (context) => const ForgotPasswordVJTIView(),
     },
   ));
 }
