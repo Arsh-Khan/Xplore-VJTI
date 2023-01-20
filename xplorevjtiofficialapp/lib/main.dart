@@ -4,6 +4,7 @@ import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
+import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
@@ -15,6 +16,8 @@ import 'package:xplorevjtiofficialapp/views/splash_screen.dart';
 import 'package:xplorevjtiofficialapp/views/student_account.dart';
 import 'dart:developer' as devtools show log;
 import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
+import 'package:xplorevjtiofficialapp/views/side_bar.dart';
+import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +34,7 @@ void main() async {
       aboutVJTIRoute: (context) => const AboutVJTIView(),
       studentAccountRoute:(context) => const StudentVJTI(),
       howToGetVJTIRoute:(context) => const HowToGetVJTI(),
+      extracurricularsRoute:(context) =>  Extracurriculars(),
     },
   ));
 }

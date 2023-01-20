@@ -40,7 +40,8 @@ dependencies:
   google_sign_in: ^5.4.2
   intl: ^0.17.0
   url_launcher: ^6.1.7
-  stream_chat_flutter: ^5.2.0
+  stream_chat_flutter: ^3.0.0
+  share_plus: ^5.0.0
 
 
 dev_dependencies:
