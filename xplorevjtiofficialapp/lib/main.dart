@@ -1,8 +1,11 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/mongodb.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
+import 'package:xplorevjtiofficialapp/views/contact_us.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
 import 'package:xplorevjtiofficialapp/views/forgot_password_view_vjti.dart';
@@ -39,6 +42,7 @@ void main() async {
       howToGetVJTIRoute: (context) => const HowToGetVJTI(),
       forgotPasswordRoute: (context) => const ForgotPasswordVJTIView(),
       extracurricularsRoute: (context) => Extracurriculars(),
+      contactUsRoute: (context) => const ContactVJTIView(),
     },
   ));
 }

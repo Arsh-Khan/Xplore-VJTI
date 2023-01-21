@@ -19,12 +19,7 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
           backgroundColor: Colors.deepOrange[50],
           elevation: 0,
           //actions: <Widget>[
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.menu_sharp,
-                color: Colors.black,
-              )),
+          leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
           title: const Text(
             'VJTI',
             style: TextStyle(
@@ -224,22 +219,6 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
                   onTap: () async {
                     Navigator.of(context).pushNamed(dashBoardRoute);
                   },
-                  child: AnimatedContainer(
-                                duration: const Duration(seconds: 1),
-                                height: 50,
-                                width: 500,
-                                child: const Center(
-                                  child: Text(
-                                    '🔙  Back to Dashboard',
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 90, 9, 9),
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ),
-                              ),
                 ),
               ),
               const SizedBox(height: 40),

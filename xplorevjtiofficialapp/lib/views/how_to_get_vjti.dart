@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 
 class HowToGetVJTI extends StatefulWidget {
   const HowToGetVJTI({super.key});
@@ -15,6 +16,7 @@ class _HowToGetVJTIState extends State<HowToGetVJTI> {
     return Scaffold(
         backgroundColor: Colors.deepOrange[50],
         appBar: AppBar(
+          leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
           title: const Text(
             'VJTI',
             style: TextStyle(

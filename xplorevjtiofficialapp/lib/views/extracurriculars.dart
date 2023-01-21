@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 class Extracurriculars extends StatefulWidget {
   @override
   State<Extracurriculars> createState() => _Extracurriculars();
@@ -23,12 +24,16 @@ class _Extracurriculars extends State<Extracurriculars> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         //actions: <Widget>[
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
-        title: Image.asset(
-          "assets/Logo_Black.png",
-          fit: BoxFit.contain,
-          height: 60,
-        ),
+        leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
+        title: const Text(
+            'VJTI',
+            style: TextStyle(
+              fontFamily: 'Vollkorn',
+              fontSize: 50,
+              letterSpacing: 7,
+              color: Color.fromARGB(255, 124, 5, 5),
+            ),
+          ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

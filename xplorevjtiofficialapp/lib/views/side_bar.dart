@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 
 //import 'package:xplorevjtiofficialapp/views/theme.dart';
 class SideBar extends StatelessWidget {
@@ -46,12 +47,16 @@ class SideBar extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.contact_phone),
                     title: const Text('Contact Us'),
-                    onTap: () => null,
+                    onTap: () {
+                      Navigator.pushNamed(context, contactUsRoute);
+                    },
                   ),
                   ListTile(
                     leading: const Icon(Icons.logout),
                     title: const Text('Logout'),
-                    onTap: () => null,
+                    onTap: () {
+                      Navigator.pushNamed(context, loginVJTIRoute);
+                    },
                   ),
                 ],
               ),

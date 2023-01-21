@@ -11,3 +11,4 @@ const howToGetVJTIRoute = '/how-to-get-VJTI/';
 const forgotPasswordRoute = '/forgot-password';
 const extracurricularsRoute = '/extracurriculars/';
 const seniorsAdviceRoute = '/seniors-advice/';
+const contactUsRoute = '/contact_us/';
