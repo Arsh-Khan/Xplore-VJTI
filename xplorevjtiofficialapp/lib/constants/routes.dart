@@ -9,5 +9,5 @@ const dashboardViewnonVJTIRoute = '/dashboard-non-VJTI/';
 const studentAccountRoute = '/student-profile-VJTI/';
 const howToGetVJTIRoute = '/how-to-get-VJTI/';
 const forgotPasswordRoute = '/forgot-password';
-
+const extracurricularsRoute = '/extracurriculars/';
 const seniorsAdviceRoute = '/seniors-advice/';

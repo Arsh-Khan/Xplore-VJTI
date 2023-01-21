@@ -6,6 +6,7 @@ import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
 import 'package:xplorevjtiofficialapp/views/forgot_password_view_vjti.dart';
+import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
@@ -17,6 +18,8 @@ import 'package:xplorevjtiofficialapp/views/splash_screen.dart';
 import 'package:xplorevjtiofficialapp/views/student_account.dart';
 import 'dart:developer' as devtools show log;
 import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
+import 'package:xplorevjtiofficialapp/views/side_bar.dart';
+import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +38,7 @@ void main() async {
       studentAccountRoute: (context) => const StudentVJTI(),
       howToGetVJTIRoute: (context) => const HowToGetVJTI(),
       forgotPasswordRoute: (context) => const ForgotPasswordVJTIView(),
+      extracurricularsRoute: (context) => Extracurriculars(),
     },
   ));
 }
@@ -54,7 +58,6 @@ class HomePage extends StatelessWidget {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
-              AuthService.firebase().logOut();
               final user = AuthService.firebase().currentUser;
               if (user != null) {
                 if (user.isEmailVerified) {

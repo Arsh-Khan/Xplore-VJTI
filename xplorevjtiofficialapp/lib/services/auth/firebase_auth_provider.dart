@@ -222,6 +222,7 @@ class FirebaseAuthProvider implements AuthProvider {
       throw GenericAuthExceptions();
     }
   }
+
   // @override
   // Future<void> facebookSignIn({required BuildContext context}) async {
   //   try {

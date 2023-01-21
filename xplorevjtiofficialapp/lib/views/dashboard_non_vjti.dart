@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
+import 'package:xplorevjtiofficialapp/views/side_bar.dart';
 
 class DashboardView_nonVJTI extends StatefulWidget {
   const DashboardView_nonVJTI({super.key});
@@ -12,17 +13,25 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: SideBar(),
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
-        //actions: <Widget>[
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu_sharp,
-              color: Colors.black,
-            )),
+        leading: Builder(
+      builder: (BuildContext context) {
+        return IconButton(
+          icon: const Icon(
+            Icons.menu_sharp,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        );
+      },
+    ),
         title: const Text(
           'VJTI',
           style: TextStyle(

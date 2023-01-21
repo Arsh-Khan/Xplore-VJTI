@@ -23,8 +23,8 @@ class MongoDatabase {
         return "Something went wrong while inserting data";
       }
     } catch (e) {
-      print(e.toString());
-      return e.toString();
+      log(e.toString());
+      return "Something went wrong while inserting data";
     }
   }
 
@@ -45,5 +45,14 @@ class MongoDatabase {
     final data = await userCollection.find(where.eq('email', email)).toList();
     log(data.toString());
     return data;
+  }
+
+  static Future<String> deleteUserData(MongoDbUserModel user) async {
+    try {
+      await userCollection.remove(user);
+      return "User Deleted";
+    } catch (_) {
+      return "Error in Deleting User Data";
+    }
   }
 }

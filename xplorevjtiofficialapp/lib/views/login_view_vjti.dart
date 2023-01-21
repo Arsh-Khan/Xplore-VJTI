@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_exceptions.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
+import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
 import 'package:xplorevjtiofficialapp/utilites/check_vjti_email.dart';
 import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
 import 'dart:developer' as devtools show log;

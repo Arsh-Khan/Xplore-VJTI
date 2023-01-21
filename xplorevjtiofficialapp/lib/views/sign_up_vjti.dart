@@ -409,34 +409,46 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                                 devtools.log(isPasswordSame.toString());
                                 devtools.log(isVJTIEmailID.toString());
                                 devtools.log('$email + $password');
-                                if (isVJTIEmailID && isPasswordSame) {
-                                  await AuthService.firebase().createUser(
-                                      email: email, password: password);
-                                  final user =
-                                      AuthService.firebase().currentUser;
+                                if (isVJTIEmailID) {
+                                  if (isPasswordSame) {
+                                    final result = await insertUserData(
+                                        name: name,
+                                        email: email,
+                                        regId: regId,
+                                        branch: branch,
+                                        dob: dob,
+                                        password: password);
+                                    if (result !=
+                                        "Something went wrong while inserting data") {
+                                      await AuthService.firebase().createUser(
+                                          email: email, password: password);
+                                    } else {
+                                      showErrorDiaglog(context,
+                                          "Something went wrong while inserting data");
+                                      throw UserNotFoundAuthException();
+                                    }
+                                    final user =
+                                        AuthService.firebase().currentUser;
 
-                                  final result = await insertUserData(
-                                      name: name,
-                                      email: email,
-                                      regId: regId,
-                                      branch: branch,
-                                      dob: dob,
-                                      password: password);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(content: Text(result)));
 
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(result)));
-
-                                  if (user?.isEmailVerified ?? false) {
-                                    // devtools.log(userCredential.toString());
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                            dashBoardRoute, (route) => false);
+                                    if (user?.isEmailVerified ?? false) {
+                                      // devtools.log(userCredential.toString());
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                              dashBoardRoute, (route) => false);
+                                    } else {
+                                      await AuthService.firebase()
+                                          .sendEmailVerification();
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                              verifyEmailRoute,
+                                              (route) => false);
+                                    }
                                   } else {
-                                    await AuthService.firebase()
-                                        .sendEmailVerification();
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                            verifyEmailRoute, (route) => false);
+                                    showErrorDiaglog(context,
+                                        'Password and Confirm Password are different');
                                   }
                                 } else {
                                   showErrorDiaglog(
