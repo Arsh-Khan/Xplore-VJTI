@@ -5,7 +5,7 @@ import 'package:xplorevjtiofficialapp/constants/app_constants.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_exceptions.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/insert.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/insert.dart';
 import 'package:xplorevjtiofficialapp/utilites/check_vjti_email.dart';
 import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
 

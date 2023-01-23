@@ -12,3 +12,7 @@ const forgotPasswordRoute = '/forgot-password';
 const extracurricularsRoute = '/extracurriculars/';
 const seniorsAdviceRoute = '/seniors-advice/';
 const contactUsRoute = '/contact_us/';
+const notesAndPyqRoute = '/notes-and-pyq';
+const insertNotesAndPyqRoute = '/insert-notes-pyq';
+const updateNotesAndPyqRoute = '/update-notes-pyq';
+const deleteNotesAndPyqRoute = '/delete-notes-pyq';

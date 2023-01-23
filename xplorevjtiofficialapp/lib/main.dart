@@ -1,32 +1,35 @@
-//import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/contact_us.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
+import 'package:xplorevjtiofficialapp/views/delete_notes_and_pyq.dart';
 import 'package:xplorevjtiofficialapp/views/forgot_password_view_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
+import 'package:xplorevjtiofficialapp/views/insert_notes_and_pyq.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
+import 'package:xplorevjtiofficialapp/views/notes_and_pyq_view.dart';
 import 'package:xplorevjtiofficialapp/views/seniors_advice.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_vjti.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
 import 'package:xplorevjtiofficialapp/views/splash_screen.dart';
 import 'package:xplorevjtiofficialapp/views/student_account.dart';
+import 'package:xplorevjtiofficialapp/views/update_notes_and_pyq.dart';
 import 'dart:developer' as devtools show log;
 import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
 import 'package:xplorevjtiofficialapp/views/side_bar.dart';
-import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
+  await MongoNotesAndPyqDatabase.connect();
   runApp(MaterialApp(
     home: SplashScreen(),
     routes: {
@@ -42,7 +45,11 @@ void main() async {
       howToGetVJTIRoute: (context) => const HowToGetVJTI(),
       forgotPasswordRoute: (context) => const ForgotPasswordVJTIView(),
       extracurricularsRoute: (context) => Extracurriculars(),
-      contactUsRoute: (context) => const ContactVJTIView(),
+      contactUsRoute: (context) => const ContactUsView(),
+      notesAndPyqRoute: (context) => const NotesAndPyqView(),
+      insertNotesAndPyqRoute: (context) => const InsertNotesAndPyqView(),
+      updateNotesAndPyqRoute: (context) => const UpdateNotesAndPyqView(),
+      deleteNotesAndPyqRoute: (context) => const DeleteNotesAndPyqView()
     },
   ));
 }

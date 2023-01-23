@@ -1,5 +1,5 @@
-import 'package:xplorevjtiofficialapp/userDatabase/MongoDBUserModel.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/MongoDBUserModel.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 
 Future<String> deleteUserData({required String email}) async {
   final data = await MongoDatabase.getUserQueryData(email);

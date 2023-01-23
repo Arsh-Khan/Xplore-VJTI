@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/MongoDBUserModel.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/constants.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/MongoDBUserModel.dart';
+import 'package:xplorevjtiofficialapp/database/dbhelper/constants.dart';
 
 class MongoDatabase {
   static var db, userCollection;

@@ -206,7 +206,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () {
-                              //
+                              Navigator.of(context).pushNamed(notesAndPyqRoute);
                             },
                             child: Center(
                               child: Column(
