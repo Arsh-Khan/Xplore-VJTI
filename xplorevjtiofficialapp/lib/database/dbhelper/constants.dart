@@ -1,6 +1,9 @@
 const MONGO_CONN_URL =
     "mongodb+srv://testuser:wKtrQ0ZtNXylMPzE@xplorevjtiofficialapp.ipqjjrz.mongodb.net/xplorevjtiofficial?retryWrites=true&w=majority";
+
 const USER_COLLECTION = "userdata";
+const NOTES_PYQ_COLLECTION = "notesandpyq";
+
 
 // test user
 const username = "testuser";

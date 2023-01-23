@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 
-class ContactVJTIView extends StatefulWidget {
-  const ContactVJTIView({Key? key}) : super(key: key);
+class ContactUsView extends StatefulWidget {
+  const ContactUsView({Key? key}) : super(key: key);
 
   @override
-  State<ContactVJTIView> createState() => _ContactVJTIViewState();
+  State<ContactUsView> createState() => _ContactUsViewState();
 }
 
-class _ContactVJTIViewState extends State<ContactVJTIView> {
+class _ContactUsViewState extends State<ContactUsView> {
   launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

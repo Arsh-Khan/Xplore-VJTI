@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
-import 'package:xplorevjtiofficialapp/userDatabase/MongoDBUserModel.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/MongoDBUserModel.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 
 // class MongoDBInsert {
 //   MongoDBInsert(

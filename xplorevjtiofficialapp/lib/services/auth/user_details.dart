@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/MongoDBUserModel.dart';
-import 'package:xplorevjtiofficialapp/userDatabase/dbhelper/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/MongoDBUserModel.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 
 Future<dynamic> userDetails() async {
   final email = FirebaseAuth.instance.currentUser?.email;

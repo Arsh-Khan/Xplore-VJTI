@@ -20,7 +20,7 @@ class SideBar extends StatelessWidget {
                   UserAccountsDrawerHeader(
                     //backgroundColor: Colors.black,
                     accountName: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Text('${snapshot.data['name']}',
                           style: const TextStyle(
                             color: Colors.black,
@@ -36,12 +36,13 @@ class SideBar extends StatelessWidget {
                       backgroundImage: ExactAssetImage(
                         'assets/VJTilogoforappbar.jpeg',
                       ),
-                      radius: 100,
+                      radius: 200,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.deepOrange[50],
                     ),
                   ),
+                  const SizedBox(height: 20),
                   ListTile(
                     leading: const Icon(Icons.sunny),
                     title: const Text(

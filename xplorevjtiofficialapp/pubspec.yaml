@@ -47,11 +47,9 @@ dependencies:
   shelf_router: ^1.1.3
   shelf_web_socket: ^1.0.3
   stream_chat_flutter: ^5.2.0
+  syncfusion_flutter_pdfviewer: ^20.4.44
   url_launcher: ^6.1.7
   web_socket_channel: ^2.3.0
-
-
-
 
 dev_dependencies:
   flutter_lints: ^2.0.0
