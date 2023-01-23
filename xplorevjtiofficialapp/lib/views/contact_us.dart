@@ -29,7 +29,7 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
             onPressed: () {
               Navigator.pushNamed(context, dashBoardRoute);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_sharp,
               color: Colors.black,
               size: 30,
@@ -53,6 +53,7 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
               child: Container(
+                decoration: BoxDecoration(border: Border.all(width: 2)),
                 height: 100,
                 width: 100,
                 child: Image.asset(
@@ -61,26 +62,27 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(0, 20, 0, 15),
               child: Center(
                 child: Text(
-                  'Developers',
+                  '</Developers>',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Source code pro',
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 10, 60, 0),
+              padding: const EdgeInsets.fromLTRB(40, 10, 60, 0),
               child: Container(
-                height: 100,
+                height: 120,
                 width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.indigo[200],
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(71, 123, 21, 21),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   image: DecorationImage(
@@ -93,10 +95,11 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                   padding: const EdgeInsets.fromLTRB(100, 10, 0, 0),
                   child: Column(
                     children: [
-                      Text(
-                        'Rushi V. Jani',
+                      const Text(
+                        ' Rushi V. Jani',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
+                          fontFamily: 'Poppins'
                         ),
                       ),
                       Row(
@@ -140,13 +143,14 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                 ),
               ),
             ),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 10, 60, 0),
+              padding: const EdgeInsets.fromLTRB(40, 10, 60, 0),
               child: Container(
-                height: 100,
+                height: 120,
                 width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.indigo[200],
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(71, 123, 21, 21),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   image: DecorationImage(
@@ -159,10 +163,11 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                   padding: const EdgeInsets.fromLTRB(100, 10, 0, 0),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Arsh Khan',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
+                          fontFamily: 'Poppins'
                         ),
                       ),
                       Row(
@@ -206,13 +211,14 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                 ),
               ),
             ),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.fromLTRB(40, 10, 60, 0),
+              padding: const EdgeInsets.fromLTRB(40, 10, 60, 0),
               child: Container(
-                height: 100,
+                height: 120,
                 width: 300,
-                decoration: BoxDecoration(
-                  color: Colors.indigo[200],
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(71, 123, 21, 21),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   image: DecorationImage(
@@ -225,10 +231,12 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                   padding: const EdgeInsets.fromLTRB(100, 10, 0, 0),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Ruturaj Rao',
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 25,
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
                         ),
                       ),
                       Row(
@@ -272,18 +280,18 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: Text(
                 "For any issues or feedback, please write to",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 25,
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+            const Padding(
+              padding: EdgeInsets.all(10),
               child: Text(
                 "help.xplorevjti@gmail.com",
                 textAlign: TextAlign.center,
@@ -294,6 +302,7 @@ class _ContactVJTIViewState extends State<ContactVJTIView> {
                 ),
               ),
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),

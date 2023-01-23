@@ -17,7 +17,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
           backgroundColor: Colors.deepOrange[50],
           elevation: 0,
           //actions: <Widget>[
-          leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
+          leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: const Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
           title: const Text(
             'VJTI',
             style: TextStyle(
@@ -31,80 +31,266 @@ class _StudentVJTIState extends State<StudentVJTI> {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-            child: Column(children: [
-              const SizedBox(height: 10),
-              Center(
-                child: const Text(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                Text(
                   'My Profile',
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: 'Poppins',
-                      color: Color.fromARGB(255, 80, 4, 4),
-                    )),
-              ),
-              const SizedBox(height: 20),
-              RichText(
-                  textAlign: TextAlign.left,
-                  text: const TextSpan(
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(text: 'Name\n'),
-                        TextSpan(
-                            text: 'Rushi Jani',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
-                        TextSpan(text: '\n'),
-                        TextSpan(
-                          text: '\nYear\n',
+                  style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 40,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
+                ),
+                const SizedBox(height: 40),
+                
+                
+                
+                AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'Name',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
                         ),
-                        TextSpan(
-                            text: 'S.Y. B.Tech',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\nBranch\n'),
-                        TextSpan(
-                            text: 'EXTC',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\nSem\n'),
-                        TextSpan(
-                            text: 'III',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\nReg. ID\n'),
-                        TextSpan(
-                            text: '211090052',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\nVJTI Mail ID\n'),
-                        TextSpan(
-                            text: 'rvjani_b21@et.vjti.ac.in',
-                            style: TextStyle(
-                              fontSize: 22,
-                            )),
-                        TextSpan(text: '\n'),
-                        TextSpan(text: '\nDate of Birth\n'),
-                        TextSpan(
-                            text: '05 May 2004',
-                            style: TextStyle(
-                              fontSize: 30,
-                            )),
-                        
-                        
-                      ]))
-            ])));
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        child: Text(
+                          'Ruturaj',
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 124, 5, 5),
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'Year',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        child: Text(
+                          'SY',
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 124, 5, 5),
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'Reg. ID',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        child: Text(
+                          '211090007',
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 124, 5, 5),
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'Branch',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        child: Text(
+                          'EXTC',
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 124, 5, 5),
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  height: 100,
+                  width: 500,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+                        child: Text(
+                          'Mail ID',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'rsrao_b21@et.vjti.ac.in',
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 22,
+                          color: Color.fromARGB(255, 124, 5, 5),
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                AnimatedContainer(
+                  duration: const Duration(seconds: 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.white,
+                  ),
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        child: Text(
+                          'DOB',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                        child: Text(
+                          '22-05-2004',
+                          style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 124, 5, 5),
+                        ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          )
+        )
+      );
   }
 }

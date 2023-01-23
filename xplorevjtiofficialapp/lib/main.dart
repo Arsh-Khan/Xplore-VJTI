@@ -41,7 +41,7 @@ void main() async {
       studentAccountRoute: (context) => const StudentVJTI(),
       howToGetVJTIRoute: (context) => const HowToGetVJTI(),
       forgotPasswordRoute: (context) => const ForgotPasswordVJTIView(),
-      extracurricularsRoute: (context) => Extracurriculars(),
+      extracurricularsRoute: (context) => ExtraCurriculars(),
       contactUsRoute: (context) => const ContactVJTIView(),
     },
   ));

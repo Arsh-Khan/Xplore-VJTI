@@ -68,34 +68,37 @@ class _DashBoardViewState extends State<DashBoardView> {
                         },
                         child: AnimatedContainer(
                           duration: const Duration(seconds: 0),
-                          decoration: BoxDecoration(
+
+                          decoration: const BoxDecoration(
                             shape: BoxShape.rectangle,
-                            border: Border.all(width: 5),
+                            color: Color.fromARGB(255, 124, 5, 5),
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
+                                 BorderRadius.zero,
                           ),
                           height: 200,
                           width: 500,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Align(
-                                alignment: Alignment.center,
+                                // alignment: Alignment.centerLeft,
                                 child: Text(
-                                  'Welcome\n ${snapshot.data['name']}',
+                                  'Welcome\n${snapshot.data['name']} !!',
                                   maxLines: 2,
                                   overflow: TextOverflow.fade,
-                                  style: TextStyle(
-                                    fontSize: 25,
+                                  style: const TextStyle(
+                                    fontSize: 30,
                                     fontFamily: 'Poppins',
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
-                              Image.asset(
-                                'assets/VJTilogoforappbar.jpeg',
-                                height: 300,
-                              )
+                              const SizedBox(width: 60),
+                              CircleAvatar(
+                                backgroundImage: AssetImage('assets/VJTilogoforappbar.jpeg'),
+                                radius: 70,
+                              ),
+                              const SizedBox(width: 20),
                             ],
                           ),
                         ),
@@ -373,37 +376,12 @@ class _DashBoardViewState extends State<DashBoardView> {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    Material(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color.fromARGB(255, 124, 5, 5),
-                      child: InkWell(
-                        onTap: () async {
-                          Navigator.of(context).pushNamed(loginVJTIRoute);
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(seconds: 1),
-                          height: 50,
-                          width: 100,
-                          child: const Center(
-                            child: Text(
-                              'Logout',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                  ],
+                    ],
                 ),
               ),
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

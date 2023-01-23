@@ -48,13 +48,10 @@ dependencies:
   shelf_web_socket: ^1.0.3
   stream_chat_flutter: ^5.2.0
   url_launcher: ^6.1.7
-<<<<<<< HEAD
   web_socket_channel: ^2.3.0
-=======
-  stream_chat_flutter: ^3.0.0
 
 
->>>>>>> b97b09a8d98f1a511555bfbbe32ffe8365639b72
+
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -116,5 +113,8 @@ flutter:
     - family: Playfair_Display
       fonts:
         - asset: fonts/PlayfairDisplay-Bold.ttf
+    - family: Source Code Pro
+      fonts: 
+        - asset: fonts/SourceCodePro-VariableFont_wght.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

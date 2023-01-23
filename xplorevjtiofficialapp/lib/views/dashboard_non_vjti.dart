@@ -13,25 +13,10 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideBar(),
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
-        leading: Builder(
-      builder: (BuildContext context) {
-        return IconButton(
-          icon: const Icon(
-            Icons.menu_sharp,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
-          },
-          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-        );
-      },
-    ),
         title: const Text(
           'VJTI',
           style: TextStyle(
@@ -50,8 +35,9 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                border: Border.all(width: 5),
-                borderRadius: const BorderRadius.all(Radius.circular(30)),
+                border: Border.all(width: 0),
+                borderRadius: const BorderRadius.all(Radius.circular(0)),
+                color: Color.fromARGB(255, 124, 5, 5),
               ),
               height: 200,
               width: 500,
@@ -61,20 +47,18 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                   const Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Welcome\n<name>',
+                      'Welcome!!',
                       maxLines: 2,
                       overflow: TextOverflow.fade,
                       style: TextStyle(
                         fontSize: 30,
                         fontFamily: 'Poppins',
-                        color: Colors.black,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.5
                       ),
                     ),
                   ),
-                  Image.asset(
-                    'assets/VJTilogoforappbar.jpeg',
-                    height: 300,
-                  )
                 ],
               ),
             ),
@@ -95,7 +79,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                     child: InkWell(
                       splashColor: Colors.transparent,
                       onTap: () {
-                        //
+                        Navigator.pushNamed(context, howToGetVJTIRoute);
                       },
                       child: Center(
                         child: Column(
@@ -242,7 +226,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                   child: InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      //
+                      Navigator.pushNamed(context, extracurricularsRoute);
                     },
                     child: Center(
                       child: Column(
@@ -275,6 +259,34 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                 ),
               ],
             ),
+
+            const SizedBox(height: 40),
+
+            Material(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(255, 124, 5, 5),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, loginNonVJTIRoute);
+                            },
+                            child: AnimatedContainer(
+                              duration: const Duration(seconds: 1),
+                              height: 50,
+                              width: 100,
+                              child: const Center(
+                                child: Text(
+                                  'Logout',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
             const SizedBox(height: 40),
           ],
         ),

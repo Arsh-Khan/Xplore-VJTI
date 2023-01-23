@@ -244,6 +244,39 @@ class _HowToGetVJTIState extends State<HowToGetVJTI> {
                 ),
               ),
 
+              Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 20,
+                        color: Colors.black
+                      ),
+                      children: [
+                        TextSpan(
+                          text: '\nThus the basic \'Mantra\' for cracking MHT CET with zhakaas ranks is\n',
+                        ),
+
+                        TextSpan(
+                          text: 'TEXTBOOK',
+                          style: TextStyle(fontWeight: FontWeight.bold)
+                        ),
+                        
+                        TextSpan(
+                          text: '(thoroughlyy)',
+                          style: TextStyle(fontStyle: FontStyle.italic)
+                        ),
+
+                        TextSpan(
+                          text: '\n+\nPYQs',
+                          style: TextStyle(fontWeight: FontWeight.bold)
+                        ),
+                      ]
+                    )
+                  )
+                ),
               const SizedBox(height: 50),
             ]),
           ),
