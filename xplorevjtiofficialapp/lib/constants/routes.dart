@@ -17,3 +17,4 @@ const insertNotesAndPyqRoute = '/insert-notes-pyq';
 const updateNotesAndPyqRoute = '/update-notes-pyq';
 const deleteNotesAndPyqRoute = '/delete-notes-pyq';
 const updateStudentDetailsRoute = '/update-details/';
+const mapOfVJTIRoute = '/map-of-VJTI/';

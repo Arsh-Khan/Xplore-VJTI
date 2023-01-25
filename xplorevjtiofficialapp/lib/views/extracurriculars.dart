@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 // Rutu_dev
 class ExtraCurriculars extends StatefulWidget {
   const ExtraCurriculars({super.key});
@@ -21,15 +22,14 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, 
+          icon: Icon(Icons.arrow_back_ios_sharp,
+          color: Color.fromARGB(255, 124, 5, 5), 
+          size: 30,)
+          ),
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
-        //actions: <Widget>[
-        // leading: IconButton(
-        //     onPressed: () {},
-        //     icon: const Icon(
-        //       Icons.menu_sharp,
-        //       color: Colors.black,
-        //     )),
         title: const Text(
           'VJTI',
           style: TextStyle(
@@ -126,7 +126,7 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                  letterSpacing: 5,
+                                  letterSpacing: 3,
                                   ),  
                                 )
                         ],
@@ -171,7 +171,7 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16))
+                                  fontSize: 13))
                         ],
                       ),
                     ),
@@ -254,7 +254,7 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   ))
                         ],
                       ),

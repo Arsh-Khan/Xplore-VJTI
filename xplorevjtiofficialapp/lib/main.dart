@@ -14,6 +14,7 @@ import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/insert_notes_and_pyq.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
+import 'package:xplorevjtiofficialapp/views/map_VJTI.dart';
 import 'package:xplorevjtiofficialapp/views/notes_and_pyq_view.dart';
 import 'package:xplorevjtiofficialapp/views/seniors_advice.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_non_vjti.dart';
@@ -52,6 +53,7 @@ void main() async {
       updateNotesAndPyqRoute: (context) => const UpdateNotesAndPyqView(),
       deleteNotesAndPyqRoute: (context) => const DeleteNotesAndPyqView(),
       updateStudentDetailsRoute:(context) => const UpdateDetails(),
+      mapOfVJTIRoute: ((context) => const MapVJTI()),
     },
   ));
 }

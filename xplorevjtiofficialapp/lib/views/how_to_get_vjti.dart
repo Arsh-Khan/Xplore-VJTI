@@ -16,7 +16,12 @@ class _HowToGetVJTIState extends State<HowToGetVJTI> {
     return Scaffold(
         backgroundColor: Colors.deepOrange[50],
         appBar: AppBar(
-          leading: IconButton(onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, icon: Icon(Icons.arrow_back_ios_sharp, color: Colors.black, size: 30,)),
+          leading: IconButton(
+          onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, 
+          icon: Icon(Icons.arrow_back_ios_sharp,
+          color: Color.fromARGB(255, 124, 5, 5), 
+          size: 30,)
+          ),
           title: const Text(
             'VJTI',
             style: TextStyle(

@@ -44,6 +44,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
             padding: const EdgeInsets.all(25.0),
             child: const Text(
                 "We've Send you an email verification. Please open it to verify your account.",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 20,
@@ -54,8 +55,9 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
             const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(25.0),
-            child: const Text(
+            child: Text(
                 "If you haven't recieved a verification email yet, press the button below",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 20,
@@ -115,7 +117,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
                 Navigator.of(context)
                     .pushNamedAndRemoveUntil(loginVJTIRoute, (route) => false);
               },
-              child: const Text('Restart',
+              child: const Text('Done?',
               style: TextStyle(
                 fontSize: 20,
                 color: Color.fromARGB(255, 124, 5, 5),
