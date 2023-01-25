@@ -4,17 +4,38 @@ List detailsFromRegID (String regId){
 
   List naam = [];
   if ((regId[0] == '2') && (regId[1] == '2')){
-    naam.add("FY");
+    if(regId[6] == '0'){
+      naam.add("FY");
+    }
+    else if (regId[6] == '9'){
+      naam.add("SY (DSY)");
+    }
   }
   else if ((regId[0] == '2') && (regId[1] == '1')){
-    naam.add("SY");
+    if(regId[6] == '0'){
+      naam.add("SY");
+    }
+    else if (regId[6] == '9'){
+      naam.add("TY");
+    }
   }
   else if ((regId[0] == '2') && (regId[1] == '0')){
-    naam.add("TY");
+    if(regId[6] == '0'){
+      naam.add("TY");
+    }
+    else if (regId[6] == '9'){
+      naam.add("Final Year");
+    }
   }
   else if ((regId[0] == '1') && (regId[1] == '9')){
-    naam.add("Final Yr");
+    if(regId[6] == '0'){
+      naam.add("Final Year");
+    }
+    else if (regId[6] == '9'){
+      naam.add("Passout!");
+    }
   }
+ 
   
   naam.add(branchWithCode[regId[4]]);
 

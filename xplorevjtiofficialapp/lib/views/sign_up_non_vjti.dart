@@ -16,6 +16,7 @@ class SignUpNonVJTI extends StatefulWidget {
 class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
   late final TextEditingController dateInput;
   late final TextEditingController _name;
+  late final TextEditingController _lname;
   late final TextEditingController _email;
   late final TextEditingController _password;
   late final TextEditingController _confirmpassword;
@@ -24,6 +25,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
   void initState() {
     dateInput = TextEditingController(); //set the initial value of text field
     _name = TextEditingController();
+    _lname = TextEditingController();
     _email = TextEditingController();
     _password = TextEditingController();
     _confirmpassword = TextEditingController();
@@ -34,6 +36,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
   void dispose() {
     dateInput.dispose();
     _name.dispose();
+    _lname.dispose();
     _email.dispose();
     _password.dispose();
     _confirmpassword.dispose();
@@ -160,8 +163,33 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                               autocorrect: false,
                               keyboardType: TextInputType.name,
                               decoration: const InputDecoration(
-                                labelText: 'Enter FIRST Name',
+                                labelText: 'Enter First Name',
                                 hintText: 'First Name',
+                                hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 145, 38, 22),
+                                ),
+                                icon: Icon(Icons.person),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: const Color.fromARGB(85, 219, 112, 112),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: TextField(
+                              controller: _lname,
+                              enableSuggestions: false,
+                              autocorrect: false,
+                              keyboardType: TextInputType.name,
+                              decoration: const InputDecoration(
+                                labelText: 'Enter Last Name',
+                                hintText: 'Last Name',
                                 hintStyle: TextStyle(
                                   color: Color.fromARGB(255, 145, 38, 22),
                                 ),

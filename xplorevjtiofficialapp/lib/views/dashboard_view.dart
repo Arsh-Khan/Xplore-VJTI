@@ -71,29 +71,26 @@ class _DashBoardViewState extends State<DashBoardView> {
 
                           decoration: const BoxDecoration(
                             shape: BoxShape.rectangle,
-                            color: Color.fromARGB(255, 124, 5, 5),
+                            color: Color.fromARGB(219, 124, 5, 5),
                             borderRadius:
                                  BorderRadius.zero,
                           ),
                           height: 200,
                           width: 500,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Align(
-                                // alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'Welcome\n${snapshot.data['name']} !!',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.fade,
-                                  style: const TextStyle(
-                                    fontSize: 30,
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
+                              Text(
+                                'Welcome\n${snapshot.data['name']}',
+                                maxLines: 2,
+                                overflow: TextOverflow.fade,
+                                style: const TextStyle(
+                                  fontSize: 25,
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
                                 ),
                               ),
-                              const SizedBox(width: 60),
+                              const SizedBox(width: 10),
                               CircleAvatar(
                                 backgroundImage: AssetImage('assets/VJTilogoforappbar.jpeg'),
                                 radius: 70,
@@ -241,7 +238,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                           ),
                         ),
 
-                        const SizedBox(width: 90),
+                        const SizedBox(width: 80),
                         // ABOUT VJTI
                         Material(
                           color: Colors.deepOrange[50],
@@ -310,7 +307,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Image.asset(
-                                      'assets/gallery.png',
+                                      'assets/VJTITopView.png',
                                       height: 100,
                                       width: 100,
                                     ),
@@ -319,7 +316,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Gallery',
+                                    'Map of VJTI',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
