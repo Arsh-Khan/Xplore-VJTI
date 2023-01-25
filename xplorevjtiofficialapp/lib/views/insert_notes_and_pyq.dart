@@ -71,31 +71,68 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                 emailController.text = snapshot.data['email'];
               }
               return Scaffold(
+                backgroundColor: Colors.deepOrange[50],
+                appBar: AppBar(
+                  title: const Text(
+                    'VJTI',
+                    style: TextStyle(
+                      fontFamily: 'Vollkorn',
+                      fontSize: 50,
+                      letterSpacing: 7,
+                      color: Color.fromARGB(255, 124, 5, 5),
+                    ),
+                  ),
+                  elevation: 0.0,
+                  centerTitle: true,
+                  backgroundColor: Colors.deepOrange[50],
+                ),
                 body: SingleChildScrollView(
                   child: SafeArea(
                       child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       // contextignore: prefer_const_literals_to_create_immutables
                       children: [
                         Text(
                           _checkInsertUpdate,
-                          style: TextStyle(fontSize: 22),
+                          style: TextStyle(fontSize: 22,
+                          fontFamily: 'Poppins',
+                          color: Color.fromARGB(255, 124, 5, 5),),
                         ),
                         const SizedBox(
-                          height: 50,
+                          height: 30,
                         ),
-                        TextField(
-                          decoration: InputDecoration(
-                              labelText: timeofsubmissionController.text),
+                        Text(
+                          "Time: ${timeofsubmissionController.text}",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 16
+                          )
                         ),
-                        TextField(
-                          controller: nameController,
-                          decoration: InputDecoration(labelText: "Name"),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Name: ${nameController.text}",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 16
+                          )
                         ),
-                        TextField(
-                          decoration:
-                              InputDecoration(labelText: emailController.text),
+                        const SizedBox(height: 15),
+                        Text(
+                          "Email: ${emailController.text}",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 16
+                          )
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          "Enter details: ",
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 13
+                          )
                         ),
                         TextField(
                           controller: typeController,
@@ -126,43 +163,56 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                               InputDecoration(labelText: "Link of Notes"),
                         ),
                         const SizedBox(
-                          height: 50,
+                          height: 30,
                         ),
                         Center(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  timeofsubmissionController.text =
-                                      DateTime.now().toString();
-                                  if (_checkInsertUpdate == "Update" &&
-                                      (linkController.text != 'null' ||
-                                          linkController.text != "")) {
-                                    _updateData(
-                                        data.id,
-                                        nameController.text,
-                                        emailController.text,
-                                        typeController.text,
-                                        yearController.text,
-                                        subjectController.text,
-                                        topicController.text,
-                                        descriptionController.text,
-                                        timeofsubmissionController.text,
-                                        linkController.text);
-                                  } else if (linkController.text != '' ||
-                                      linkController.text != 'null') {
-                                    _insertData(
-                                        nameController.text,
-                                        emailController.text,
-                                        typeController.text,
-                                        yearController.text,
-                                        subjectController.text,
-                                        topicController.text,
-                                        descriptionController.text,
-                                        timeofsubmissionController.text,
-                                        linkController.text);
-                                  }
-                                },
-                                child: Text(_checkInsertUpdate)))
-                      ],
+                          child: Material(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(255, 124, 5, 5),
+                          child: InkWell(
+                            onTap: () {
+                              timeofsubmissionController.text =
+                                    DateTime.now().toString();
+                                if (_checkInsertUpdate == "Update" &&
+                                    (linkController.text != 'null' ||
+                                        linkController.text != "")) {
+                                  _updateData(
+                                      data.id,
+                                      nameController.text,
+                                      emailController.text,
+                                      typeController.text,
+                                      yearController.text,
+                                      subjectController.text,
+                                      topicController.text,
+                                      descriptionController.text,
+                                      timeofsubmissionController.text,
+                                      linkController.text);
+                                } else if (linkController.text != '' ||
+                                    linkController.text != 'null') {
+                                  _insertData(
+                                      nameController.text,
+                                      emailController.text,
+                                      typeController.text,
+                                      yearController.text,
+                                      subjectController.text,
+                                      topicController.text,
+                                      descriptionController.text,
+                                      timeofsubmissionController.text,
+                                      linkController.text);
+                                }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(_checkInsertUpdate,
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),),
+                            )
+                          ),
+                            ),
+                        )],
                     ),
                   )),
                 ),

@@ -5,7 +5,10 @@ import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/MongoDBSeniorAdvicesModel.dart';
 import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/database/userDatabase/MongoDBUserModel.dart';
+import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
+import 'package:xplorevjtiofficialapp/utilites/reg_no_tod_diya_jaye.dart';
 import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
+import 'package:xplorevjtiofficialapp/utilites/time_decode.dart';
 
 class SeniorAdviceView extends StatefulWidget {
   const SeniorAdviceView({super.key});
@@ -33,7 +36,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as dynamic;
 
-    log(data.toString());
+    log(data.toString() + "hello");
 
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
@@ -42,8 +45,11 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
         elevation: 0,
         //actions: <Widget>[
         leading: IconButton(
-            onPressed: () {
+            onPressed: () async {
               //pushnamed to header view
+              final userdetails = data;
+              Navigator.of(context).pushNamed(participantSeniorAdviceRoute,
+                  arguments: userdetails);
             },
             tooltip: 'header',
             icon: const Icon(
@@ -124,34 +130,30 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: Container(
         color: Colors.white,
-        child: Container(
-          child: Row(
-            children: [
-              TextFormField(
-                controller: messageController,
-                enableSuggestions: true,
-                autocorrect: false,
-                keyboardType: TextInputType.multiline,
-                decoration: const InputDecoration(
-                  hintText: 'Message',
-                ),
-              ),
-              IconButton(
-                  onPressed: () async {
-                    final result =
-                        await insertMessage(data, messageController.text);
-                    if (result == 'Success') {
-                      setState(() {
-                        Navigator.of(context).pushNamed(seniorAdviceRoute);
-                      });
-                    } else {
-                      showErrorDiaglog(context, result);
-                    }
-                  },
-                  icon: Icon(Icons.send))
-            ],
+        padding: MediaQuery.of(context).viewInsets,
+        child: TextField(
+          controller: messageController,
+          enableSuggestions: true,
+          autocorrect: false,
+          keyboardType: TextInputType.multiline,
+          decoration: InputDecoration(
+            hintText: 'Message',
+            suffixIcon: IconButton(
+                onPressed: () async {
+                  final result =
+                      await insertMessage(data, messageController.text);
+                  if (result == 'Success') {
+                    messageController.text = "";
+                    setState(() {
+                      // Navigator.of(context).pushNamed(seniorAdviceRoute);
+                    });
+                  } else {
+                    showErrorDiaglog(context, result);
+                  }
+                },
+                icon: Icon(Icons.send)),
           ),
         ),
       ),
@@ -218,14 +220,29 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
 
 Future<String> insertMessage(dynamic userdata, String message) async {
   String time = DateTime.now().toString();
+  final timeDetails = timeDecode(time);
+
+  String status = "";
+  if ((userdata['email'] == 'rsrao_b21@et.vjti.ac.in') ||
+      (userdata['email'] == 'afkhan_b21@et.vjti.ac.in') ||
+      (userdata['email'] == 'rvjani_b21@et.vjti.ac.in') ||
+      (userdata['email'] == 'askarawale_b21@et.vjti.ac.in') ||
+      (userdata['email'] == 'afkhan_b21@el.vjti.ac.in')) {
+    status = "ADMIN";
+  } else {
+    status = "PARTICIPANT";
+  }
+
   var id = M.ObjectId();
+  final detailsfromregId = detailsFromRegID(userdata['regId']);
 
   final data = MongoDbSeniorAdviceModel(
       id: id,
       name: userdata['name'],
       email: userdata['email'],
-      year: year,
-      time: time,
+      year: detailsfromregId[0] + detailsfromregId[1],
+      time:
+          "${timeDetails['date']} ${timeDetails['month']}${timeDetails['year']} ${timeDetails['hour']}:${timeDetails['min']}",
       status: status,
       message: message);
 

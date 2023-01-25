@@ -30,13 +30,6 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
       appBar: AppBar(
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
-        //actions: <Widget>[
-        leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.menu_sharp,
-              color: Colors.black,
-            )),
         title: const Text(
           'VJTI',
           style: TextStyle(
@@ -60,8 +53,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                   color: Color.fromARGB(255, 124, 5, 5),
                 )),
             const SizedBox(height: 0),
-            SafeArea(
-                child: Padding(
+            Padding(
               padding: const EdgeInsets.fromLTRB(10, 30, 10, 30),
               child: FutureBuilder(
                 future: MongoNotesAndPyqDatabase.getData(),
@@ -76,29 +68,24 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                           snapshot.data!.length; //getting total length of data
 
                       print('Total Data' + totalData.toString());
-
-                      // return Text('Data Found');
-                      return Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(85, 219, 112, 112),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-                              child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (context, index) {
-                                  return displayCard(
-                                      MongoDbNotesAndPyqModel.fromJson(
-                                          snapshot.data![index]));
-                                },
-                              ),
-                            ),
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40.0),
+                          color: const Color.fromARGB(103, 236, 183, 183),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                          child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return displayCard(
+                                  MongoDbNotesAndPyqModel.fromJson(
+                                      snapshot.data![index]));
+                            },
                           ),
-                        ],
+                        ),
                       );
                     } else {
                       return Center(
@@ -108,7 +95,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                   }
                 },
               ),
-            )),
+            ),
           ],
         ),
       ),
@@ -253,7 +240,8 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       )),
                   TextSpan(
                       text: '${data.subject}',
-                      style: TextStyle(letterSpacing: 1)),
+                      style: TextStyle(
+                          letterSpacing: 1, fontWeight: FontWeight.bold)),
                   TextSpan(
                       text: '\nTopic: ',
                       style: TextStyle(

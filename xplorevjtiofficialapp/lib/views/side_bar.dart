@@ -18,16 +18,21 @@ class SideBar extends StatelessWidget {
                 padding: EdgeInsets.all(0),
                 children: [
                   UserAccountsDrawerHeader(
-                    //backgroundColor: Colors.black,
+                    // backgroundColor: Colors.black,
                     accountName: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Text('${snapshot.data['name']}',
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Poppins',
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          )),
+                      child: Container(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+                          child: Text('${snapshot.data['name']}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Poppins',
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ),
+                      ),
                     ),
                     accountEmail: Text('${snapshot.data['email']}',
                         style: const TextStyle(
@@ -44,15 +49,17 @@ class SideBar extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   ListTile(
-                    leading: const Icon(Icons.sunny),
+                    leading: const Icon(Icons.person_rounded),
                     title: const Text(
-                      'Theme',
+                      'View Profile',
                       style: TextStyle(
                         fontFamily: 'Poppins',
                         fontSize: 20,
                       ),
                     ),
-                    onTap: () => null,
+                    onTap: () {
+                      Navigator.pushNamed(context, studentAccountRoute);
+                    },
                   ),
                   ListTile(
                       leading: const Icon(Icons.share),
@@ -67,17 +74,17 @@ class SideBar extends StatelessWidget {
                         Share.share(
                             "https://play.google.com/apps/details?id=com.instructivetech.testapp");
                       }),
-                  ListTile(
-                    leading: const Icon(Icons.star),
-                    title: const Text(
-                      'Rate App',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                      ),
-                    ),
-                    onTap: () => null,
-                  ),
+                  // ListTile(
+                  //   leading: const Icon(Icons.star),
+                  //   title: const Text(
+                  //     'Rate App',
+                  //     style: TextStyle(
+                  //       fontFamily: 'Poppins',
+                  //       fontSize: 20,
+                  //     ),
+                  //   ),
+                  //   onTap: () => null,
+                  // ),
                   ListTile(
                     leading: const Icon(Icons.contact_phone),
                     title: const Text(

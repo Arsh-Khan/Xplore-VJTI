@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:mongo_dart/mongo_dart.dart' as M;
 
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart';
@@ -29,17 +30,32 @@ class MongoSeniorAdviceDatabase {
     }
   }
 
-  static Future<void> update(MongoDbSeniorAdviceModel data) async {
-    var result = await seniorAdviceCollection.findOne({"_id": data.id});
-  }
+  // static Future<void> update(MongoDbSeniorAdviceModel data) async {
+  //   var result = await seniorAdviceCollection.findOne({"_id": data.id});
+  // }
 
   static Future<List<Map<String, dynamic>>> getData() async {
     final arrData = await seniorAdviceCollection.find().toList();
     return arrData;
   }
 
-  static Future<List<Map<String, dynamic>>> queryData() async {
-    final data = await seniorAdviceCollection.distant('email').toList();
-    return data;
+  static Future<List<Map<String, dynamic>>?> distinctQueryData() async {
+    final data = await seniorAdviceCollection.distinct('email');
+    dynamic returnData;
+
+    log(data['values'].length.toString());
+
+    // data['values'][i]
+
+    for (int i = 0; i < data['values'].length; i++) {
+      final comingData = await seniorAdviceCollection
+          .find(where.eq('email', data['values'][i]))
+          .toList();
+      returnData.add(comingData.last);
+    }
+
+    log(returnData.toString() + "why null");
+
+    return returnData;
   }
 }

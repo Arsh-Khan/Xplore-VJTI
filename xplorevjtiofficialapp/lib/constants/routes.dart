@@ -16,3 +16,5 @@ const insertNotesAndPyqRoute = '/insert-notes-pyq';
 const updateNotesAndPyqRoute = '/update-notes-pyq';
 const deleteNotesAndPyqRoute = '/delete-notes-pyq';
 const seniorAdviceRoute = '/senior-advice-view';
+const updateStudentDetailsRoute = '/update-details/';
+const participantSeniorAdviceRoute = '/participant-senior-advice';

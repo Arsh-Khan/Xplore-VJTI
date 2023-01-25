@@ -170,8 +170,33 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                               autocorrect: false,
                               keyboardType: TextInputType.name,
                               decoration: const InputDecoration(
-                                labelText: 'Name',
-                                hintText: 'Full Name',
+                                labelText: 'Enter First Name',
+                                hintText: 'First Name',
+                                hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 145, 38, 22),
+                                ),
+                                icon: Icon(Icons.person),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: const Color.fromARGB(85, 219, 112, 112),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: TextField(
+                              controller: _name,
+                              enableSuggestions: false,
+                              autocorrect: false,
+                              keyboardType: TextInputType.name,
+                              decoration: const InputDecoration(
+                                labelText: 'Enter Last Name',
+                                hintText: 'Last Name',
                                 hintStyle: TextStyle(
                                   color: Color.fromARGB(255, 145, 38, 22),
                                 ),

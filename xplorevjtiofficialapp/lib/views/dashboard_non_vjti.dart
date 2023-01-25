@@ -37,7 +37,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                 shape: BoxShape.rectangle,
                 border: Border.all(width: 0),
                 borderRadius: const BorderRadius.all(Radius.circular(0)),
-                color: Color.fromARGB(255, 124, 5, 5),
+                color: Color.fromARGB(219, 124, 5, 5),
               ),
               height: 200,
               width: 500,
@@ -110,7 +110,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 80),
+                  const SizedBox(width: 70),
 
                   // ABOUT VJTI
                   Material(
@@ -194,7 +194,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Image.asset(
-                              'assets/gallery.png',
+                              'assets/VJTITopView.png',
                               height: 100,
                               width: 100,
                             ),
@@ -203,7 +203,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                             height: 10,
                           ),
                           const Text(
-                            'Gallery',
+                            'Map of VJTI',
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.bold,

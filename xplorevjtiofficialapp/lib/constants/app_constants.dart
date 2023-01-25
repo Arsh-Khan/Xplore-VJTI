@@ -42,3 +42,15 @@ final month = {
   '11': 'Nov',
   '12': 'Dec',
 };
+
+var branchWithCode = {
+  '1': 'Civil',
+  '2': 'Mechanical',
+  '3': 'Electrical',
+  '4': 'Production',
+  '5': 'Textile',
+  '6': 'Electronics',
+  '7': 'CS',
+  '8': 'IT',
+  '9': 'EXTC'
+};
