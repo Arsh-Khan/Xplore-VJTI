@@ -18,24 +18,58 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
     String email = ModalRoute.of(context)!.settings.arguments as String;
     log(email);
     return Scaffold(
+      backgroundColor: Colors.deepOrange[50],
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange[50],
+        elevation: 0,
+        title: const Text(
+          'VJTI',
+          style: TextStyle(
+            fontFamily: 'Vollkorn',
+            fontSize: 50,
+            letterSpacing: 7,
+            color: Color.fromARGB(255, 124, 5, 5),
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
-        child: SafeArea(
-            child: FutureBuilder(
-          future: MongoNotesAndPyqDatabase.getQueryData('email', email),
-          builder: (context, snapshot) {
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            Text('Update Notes',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 30,
+                  color: Color.fromARGB(255, 124, 5, 5),
+                )),
+            const SizedBox(height: 20),
+            FutureBuilder(
+              future: MongoNotesAndPyqDatabase.getQueryData('email', email),
+              builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             } else {
               if (snapshot.hasData) {
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return displayCard(MongoDbNotesAndPyqModel.fromJson(
-                        snapshot.data![index]));
-                  },
+                return Container(
+                  decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40.0),
+                        color: const Color.fromARGB(103, 236, 183, 183),
+                      ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return displayCard(MongoDbNotesAndPyqModel.fromJson(
+                            snapshot.data![index]));
+                      },
+                    ),
+                  ),
                 );
               } else {
                 return Center(
@@ -43,14 +77,20 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
                 );
               }
             }
-          },
-        )),
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget displayCard(MongoDbNotesAndPyqModel data) {
     return Card(
+      color: Color.fromARGB(222, 255, 255, 255),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(

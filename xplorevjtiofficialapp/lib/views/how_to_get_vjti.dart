@@ -232,13 +232,12 @@ class _HowToGetVJTIState extends State<HowToGetVJTI> {
                       ),
 
                       TextSpan(
-                          text: '2022 CAP Portal',
+                          text: '\n2022 CAP Portal',
                           style: TextStyle(color: Colors.red[800], fontSize: 15 ),
                           recognizer: TapGestureRecognizer()
                           ..onTap = () {launch('https://fe2022.mahacet.org/StaticPages/HomePage');}
                         ),
-
-
+                      
                     ]
                   )
                 ),

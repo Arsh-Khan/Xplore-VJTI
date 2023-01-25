@@ -18,13 +18,6 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
         appBar: AppBar(
           backgroundColor: Colors.deepOrange[50],
           elevation: 0,
-          //actions: <Widget>[
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.menu_sharp,
-                color: Colors.black,
-              )),
           title: const Text(
             'VJTI',
             style: TextStyle(

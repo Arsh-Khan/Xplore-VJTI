@@ -170,8 +170,8 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                               autocorrect: false,
                               keyboardType: TextInputType.name,
                               decoration: const InputDecoration(
-                                labelText: 'Name',
-                                hintText: 'Full Name',
+                                labelText: 'Enter FIRST Name',
+                                hintText: 'First Name',
                                 hintStyle: TextStyle(
                                   color: Color.fromARGB(255, 145, 38, 22),
                                 ),
