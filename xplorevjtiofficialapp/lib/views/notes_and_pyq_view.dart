@@ -27,40 +27,38 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
-        appBar: AppBar(
-          backgroundColor: Colors.deepOrange[50],
-          elevation: 0,
-          //actions: <Widget>[
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.menu_sharp,
-                color: Colors.black,
-              )),
-          title: const Text(
-            'VJTI',
-            style: TextStyle(
-              fontFamily: 'Vollkorn',
-              fontSize: 50,
-              letterSpacing: 7,
-              color: Color.fromARGB(255, 124, 5, 5),
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange[50],
+        elevation: 0,
+        //actions: <Widget>[
+        leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu_sharp,
+              color: Colors.black,
+            )),
+        title: const Text(
+          'VJTI',
+          style: TextStyle(
+            fontFamily: 'Vollkorn',
+            fontSize: 50,
+            letterSpacing: 7,
+            color: Color.fromARGB(255, 124, 5, 5),
           ),
-          centerTitle: true,
         ),
+        centerTitle: true,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text(
-              'Notes & PYQs',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 124, 5, 5),
-              )
-            ),
+            Text('Notes & PYQs',
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 124, 5, 5),
+                )),
             const SizedBox(height: 0),
             SafeArea(
                 child: Padding(
@@ -76,32 +74,31 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                     if (snapshot.hasData) {
                       var totalData =
                           snapshot.data!.length; //getting total length of data
-      
+
                       print('Total Data' + totalData.toString());
-      
+
                       // return Text('Data Found');
-                      return SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(85, 219, 112, 112),
-                                borderRadius: BorderRadius.circular(30), 
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: snapshot.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return displayCard(MongoDbNotesAndPyqModel.fromJson(
-                                        snapshot.data![index]));
-                                  },
-                                ),
+                      return Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(85, 219, 112, 112),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.length,
+                                itemBuilder: (context, index) {
+                                  return displayCard(
+                                      MongoDbNotesAndPyqModel.fromJson(
+                                          snapshot.data![index]));
+                                },
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       );
                     } else {
                       return Center(
@@ -116,68 +113,66 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color.fromARGB(255, 227, 179, 179),
-        child:
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-              child: IconButton(
-                  onPressed: () async {
-                    Navigator.pushNamed(context, insertNotesAndPyqRoute,
-                        arguments: MongoDbNotesAndPyqModel(
-                            id: M.ObjectId(),
-                            email: 'null',
-                            name: 'null',
-                            notesANDpyqs: 'null',
-                            year: 'null',
-                            subject: 'null',
-                            topic: 'null',
-                            description: 'null',
-                            timeofsubmission: 'null',
-                            link: 'null'));
-                  },
-                  icon: Icon(Icons.add_box_outlined, size: 40),
-                  tooltip: 'Insert Notes or PYQ'),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-              child: IconButton(
-                  onPressed: () async {
-                    final userdata = await userDetails();
-                    Navigator.pushNamed(context, updateNotesAndPyqRoute,
-                        arguments: userdata['email'].toString());
-                  },
-                  tooltip: 'Update Notes or PYQ',
-                  icon: Icon(Icons.update, size: 40)),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-              child: IconButton(
-                  onPressed: () async {
-                    final userdata = await userDetails();
-                    Navigator.of(context).pushNamed(deleteNotesAndPyqRoute,
-                        arguments: userdata['email'].toString());
-                  },
-                  tooltip: 'Delete Notes',
-                  icon: Icon(Icons.delete, size: 40)),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-              child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, notesAndPyqRoute, (route) => false);
-                    });
-                  },
-                  tooltip: 'Refresh Page',
-                  icon: Icon(Icons.refresh, size: 40)),
-            ),
-          ],
-        )
-      ),
+          color: Color.fromARGB(255, 227, 179, 179),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
+                child: IconButton(
+                    onPressed: () async {
+                      Navigator.pushNamed(context, insertNotesAndPyqRoute,
+                          arguments: MongoDbNotesAndPyqModel(
+                              id: M.ObjectId(),
+                              email: 'null',
+                              name: 'null',
+                              notesANDpyqs: 'null',
+                              year: 'null',
+                              subject: 'null',
+                              topic: 'null',
+                              description: 'null',
+                              timeofsubmission: 'null',
+                              link: 'null'));
+                    },
+                    icon: Icon(Icons.add_box_outlined, size: 40),
+                    tooltip: 'Insert Notes or PYQ'),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
+                child: IconButton(
+                    onPressed: () async {
+                      final userdata = await userDetails();
+                      Navigator.pushNamed(context, updateNotesAndPyqRoute,
+                          arguments: userdata['email'].toString());
+                    },
+                    tooltip: 'Update Notes or PYQ',
+                    icon: Icon(Icons.update, size: 40)),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
+                child: IconButton(
+                    onPressed: () async {
+                      final userdata = await userDetails();
+                      Navigator.of(context).pushNamed(deleteNotesAndPyqRoute,
+                          arguments: userdata['email'].toString());
+                    },
+                    tooltip: 'Delete Notes',
+                    icon: Icon(Icons.delete, size: 40)),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
+                child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, notesAndPyqRoute, (route) => false);
+                      });
+                    },
+                    tooltip: 'Refresh Page',
+                    icon: Icon(Icons.refresh, size: 40)),
+              ),
+            ],
+          )),
     );
   }
 
@@ -191,94 +186,95 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start, 
-          children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             RichText(
-              text: TextSpan(
-                style: TextStyle(
-                fontFamily: 'Poppins',
-                color: Colors.black,
-                letterSpacing: 2,
-              ),
-                children: [
+                text: TextSpan(
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.black,
+                      letterSpacing: 2,
+                    ),
+                    children: [
                   TextSpan(
-                    text: 'Published On : ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: 'Published On : ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: '${data.timeofsubmission}',
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: '${data.timeofsubmission}',
+                      style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: '\nName: ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: '\nName: ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: "${data.name}",
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: "${data.name}", style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: "\nEmail: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: "\nEmail: ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: "${data.email}",
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: "${data.email}",
+                      style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: "\nType: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: "\nType: ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: "${data.notesANDpyqs}",
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: "${data.notesANDpyqs}",
+                      style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: "\nYear: ",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: "\nYear: ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: "${data.year}",
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: "${data.year}", style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: '\nSubject: ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: '\nSubject: ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: '${data.subject}',
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: '${data.subject}',
+                      style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: '\nTopic: ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: '\nTopic: ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: '${data.topic}',
-                    style: TextStyle(letterSpacing: 1)
-                  ),
+                      text: '${data.topic}',
+                      style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                    text: '\nDescription: ',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12,
-                    color: Color.fromARGB(255, 177, 8, 8),)
-                  ),
+                      text: '\nDescription: ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
                   TextSpan(
-                    text: '${data.description}',
-                    style: TextStyle(letterSpacing: 1)
-                  ),
-
-
-                ]
-              )
-            ),
+                      text: '${data.description}',
+                      style: TextStyle(letterSpacing: 1)),
+                ])),
             // Text('Published On : ${data.timeofsubmission}',
             //   style: TextStyle(
             //     fontFamily: 'Poppins',
@@ -347,24 +343,23 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
-                            onPressed: () {
-                              // SfPdfViewer.network(data.link.toString());
-                              final url = data.link.toString();
-                              // const url =
-                              //     'https://drive.google.com/file/d/13dUAuIg0N0dERSW7SbSCpgS3vq0zE8o7/view?usp=share_link';
-                              launch(url);
-                            },
-                            label: const Text(
-                              'Click to view',
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 10
-                              ),
-                            ),
-                            icon: const Icon(Icons.picture_as_pdf, size: 17,),
-                            backgroundColor: Color.fromARGB(255, 227, 179, 179),
-                          ),
-                
+                  onPressed: () {
+                    // SfPdfViewer.network(data.link.toString());
+                    final url = data.link.toString();
+                    // const url =
+                    //     'https://drive.google.com/file/d/13dUAuIg0N0dERSW7SbSCpgS3vq0zE8o7/view?usp=share_link';
+                    launch(url);
+                  },
+                  label: const Text(
+                    'Click to view',
+                    style: TextStyle(fontFamily: 'Poppins', fontSize: 10),
+                  ),
+                  icon: const Icon(
+                    Icons.picture_as_pdf,
+                    size: 17,
+                  ),
+                  backgroundColor: Color.fromARGB(255, 227, 179, 179),
+                ),
               ],
             ),
           ]),

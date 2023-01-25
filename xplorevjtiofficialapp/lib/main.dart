@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/contact_us.dart';
@@ -15,7 +16,7 @@ import 'package:xplorevjtiofficialapp/views/insert_notes_and_pyq.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/notes_and_pyq_view.dart';
-import 'package:xplorevjtiofficialapp/views/seniors_advice.dart';
+import 'package:xplorevjtiofficialapp/views/seniors_advice_view.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_vjti.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
@@ -30,6 +31,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
   await MongoNotesAndPyqDatabase.connect();
+  await MongoSeniorAdviceDatabase.connect();
   runApp(MaterialApp(
     home: SplashScreen(),
     routes: {
@@ -49,7 +51,8 @@ void main() async {
       notesAndPyqRoute: (context) => const NotesAndPyqView(),
       insertNotesAndPyqRoute: (context) => const InsertNotesAndPyqView(),
       updateNotesAndPyqRoute: (context) => const UpdateNotesAndPyqView(),
-      deleteNotesAndPyqRoute: (context) => const DeleteNotesAndPyqView()
+      deleteNotesAndPyqRoute: (context) => const DeleteNotesAndPyqView(),
+      seniorAdviceRoute: (context) => const SeniorAdviceView(),
     },
   ));
 }

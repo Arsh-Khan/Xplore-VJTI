@@ -68,12 +68,10 @@ class _DashBoardViewState extends State<DashBoardView> {
                         },
                         child: AnimatedContainer(
                           duration: const Duration(seconds: 0),
-
                           decoration: const BoxDecoration(
                             shape: BoxShape.rectangle,
                             color: Color.fromARGB(255, 124, 5, 5),
-                            borderRadius:
-                                 BorderRadius.zero,
+                            borderRadius: BorderRadius.zero,
                           ),
                           height: 200,
                           width: 500,
@@ -95,7 +93,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                               ),
                               const SizedBox(width: 60),
                               CircleAvatar(
-                                backgroundImage: AssetImage('assets/VJTilogoforappbar.jpeg'),
+                                backgroundImage:
+                                    AssetImage('assets/VJTilogoforappbar.jpeg'),
                                 radius: 70,
                               ),
                               const SizedBox(width: 20),
@@ -117,8 +116,10 @@ class _DashBoardViewState extends State<DashBoardView> {
                           ),
                           child: InkWell(
                             splashColor: Colors.transparent,
-                            onTap: () {
-                              Navigator.pushNamed(context, seniorsAdviceRoute);
+                            onTap: () async {
+                              final userdata = userDetails();
+                              Navigator.pushNamed(context, seniorAdviceRoute,
+                                  arguments: userdata);
                             },
                             child: Center(
                               child: Column(
@@ -376,7 +377,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    ],
+                  ],
                 ),
               ),
             );
