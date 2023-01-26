@@ -25,8 +25,9 @@ class _DashBoardViewState extends State<DashBoardView> {
                   builder: (BuildContext context) {
                     return IconButton(
                       icon: const Icon(
-                        Icons.menu_sharp,
-                        color: Colors.black,
+                        Icons.menu_outlined,
+                        size: 30,
+                        color: Color.fromARGB(255, 124, 5, 5),
                       ),
                       onPressed: () {
                         Scaffold.of(context).openDrawer();
@@ -38,13 +39,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                 ),
                 backgroundColor: Colors.deepOrange[50],
                 elevation: 0,
-                //actions: <Widget>[
-                /*leading: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.menu_sharp,
-                  color: Colors.black,
-                )),*/
                 title: const Text(
                   'VJTI',
                   style: TextStyle(
@@ -94,7 +88,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     AssetImage('assets/VJTilogoforappbar.jpeg'),
                                 radius: 70,
                               ),
-                              const SizedBox(width: 20),
                             ],
                           ),
                         ),
@@ -130,13 +123,14 @@ class _DashBoardViewState extends State<DashBoardView> {
                                       'assets/advice.png',
                                       height: 100,
                                       width: 100,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Seniors\' Advice',
+                                    'Seniors\' \nAdvice',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -148,7 +142,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                           ),
                         ),
 
-                        const SizedBox(width: 70),
+                        const SizedBox(width: 80),
                         // EXTRA CURRICULARS
                         Material(
                           color: Colors.deepOrange[50],
@@ -174,13 +168,15 @@ class _DashBoardViewState extends State<DashBoardView> {
                                       'assets/extracurriculars.png',
                                       height: 100,
                                       width: 100,
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Extra Curriculars',
+                                    'Extra\nCurriculars',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -219,6 +215,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     ),
                                     child: Image.asset(
                                       'assets/notespyqs.png',
+                                      fit: BoxFit.fill,
                                       height: 100,
                                       width: 100,
                                     ),
@@ -227,7 +224,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Notes & PYQs',
+                                    'Notes & \nPYQs',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -262,6 +260,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     ),
                                     child: Image.asset(
                                       'assets/about.png',
+                                      fit: BoxFit.fill,
                                       height: 100,
                                       width: 100,
                                     ),
@@ -270,7 +269,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'About VJTI',
+                                    'About \nVJTI',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -297,7 +297,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () {
-                              //
+                              Navigator.pushNamed(context, mapOfVJTIRoute);
                             },
                             child: Center(
                               child: Column(
@@ -309,6 +309,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     ),
                                     child: Image.asset(
                                       'assets/VJTITopView.png',
+                                      fit: BoxFit.fill,
                                       height: 100,
                                       width: 100,
                                     ),
@@ -317,7 +318,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Map of VJTI',
+                                    'Map of \nVJTI',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -352,6 +354,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     ),
                                     child: Image.asset(
                                       'assets/howtoget.png',
+                                      fit: BoxFit.fill,
                                       height: 100,
                                       width: 100,
                                     ),
@@ -360,7 +363,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'How to get VJTI',
+                                    'How to get \nVJTI',
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,

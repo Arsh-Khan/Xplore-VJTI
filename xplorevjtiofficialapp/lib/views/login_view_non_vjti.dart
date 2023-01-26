@@ -12,6 +12,7 @@ class LoginViewNonVJTI extends StatefulWidget {
 }
 
 class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
+  bool _passwordVisibility = false;
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -157,12 +158,23 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                               enableSuggestions: false,
                               autocorrect: false,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 // border: OutlineInputBorder(),
                                 hintText: 'Enter Password',
                                 hintStyle: TextStyle(
                                   color: Color.fromARGB(255, 145, 38, 22),
                                 ),
+                                suffixIcon: IconButton(
+                                    icon: Icon( _passwordVisibility
+                                    ? Icons.visibility_sharp
+                                    : Icons.visibility_off_sharp,
+                                    color: Color.fromARGB(255, 124, 5, 5),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _passwordVisibility = !_passwordVisibility;
+                                    });
+                                  }),
                                 icon: Icon(Icons.lock_outline_rounded),
                               ),
                             ),

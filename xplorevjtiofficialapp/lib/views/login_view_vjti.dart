@@ -15,6 +15,7 @@ class LoginViewVJTI extends StatefulWidget {
 }
 
 class _LoginViewVJTIState extends State<LoginViewVJTI> {
+  bool _passwordVisibility = false;
   final _formkey = GlobalKey<FormState>();
 
   late final TextEditingController _email;
@@ -24,6 +25,7 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
+
     super.initState();
   }
 
@@ -173,15 +175,27 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                   }
                                 },
                                 controller: _password,
-                                obscureText: true,
+                                obscureText: !_passwordVisibility,
                                 enableSuggestions: false,
                                 autocorrect: false,
                                 keyboardType: TextInputType.emailAddress,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                   // border: OutlineInputBorder(),
                                   hintText: 'Enter Password',
                                   hintStyle: TextStyle(
-                                    color: Color.fromARGB(255, 145, 38, 22),
+                                  color: Color.fromARGB(255, 145, 38, 22),
+                                  ),
+                                  suffixIcon: IconButton(
+                                    icon: Icon( _passwordVisibility
+                                    ? Icons.visibility_sharp
+                                    : Icons.visibility_off_sharp,
+                                    color: Color.fromARGB(255, 124, 5, 5),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _passwordVisibility = !_passwordVisibility;
+                                    });
+                                  },
                                   ),
                                   icon: Icon(Icons.lock_outline_rounded),
                                 ),

@@ -15,7 +15,14 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.deepOrange[50],
+        
         appBar: AppBar(
+          leading: IconButton(
+          onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, 
+          icon: Icon(Icons.arrow_back_ios_sharp,
+          color: Color.fromARGB(255, 124, 5, 5), 
+          size: 30,)
+          ),
           backgroundColor: Colors.deepOrange[50],
           elevation: 0,
           title: const Text(
@@ -215,7 +222,7 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
                 color: Color.fromARGB(0, 124, 5, 5),
                 child: InkWell(
                   onTap: () async {
-                    Navigator.of(context).pushNamed(dashBoardRoute);
+                    Navigator.of(context).pushNamed(dashboardViewnonVJTIRoute);
                   },
                   child: AnimatedContainer(
                                 duration: const Duration(seconds: 1),

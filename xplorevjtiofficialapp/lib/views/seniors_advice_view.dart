@@ -18,6 +18,8 @@ class SeniorAdviceView extends StatefulWidget {
 }
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
+  ScrollController _scrollController = new ScrollController();
+
   late final TextEditingController messageController;
   ScrollController controller = ScrollController();
 
@@ -25,6 +27,23 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   void initState() {
     messageController = TextEditingController();
     super.initState();
+    _scrollController = ScrollController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollController
+          .animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(seconds: 1),
+        curve: Curves.ease,
+      )
+          .then((value) async {
+        await Future.delayed(Duration(seconds: 2));
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(seconds: 1),
+          curve: Curves.ease,
+        );
+      });
+    });
   }
 
   @override
@@ -40,23 +59,72 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     log(data.toString() + "hello");
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 124, 5, 5),
+        onPressed: () {
+          if (_scrollController.hasClients) {
+            final position = _scrollController.position.maxScrollExtent;
+            _scrollController.animateTo(
+              position,
+              duration: Duration(seconds: 1),
+              curve: Curves.fastOutSlowIn,
+            );
+          }
+        },
+        isExtended: true,
+        tooltip: "Scroll to Bottom",
+        child: Icon(Icons.arrow_downward),
+      ),
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
-        //actions: <Widget>[
-        leading: IconButton(
-            onPressed: () async {
-              //pushnamed to header view
-              final userdetails = data;
-              Navigator.of(context).pushNamed(participantSeniorAdviceRoute,
-                  arguments: userdetails);
-            },
-            tooltip: 'header',
-            icon: const Icon(
-              Icons.menu_sharp,
-              color: Colors.black,
-            )),
+        // actions: <Widget>[
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, dashBoardRoute);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Color.fromARGB(255, 124, 5, 5),
+                size: 30,
+              )),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(7, 5, 20, 0),
+            child: Row(
+              children: [
+                IconButton(
+                    onPressed: () async {
+                      //pushnamed to header view
+                      final userdetails = data;
+                      Navigator.of(context).pushNamed(
+                          participantSeniorAdviceRoute,
+                          arguments: userdetails);
+                    },
+                    tooltip: 'header',
+                    icon: const Icon(
+                      Icons.people_alt_outlined,
+                      color: Color.fromARGB(255, 124, 5, 5),
+                      size: 30,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    tooltip: 'Refresh Page',
+                    icon: Icon(
+                      Icons.refresh,
+                      size: 30,
+                      color: Color.fromARGB(255, 124, 5, 5),
+                    )),
+              ],
+            ),
+          ),
+        ],
         title: const Text(
           'VJTI',
           style: TextStyle(
@@ -67,16 +135,10 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              onPressed: () {
-                setState(() {});
-              },
-              color: Color.fromARGB(128, 0, 0, 0),
-              icon: Icon(Icons.refresh)),
-        ],
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             const SizedBox(height: 20),
@@ -96,7 +158,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                          color: Color.fromARGB(255, 124, 5, 5)),
                     );
                   } else {
                     if (snapshot.hasData) {
@@ -116,7 +179,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                               child: ListView.builder(
-                                  controller: controller,
+                                  // controller: _scrollController,
+                                  physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (context, index) {
@@ -140,31 +204,50 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        padding: MediaQuery.of(context).viewInsets,
-        child: TextField(
-          controller: messageController,
-          enableSuggestions: true,
-          autocorrect: false,
-          keyboardType: TextInputType.multiline,
-          decoration: InputDecoration(
-            hintText: 'Message',
-            suffixIcon: IconButton(
-                onPressed: () async {
-                  final result =
-                      await insertMessage(data, messageController.text);
-                  if (result == 'Success') {
-                    messageController.text = "";
-                    setState(() {
-                      // Navigator.of(context).pushNamed(seniorAdviceRoute);
-                    });
-                  } else if (result == 'Empty Field') {
-                  } else {
-                    showErrorDiaglog(context, result);
-                  }
-                },
-                icon: Icon(Icons.send)),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white,
+          ),
+          padding: MediaQuery.of(context).viewInsets,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: messageController,
+              enableSuggestions: true,
+              autocorrect: false,
+              keyboardType: TextInputType.multiline,
+              decoration: InputDecoration(
+                fillColor: Color.fromARGB(255, 124, 5, 5),
+                hoverColor: Color.fromARGB(255, 124, 5, 5),
+                iconColor: Color.fromARGB(255, 124, 5, 5),
+                focusColor: Color.fromARGB(255, 124, 5, 5),
+                hintText: 'Message',
+                suffixIcon: IconButton(
+                    onPressed: () async {
+                      final result =
+                          await insertMessage(data, messageController.text);
+                      if (result == 'Success') {
+                        messageController.text = "";
+
+                        // final position = _scrollController.position.maxScrollExtent;
+                        // await  _scrollController.animateTo(
+                        //   position,
+                        //   duration: Duration(seconds: 1),
+                        //   curve: Curves.fastOutSlowIn,
+                        // );
+                        setState(() {});
+                      } else if (result == 'Empty Field') {
+                      } else {
+                        showErrorDiaglog(context, result);
+                      }
+                    },
+                    icon: Icon(Icons.send,
+                        color: Color.fromARGB(255, 124, 5, 5))),
+              ),
+            ),
           ),
         ),
       ),
@@ -172,70 +255,74 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   }
 
   Widget displayCard(MongoDbSeniorAdviceModel data) {
+    var color = Colors.white;
+    if (data.status == 'ADMIN') {
+      color = Color.fromARGB(255, 247, 233, 202);
+    } else {
+      color = Colors.white;
+    }
+    var userStatus = '';
+    if (data.status == 'ADMIN') {
+      userStatus = '~(Admin)';
+    } else {
+      userStatus = '';
+    }
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Card(
-        color: Color.fromARGB(222, 255, 255, 255),
+        color: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 RichText(
                   text: TextSpan(
                     style: TextStyle(
-                      fontFamily: 'Poppins',
-                      color: Colors.black,
-                      letterSpacing: 2,
+                      fontFamily: 'Volkorn',
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 124, 5, 5),
+                      letterSpacing: 0,
                     ),
                     children: [
                       TextSpan(
-                        text: "${data.name}",
-                        style: TextStyle(letterSpacing: 1),
-                      ),
-                      TextSpan(
-                        text: "${data.year}",
+                        text: "${data.name}    (${data.year})",
                         style: TextStyle(letterSpacing: 1),
                       ),
                     ],
                   ),
                 ),
+                Text(
+                  ' ${userStatus}',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    letterSpacing: 1,
+                    fontFamily: 'Volkorn',
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 124, 5, 5),
+                  ),
+                )
               ],
             ),
-            RichText(
-                text: TextSpan(
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        letterSpacing: 2),
-                    children: [
-                  TextSpan(
-                    text: "${data.message}",
-                    style: TextStyle(letterSpacing: 1),
-                  )
-                ])),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                RichText(
-                    text: TextSpan(
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Colors.black,
-                            letterSpacing: 2),
-                        children: [
-                      TextSpan(
-                        text: '${data.time}',
-                        style: TextStyle(letterSpacing: 1),
-                      )
-                    ])),
-              ],
-            )
+            const SizedBox(height: 10),
+            Text(
+              '${data.message}',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                color: Colors.black,
+                letterSpacing: 1,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text('${data.time}',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                    letterSpacing: 1, color: Colors.deepOrangeAccent[700])),
           ]),
         ),
       ),

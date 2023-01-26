@@ -18,3 +18,4 @@ const deleteNotesAndPyqRoute = '/delete-notes-pyq';
 const seniorAdviceRoute = '/senior-advice-view';
 const updateStudentDetailsRoute = '/update-details/';
 const participantSeniorAdviceRoute = '/participant-senior-advice';
+const mapOfVJTIRoute = '/map-of-VJTI/';
