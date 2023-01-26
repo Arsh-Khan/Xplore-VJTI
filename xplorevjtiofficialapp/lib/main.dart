@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/views/about_vjti_view.dart';
 import 'package:xplorevjtiofficialapp/views/contact_us.dart';
@@ -16,13 +17,14 @@ import 'package:xplorevjtiofficialapp/views/login_view_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/login_view_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/map_VJTI.dart';
 import 'package:xplorevjtiofficialapp/views/notes_and_pyq_view.dart';
-import 'package:xplorevjtiofficialapp/views/seniors_advice.dart';
+import 'package:xplorevjtiofficialapp/views/participant_senior_advice_view.dart';
+import 'package:xplorevjtiofficialapp/views/seniors_advice_view.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/sign_up_vjti.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
 import 'package:xplorevjtiofficialapp/views/splash_screen.dart';
 import 'package:xplorevjtiofficialapp/views/student_account.dart';
-import 'package:xplorevjtiofficialapp/views/update_detauls_view.dart';
+import 'package:xplorevjtiofficialapp/views/update_details_view.dart';
 import 'package:xplorevjtiofficialapp/views/update_notes_and_pyq.dart';
 import 'dart:developer' as devtools show log;
 import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
@@ -32,6 +34,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
   await MongoNotesAndPyqDatabase.connect();
+  await MongoSeniorAdviceDatabase.connect();
   runApp(MaterialApp(
     home: SplashScreen(),
     routes: {
@@ -52,7 +55,9 @@ void main() async {
       insertNotesAndPyqRoute: (context) => const InsertNotesAndPyqView(),
       updateNotesAndPyqRoute: (context) => const UpdateNotesAndPyqView(),
       deleteNotesAndPyqRoute: (context) => const DeleteNotesAndPyqView(),
-      updateStudentDetailsRoute:(context) => const UpdateDetails(),
+      seniorAdviceRoute: (context) => const SeniorAdviceView(),
+      updateStudentDetailsRoute: (context) => const UpdateDetails(),
+      participantSeniorAdviceRoute: (context) => const ParticipantSeniorAdviceView(),
       mapOfVJTIRoute: ((context) => const MapVJTI()),
     },
   ));

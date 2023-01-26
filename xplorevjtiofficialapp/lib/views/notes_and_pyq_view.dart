@@ -48,7 +48,6 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        
         child: Column(
           children: [
             const SizedBox(height: 20),
@@ -67,7 +66,9 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(
+                        color: Color.fromARGB(255, 124, 5, 5),
+                      ),
                     );
                   } else {
                     if (snapshot.hasData) {

@@ -222,7 +222,7 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
                 color: Color.fromARGB(0, 124, 5, 5),
                 child: InkWell(
                   onTap: () async {
-                    Navigator.of(context).pushNamed(dashBoardRoute);
+                    Navigator.of(context).pushNamed(dashboardViewnonVJTIRoute);
                   },
                   child: AnimatedContainer(
                                 duration: const Duration(seconds: 1),
