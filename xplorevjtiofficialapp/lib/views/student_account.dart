@@ -375,8 +375,8 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                     color: const Color.fromARGB(255, 124, 5, 5),
                                     child: InkWell(
                                         onTap: () {
-                                          Navigator.pushNamed(
-                                              context, updateNotesAndPyqRoute);
+                                          Navigator.pushNamed(context,
+                                              updateStudentDetailsRoute);
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),

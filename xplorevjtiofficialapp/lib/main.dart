@@ -23,7 +23,7 @@ import 'package:xplorevjtiofficialapp/views/sign_up_vjti.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
 import 'package:xplorevjtiofficialapp/views/splash_screen.dart';
 import 'package:xplorevjtiofficialapp/views/student_account.dart';
-import 'package:xplorevjtiofficialapp/views/update_details_view.dart';
+import 'package:xplorevjtiofficialapp/views/update_student_details_view.dart';
 import 'package:xplorevjtiofficialapp/views/update_notes_and_pyq.dart';
 import 'dart:developer' as devtools show log;
 import 'package:xplorevjtiofficialapp/views/verify_email_view.dart';
@@ -55,7 +55,7 @@ void main() async {
       updateNotesAndPyqRoute: (context) => const UpdateNotesAndPyqView(),
       deleteNotesAndPyqRoute: (context) => const DeleteNotesAndPyqView(),
       seniorAdviceRoute: (context) => const SeniorAdviceView(),
-      updateStudentDetailsRoute: (context) => const UpdateDetails(),
+      updateStudentDetailsRoute: (context) => const UpdateStudentDetails(),
       participantSeniorAdviceRoute: (context) =>
           const ParticipantSeniorAdviceView(),
     },

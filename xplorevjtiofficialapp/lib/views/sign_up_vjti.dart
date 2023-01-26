@@ -22,6 +22,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
   late final TextEditingController _password;
   late final TextEditingController _confirmpassword;
   late final TextEditingController _name;
+  late final TextEditingController _lname;
   late final TextEditingController _regID;
 
   @override
@@ -31,6 +32,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
     _password = TextEditingController();
     _confirmpassword = TextEditingController();
     _name = TextEditingController();
+    _lname = TextEditingController();
     _regID = TextEditingController();
 
     super.initState();
@@ -43,6 +45,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
     _password.dispose();
     _confirmpassword.dispose();
     _name.dispose();
+    _lname.dispose();
     _regID.dispose();
     super.dispose();
   }
@@ -421,7 +424,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                               final email = _email.text;
                               final password = _password.text;
                               final confirmPassword = _confirmpassword.text;
-                              final name = _name.text;
+                              final name = _name.text + " " + _lname.text;
                               final regId = _regID.text;
                               final dob = dateInput.text;
                               final branch = branchesvalue;

@@ -65,7 +65,7 @@ class _ParticipantSeniorAdviceViewState
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text('${data.id}'),
-              Text('${data.status}'),
+              Text('~${data.status}'),
             ],
           ),
           SizedBox(

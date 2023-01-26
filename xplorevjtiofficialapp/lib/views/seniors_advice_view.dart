@@ -19,6 +19,7 @@ class SeniorAdviceView extends StatefulWidget {
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   late final TextEditingController messageController;
+  ScrollController controller = ScrollController();
 
   @override
   void initState() {
@@ -66,6 +67,14 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              color: Color.fromARGB(128, 0, 0, 0),
+              icon: Icon(Icons.refresh)),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -107,6 +116,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
                               child: ListView.builder(
+                                  controller: controller,
                                   shrinkWrap: true,
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (context, index) {
@@ -149,6 +159,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                     setState(() {
                       // Navigator.of(context).pushNamed(seniorAdviceRoute);
                     });
+                  } else if (result == 'Empty Field') {
                   } else {
                     showErrorDiaglog(context, result);
                   }
@@ -191,9 +202,6 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                         text: "${data.year}",
                         style: TextStyle(letterSpacing: 1),
                       ),
-                      TextSpan(
-                          text: '${data.time}',
-                          style: TextStyle(letterSpacing: 1)),
                     ],
                   ),
                 ),
@@ -210,7 +218,24 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                     text: "${data.message}",
                     style: TextStyle(letterSpacing: 1),
                   )
-                ]))
+                ])),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Colors.black,
+                            letterSpacing: 2),
+                        children: [
+                      TextSpan(
+                        text: '${data.time}',
+                        style: TextStyle(letterSpacing: 1),
+                      )
+                    ])),
+              ],
+            )
           ]),
         ),
       ),
@@ -236,20 +261,24 @@ Future<String> insertMessage(dynamic userdata, String message) async {
   var id = M.ObjectId();
   final detailsfromregId = detailsFromRegID(userdata['regId']);
 
-  final data = MongoDbSeniorAdviceModel(
-      id: id,
-      name: userdata['name'],
-      email: userdata['email'],
-      year: detailsfromregId[0] + detailsfromregId[1],
-      time:
-          "${timeDetails['date']} ${timeDetails['month']}${timeDetails['year']} ${timeDetails['hour']}:${timeDetails['min']}",
-      status: status,
-      message: message);
+  if (message != "") {
+    final data = MongoDbSeniorAdviceModel(
+        id: id,
+        name: userdata['name'],
+        email: userdata['email'],
+        year: detailsfromregId[0] + " " + detailsfromregId[1],
+        time:
+            "${timeDetails['date']} ${timeDetails['month']}${timeDetails['year']} ${timeDetails['hour']}:${timeDetails['min']}",
+        status: status,
+        message: message);
 
-  var result = await MongoSeniorAdviceDatabase.insert(data);
-  if (result == 'Something went wrong while inserting data') {
-    return 'Something went wrong. Try again';
+    var result = await MongoSeniorAdviceDatabase.insert(data);
+    if (result == 'Something went wrong while inserting data') {
+      return 'Something went wrong. Try again';
+    } else {
+      return 'Success';
+    }
   } else {
-    return 'Success';
+    return "Empty Field";
   }
 }

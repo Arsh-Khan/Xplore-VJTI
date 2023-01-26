@@ -28,7 +28,8 @@ class MongoDatabase {
     }
   }
 
-  static Future<String> update(MongoDbUserModel data, String password) async {
+  static Future<String> updatePassword(
+      MongoDbUserModel data, String password) async {
     var result = await userCollection.findOne({"email": data.email});
     result['password'] = password;
 

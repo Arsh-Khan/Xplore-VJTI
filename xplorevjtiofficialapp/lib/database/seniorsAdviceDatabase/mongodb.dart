@@ -39,11 +39,12 @@ class MongoSeniorAdviceDatabase {
     return arrData;
   }
 
-  static Future<List<Map<String, dynamic>>?> distinctQueryData() async {
+  static Future<dynamic> distinctQueryData() async {
     final data = await seniorAdviceCollection.distinct('email');
-    dynamic returnData;
+    dynamic returnData = [];
 
     log(data['values'].length.toString());
+    log(data['values'].toString());
 
     // data['values'][i]
 
@@ -51,7 +52,10 @@ class MongoSeniorAdviceDatabase {
       final comingData = await seniorAdviceCollection
           .find(where.eq('email', data['values'][i]))
           .toList();
-      returnData.add(comingData.last);
+      final lastData = comingData.last;
+      log(lastData.toString() + "hi");
+
+      returnData.add(lastData);
     }
 
     log(returnData.toString() + "why null");
