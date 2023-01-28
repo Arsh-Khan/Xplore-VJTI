@@ -4,8 +4,76 @@ import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 
 //import 'package:xplorevjtiofficialapp/views/theme.dart';
-class SideBar extends StatelessWidget {
+class SideBar extends StatefulWidget {
   const SideBar({super.key});
+
+  @override
+  State<SideBar> createState() => _SideBarState();
+}
+
+class _SideBarState extends State<SideBar> {
+
+  Future<void> _showMyDialog() async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.deepOrange[50],
+        title: Text('Sure Logout?',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 20,
+          color: Color.fromARGB(255, 124, 5, 5),
+        ),
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Text('Are you sure you want to log out?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+          fontFamily: 'Poppins',
+          fontSize: 15,
+          color: Colors.black,
+        ),),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Haan ji',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 15,
+              color: Colors.red,
+            ),
+            ),
+            onPressed: () {
+              print('Confirmed',
+              );
+              Navigator.pushNamed(context, loginVJTIRoute);
+            },
+          ),
+          TextButton(
+            child: Text('Nahi',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 15,
+              color: Colors.red,
+            ),),
+            onPressed: () {
+              Navigator.pushNamed(context, dashBoardRoute);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +176,8 @@ class SideBar extends StatelessWidget {
                       ),
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, loginVJTIRoute);
+                      // Navigator.pushNamed(context, loginVJTIRoute);
+                      _showMyDialog();
                     },
                   ),
                 ],
@@ -123,3 +192,5 @@ class SideBar extends StatelessWidget {
         });
   }
 }
+
+

@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
@@ -18,6 +19,18 @@ class SeniorAdviceView extends StatefulWidget {
 }
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
+  scrollToBottom() {
+    setState(() {
+      
+    });
+    final position = _scrollController.position.maxScrollExtent;
+    _scrollController.animateTo(
+      position,
+      duration: Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
   ScrollController _scrollController = new ScrollController();
 
   late final TextEditingController messageController;
@@ -105,7 +118,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                           participantSeniorAdviceRoute,
                           arguments: userdetails);
                     },
-                    tooltip: 'header',
+                    tooltip: 'Participants',
                     icon: const Icon(
                       Icons.people_alt_outlined,
                       color: Color.fromARGB(255, 124, 5, 5),
@@ -113,7 +126,10 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                     )),
                 IconButton(
                     onPressed: () {
-                      setState(() {});
+                      setState(() {
+                        scrollToBottom();
+                      });
+                      scrollToBottom();
                     },
                     tooltip: 'Refresh Page',
                     icon: Icon(
@@ -227,22 +243,26 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                 hintText: 'Message',
                 suffixIcon: IconButton(
                     onPressed: () async {
+                      int a = 0;
+                      // scrollToBottom();
                       final result =
                           await insertMessage(data, messageController.text);
                       if (result == 'Success') {
                         messageController.text = "";
+                        // setState(() {});
+                        scrollToBottom();
 
-                        // final position = _scrollController.position.maxScrollExtent;
-                        // await  _scrollController.animateTo(
-                        //   position,
-                        //   duration: Duration(seconds: 1),
-                        //   curve: Curves.fastOutSlowIn,
-                        // );
-                        setState(() {});
                       } else if (result == 'Empty Field') {
                       } else {
                         showErrorDiaglog(context, result);
                       }
+                      // final position =
+                      //     _scrollController.position.maxScrollExtent;
+                      // await _scrollController.animateTo(
+                      //   position,
+                      //   duration: Duration(seconds: 1),
+                      //   curve: Curves.fastOutSlowIn,
+                      // );
                     },
                     icon: Icon(Icons.send,
                         color: Color.fromARGB(255, 124, 5, 5))),
@@ -298,7 +318,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                   ),
                 ),
                 Text(
-                  ' ${userStatus}',
+                  ' $userStatus',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     letterSpacing: 1,

@@ -216,12 +216,11 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                             ),
                           ),
                           const SizedBox(height: 20),
-                          Material(
-                            borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromARGB(255, 124, 5, 5),
-                            child: InkWell(
-                              onTap: () async {
-                                final email = _email.text;
+                         
+                          FloatingActionButton.extended(
+                          heroTag: 'btn-1',
+                          onPressed: () async {
+                            final email = _email.text;
                                 final password = _password.text;
                                 try {
                                   // if (email.isEmpty || password.isEmpty) {
@@ -270,24 +269,11 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                     'Authentication Error',
                                   );
                                 }
-                              },
-                              child: AnimatedContainer(
-                                duration: const Duration(seconds: 0),
-                                height: 50,
-                                width: 100,
-                                child: const Center(
-                                  child: Text(
-                                    'Login',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                          },
+                          label: const Text('Login'),
+                          icon: const Icon(Icons.laptop_mac_rounded),
+                          backgroundColor: const Color.fromARGB(255, 124, 5, 5),
+                        ),
                           const SizedBox(height: 10),
                           const Text(
                             'or',
