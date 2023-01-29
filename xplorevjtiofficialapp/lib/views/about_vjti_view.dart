@@ -217,7 +217,7 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
                 ),
               ),
 
-              Material(
+              /*Material(
                 borderRadius: BorderRadius.circular(20),
                 color: Color.fromARGB(0, 124, 5, 5),
                 child: InkWell(
@@ -241,7 +241,7 @@ class _AboutVJTIViewState extends State<AboutVJTIView> {
                                 ),
                               ),
                 ),
-              ),
+              ),*/
               const SizedBox(height: 40),
               ],
             ),

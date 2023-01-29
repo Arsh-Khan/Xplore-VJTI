@@ -69,7 +69,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   '</Developers>',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Source code pro',
                   ),
@@ -96,7 +96,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        ' Rushi V. Jani',
+                        '   Rushi V. Jani',
                         style: TextStyle(
                           fontSize: 25,
                           fontFamily: 'Poppins'
@@ -232,7 +232,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        'Ruturaj Rao',
+                        ' Ruturaj Rao',
                         style: TextStyle(
                           fontSize: 25,
                           fontFamily: 'Poppins',
@@ -281,7 +281,7 @@ class _ContactUsViewState extends State<ContactUsView> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
+              padding: EdgeInsets.fromLTRB(3, 50, 3, 0),
               child: Text(
                 "For any issues or feedback, please write to",
                 textAlign: TextAlign.center,
@@ -302,7 +302,19 @@ class _ContactUsViewState extends State<ContactUsView> {
                 ),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+              child: Text(
+                'Special thanks to the developers of VJTI Maps i.e. Mr. Ravi Maurya and Ms. Sarah Tisekar for the implementation of locations within the campus',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              //SizedBox(height: 10),
+            ),
+            SizedBox(height: 10,)
           ],
         ),
       ),

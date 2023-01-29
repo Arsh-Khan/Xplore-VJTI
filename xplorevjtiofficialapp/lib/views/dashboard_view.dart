@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
 import 'package:xplorevjtiofficialapp/views/side_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashBoardView extends StatefulWidget {
   const DashBoardView({super.key});
@@ -11,6 +12,13 @@ class DashBoardView extends StatefulWidget {
 }
 
 class _DashBoardViewState extends State<DashBoardView> {
+  launchUrl(String url) async {
+    if (await canLaunch(url)){
+      await launch(url);
+    } else{
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -377,6 +385,49 @@ class _DashBoardViewState extends State<DashBoardView> {
                         ),
                       ],
                     ),
+                    Material(
+                          color: Colors.deepOrange[50],
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(19),
+                            side: const BorderSide(color: Colors.transparent),
+                          ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            onTap: () {
+                              const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
+                              launch(url);
+                            },
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(width: 2),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Image.asset(
+                                      'assets/locations.png',
+                                      fit: BoxFit.fill,
+                                      height: 100,
+                                      width: 100,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Text(
+                                    'Location within the campus',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                     const SizedBox(height: 40),
                   ],
                 ),
