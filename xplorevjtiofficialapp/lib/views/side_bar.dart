@@ -19,6 +19,7 @@ class _SideBarState extends State<SideBar> {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
+        elevation: 10,
         backgroundColor: Colors.deepOrange[50],
         title: Text('Sure Logout?',
         textAlign: TextAlign.center,
