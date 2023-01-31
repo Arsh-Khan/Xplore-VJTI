@@ -26,7 +26,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
               },
               icon: const Icon(
                 Icons.arrow_back_ios_sharp,
-                color: Colors.black,
+                color: Color.fromARGB(255, 124, 5, 5),
                 size: 30,
               )),
           title: const Text(
@@ -374,9 +374,14 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                     borderRadius: BorderRadius.circular(20),
                                     color: const Color.fromARGB(255, 124, 5, 5),
                                     child: InkWell(
-                                        onTap: () {
-                                          Navigator.pushNamed(context,
-                                              updateStudentDetailsRoute);
+                                        onTap: () async {
+                                          final userdetails =
+                                              await userDetails();
+                                          Navigator.of(context)
+                                              .pushNamedAndRemoveUntil(
+                                                  updateStudentDetailsRoute,
+                                                  arguments: snapshot.data,
+                                                  ((route) => false));
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),

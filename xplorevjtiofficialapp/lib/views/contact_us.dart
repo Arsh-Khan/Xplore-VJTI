@@ -281,12 +281,14 @@ class _ContactUsViewState extends State<ContactUsView> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.fromLTRB(3, 50, 3, 0),
+              padding: EdgeInsets.fromLTRB(25, 50, 25, 0),
               child: Text(
                 "For any issues or feedback, please write to",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 18,
+                  fontFamily: 'Poppins',
+                  color: Color.fromARGB(255, 124, 5, 5)   
                 ),
               ),
             ),
@@ -304,12 +306,14 @@ class _ContactUsViewState extends State<ContactUsView> {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
               child: Text(
-                'Special thanks to the developers of VJTI Maps i.e. Mr. Ravi Maurya and Ms. Sarah Tisekar for the implementation of locations within the campus',
-                textAlign: TextAlign.center,
+                'Special thanks to the developers of \'VJTI Maps\' - Mr. Ravi Maurya and Ms. Sarah Tisekar for the implementation of locations within the campus',
+                textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 20,
+                  fontFamily: 'Poppins',
+                  color: Color.fromARGB(255, 124, 5, 5)      
                 ),
               ),
               //SizedBox(height: 10),

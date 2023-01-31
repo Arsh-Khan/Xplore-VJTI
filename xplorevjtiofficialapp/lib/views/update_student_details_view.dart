@@ -43,8 +43,8 @@ class _UpdateStudentDetailsState extends State<UpdateStudentDetails> {
 
   @override
   Widget build(BuildContext context) {
-    MongoDbUserModel? data =
-        ModalRoute.of(context)!.settings.arguments as MongoDbUserModel;
+    dynamic data =
+        ModalRoute.of(context)!.settings.arguments as dynamic;
     log(data.toString());
     if (data.email!.isNotEmpty) {
       final space = data.email!.indexOf(" ");

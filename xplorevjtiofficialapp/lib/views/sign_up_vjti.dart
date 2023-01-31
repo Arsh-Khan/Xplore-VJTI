@@ -193,7 +193,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: TextField(
-                              controller: _name,
+                              controller: _lname,
                               enableSuggestions: false,
                               autocorrect: false,
                               keyboardType: TextInputType.name,

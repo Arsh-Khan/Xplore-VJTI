@@ -16,7 +16,7 @@ class _SideBarState extends State<SideBar> {
   Future<void> _showMyDialog() async {
   return showDialog<void>(
     context: context,
-    barrierDismissible: false, // user must tap button!
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         elevation: 10,

@@ -292,6 +292,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                       ],
                     ),
                     const SizedBox(height: 50),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -305,7 +306,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () {
-                              Navigator.pushNamed(context, mapOfVJTIRoute);
+                              const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
+                              launch(url);
                             },
                             child: Center(
                               child: Column(
@@ -314,9 +316,10 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     decoration: BoxDecoration(
                                       border: Border.all(width: 2),
                                       borderRadius: BorderRadius.circular(5),
+                                      color: Colors.white,
                                     ),
                                     child: Image.asset(
-                                      'assets/VJTITopView.png',
+                                      'assets/Locations1.png',
                                       fit: BoxFit.fill,
                                       height: 100,
                                       width: 100,
@@ -326,10 +329,11 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Map of \nVJTI',
+                                    'Location within \nthe campus',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -338,6 +342,8 @@ class _DashBoardViewState extends State<DashBoardView> {
                             ),
                           ),
                         ),
+                    
+                        
 
                         const SizedBox(width: 80),
                         // HOW TO GET VJTI
@@ -385,6 +391,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 40),
                     Material(
                           color: Colors.deepOrange[50],
                           shape: RoundedRectangleBorder(
@@ -394,8 +401,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () {
-                              const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
-                              launch(url);
+                              Navigator.pushNamed(context, mapOfVJTIRoute);
                             },
                             child: Center(
                               child: Column(
@@ -406,7 +412,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Image.asset(
-                                      'assets/locations.png',
+                                      'assets/VJTITopView.png',
                                       fit: BoxFit.fill,
                                       height: 100,
                                       width: 100,
@@ -416,7 +422,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Location within the campus',
+                                    'Map of \nVJTI',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -428,9 +434,12 @@ class _DashBoardViewState extends State<DashBoardView> {
                             ),
                           ),
                         ),
-                    const SizedBox(height: 40),
+                        const SizedBox(height: 50),
+                    
                   ],
+                  
                 ),
+                
               ),
             );
           } else {
