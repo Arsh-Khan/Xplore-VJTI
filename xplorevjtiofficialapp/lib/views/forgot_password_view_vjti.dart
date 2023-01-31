@@ -103,7 +103,7 @@ class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
               bool isVJTIEmail = emailCheck(email);
               if (isVJTIEmail) {
                 if (password == confirmpassword) {
-                  final result = await updateUserData(email, password);
+                  final result = await updateUserPassword(email, password);
                   await AuthService.firebase()
                       .reAuthenticateEmail(email: email, password: password);
                   final user = AuthService.firebase().currentUser;

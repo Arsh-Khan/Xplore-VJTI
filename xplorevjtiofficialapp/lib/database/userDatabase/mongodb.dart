@@ -56,4 +56,15 @@ class MongoDatabase {
       return "Error in Deleting User Data";
     }
   }
+
+  static Future<void> updateUserData(MongoDbUserModel data) async {
+    var result = await userCollection.findOne({"id": data.id});
+    result['name'] = data.name;
+    result['regId'] = data.regId;
+    result['dob'] = data.dob;
+    result['branch'] = data.branch;
+
+    var response = await userCollection.save(result);
+    inspect(response);
+  }
 }
