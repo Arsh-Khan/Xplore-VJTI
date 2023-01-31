@@ -43,16 +43,15 @@ class _UpdateStudentDetailsState extends State<UpdateStudentDetails> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic data =
-        ModalRoute.of(context)!.settings.arguments as dynamic;
+    dynamic data = ModalRoute.of(context)!.settings.arguments as dynamic;
     log(data.toString());
-    if (data.email!.isNotEmpty) {
-      final space = data.email!.indexOf(" ");
-      dateInput.text = data.dob!;
-      _name.text = data.name!.substring(0, space - 1);
-      _lname.text = data.name!.substring(space + 1);
-      _regID.text = data.regId!;
-      branchesvalue = data.branch!;
+    if (data['email'] != "" || data['email'] != null) {
+      final space = data['name'].indexOf(" ");
+      dateInput.text = data['dob'];
+      _name.text = data['name'].substring(0, space - 1);
+      _lname.text = data['name'].substring(space + 1);
+      _regID.text = data['regId'];
+      branchesvalue = data['branch'];
     }
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
