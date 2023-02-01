@@ -66,7 +66,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                       color: Colors.deepOrange[50],
                       child: InkWell(
                         onTap: () async {
-                          Navigator.pushNamed(context, studentAccountRoute);
+                          //Navigator.pushNamed(context, studentAccountRoute);
                         },
                         child: AnimatedContainer(
                           duration: const Duration(seconds: 0),

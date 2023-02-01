@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 class ContactUsView extends StatefulWidget {
   const ContactUsView({Key? key}) : super(key: key);
@@ -77,10 +79,10 @@ class _ContactUsViewState extends State<ContactUsView> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(40, 10, 60, 0),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Container(
                 height: 120,
-                width: 300,
+                width: 500,
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(71, 123, 21, 21),
                   shape: BoxShape.rectangle,
@@ -106,7 +108,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 10, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(70, 10, 0, 0),
                             child: Container(
                               height: 40,
                               width: 40,
@@ -145,10 +147,10 @@ class _ContactUsViewState extends State<ContactUsView> {
             ),
             const SizedBox(height: 30),
             Padding(
-              padding: const EdgeInsets.fromLTRB(40, 10, 60, 0),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Container(
                 height: 120,
-                width: 300,
+                width: 500,
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(71, 123, 21, 21),
                   shape: BoxShape.rectangle,
@@ -164,7 +166,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        'Arsh Khan',
+                        '    Arsh Khan',
                         style: TextStyle(
                           fontSize: 25,
                           fontFamily: 'Poppins'
@@ -174,7 +176,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 10, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(70, 10, 0, 0),
                             child: Container(
                               height: 40,
                               width: 40,
@@ -213,10 +215,10 @@ class _ContactUsViewState extends State<ContactUsView> {
             ),
             const SizedBox(height: 30),
             Padding(
-              padding: const EdgeInsets.fromLTRB(40, 10, 60, 0),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Container(
                 height: 120,
-                width: 300,
+                width: 500,
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(71, 123, 21, 21),
                   shape: BoxShape.rectangle,
@@ -232,7 +234,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        ' Ruturaj Rao',
+                        '  Ruturaj Rao',
                         style: TextStyle(
                           fontSize: 25,
                           fontFamily: 'Poppins',
@@ -243,7 +245,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(40, 10, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(70, 10, 0, 0),
                             child: Container(
                               height: 40,
                               width: 40,
@@ -292,7 +294,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(10),
               child: Text(
                 "help.xplorevjti@gmail.com",
@@ -304,11 +306,53 @@ class _ContactUsViewState extends State<ContactUsView> {
                 ),
               ),
             ),
+              // RichText(
+              //   text: TextSpan(
+              //     children: [
+              //       TextSpan(
+              //         style: TextStyle(
+              //           color: Color(0xff1D3BA7),
+              //           fontSize: 20,
+              //         ),
+              //         text: 'help.xplorevjti@gmail.com',
+              //         recognizer :TapGestureRecognizer()..onTap = ()async{
+              //           var url = "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSKhpbZBrCFftlpFwrdrkdxfdmhkxSQZXXMqqRKBcvnMJQDLrbMqGKFxDfkCpQxLwcqpdplf";
+              //           launch(url);
+              //           // if(await canLaunch(url)){
+              //           //   await launch(url);
+              //           // }else{
+              //           //   throw "Cannot launch url";
+              //           // }
+              //         }
+              //       )
+              //     ]
+              //   )
+              // ),
+            //),
+              // Linkify(
+              //   onOpen: (link){
+              //     print("Linkify link = ${link.url}");
+              //   },
+              //   text: "Linkify click - https://www.mail.google.com",
+              //   style: TextStyle(
+              //     color: Color(0xff1D3BA7),
+              //   ),
+              // ),
+            //   Text(
+            //     "help.xplorevjti@gmail.com",
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       decoration: TextDecoration.underline,
+            //       color: Color(0xff1D3BA7),
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
               child: Text(
-                'Special thanks to the developers of \'VJTI Maps\' - Mr. Ravi Maurya and Ms. Sarah Tisekar for the implementation of locations within the campus',
+                'Special thanks to the developers of \"VJTI Maps\" - Mr. Ravi Maurya and Ms. Sarah Tisekar for the implementation of locations within the campus',
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 20,
