@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:mongo_dart/mongo_dart.dart';
+
 MongoDbUserModel mongoDbUserModelFromJson(String str) =>
     MongoDbUserModel.fromJson(json.decode(str));
 
@@ -21,7 +23,7 @@ class MongoDbUserModel {
     required this.password,
   });
 
-  Object id;
+  ObjectId id;
   String? name;
   String? email;
   String? regId;

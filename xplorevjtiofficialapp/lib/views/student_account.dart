@@ -97,7 +97,7 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                         padding: const EdgeInsets.fromLTRB(
                                             0, 0, 15, 0),
                                         child: Text(
-                                          '${snapshot.data['name']}',
+                                          '${snapshot.data['name'].substring(0, snapshot.data['name'].indexOf(' '))}',
                                           style: TextStyle(
                                             fontFamily: 'Poppins',
                                             fontSize: 25,
@@ -377,11 +377,15 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                         onTap: () async {
                                           final userdetails =
                                               await userDetails();
-                                          Navigator.of(context)
-                                              .pushNamedAndRemoveUntil(
-                                                  updateStudentDetailsRoute,
-                                                  arguments: snapshot.data,
-                                                  ((route) => false));
+                                          // Navigator.of(context)
+                                          //     .pushNamedAndRemoveUntil(
+                                          //         updateStudentDetailsRoute,
+                                          //         arguments: userdetails,
+                                          //         ((route) => false));
+                                          Navigator.pushNamed(context, 
+                                          updateStudentDetailsRoute,
+                                          arguments: snapshot.data,
+                                          );
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),

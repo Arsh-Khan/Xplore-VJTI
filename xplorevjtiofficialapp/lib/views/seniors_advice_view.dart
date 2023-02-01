@@ -197,12 +197,13 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                               child: ListView.builder(
                                   // controller: _scrollController,
                                   physics: NeverScrollableScrollPhysics(),
+                                  // reverse: true,
                                   shrinkWrap: true,
                                   itemCount: snapshot.data!.length,
                                   itemBuilder: (context, index) {
                                     return displayCard(
                                         MongoDbSeniorAdviceModel.fromJson(
-                                            snapshot.data![index]));
+                                            snapshot.data![index]),data);
                                   }),
                             ),
                           ),
@@ -274,11 +275,14 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     );
   }
 
-  Widget displayCard(MongoDbSeniorAdviceModel data) {
+  Widget displayCard(MongoDbSeniorAdviceModel data,dynamic userdetails) {
     var color = Colors.white;
     if (data.status == 'ADMIN') {
-      color = Color.fromARGB(255, 247, 233, 202);
-    } else {
+      color = Color.fromRGBO(247, 233, 202, 1);
+    }else if(data.email == userdetails['email']){
+      color = Color.fromARGB(255, 241, 239, 119);
+    }
+     else {
       color = Colors.white;
     }
     var userStatus = '';
@@ -355,11 +359,13 @@ Future<String> insertMessage(dynamic userdata, String message) async {
   final timeDetails = timeDecode(time);
 
   String status = "";
-  if ((userdata['email'] == 'rsrao_b21@et.vjti.ac.in') ||
+  if (
+    (userdata['email'] == 'rsrao_b21@et.vjti.ac.in') ||
       (userdata['email'] == 'afkhan_b21@et.vjti.ac.in') ||
       (userdata['email'] == 'rvjani_b21@et.vjti.ac.in') ||
-      (userdata['email'] == 'askarawale_b21@et.vjti.ac.in') ||
-      (userdata['email'] == 'afkhan_b21@el.vjti.ac.in')) {
+      (userdata['email'] == 'afkhan_b21@el.vjti.ac.in') ||
+      (userdata['email'] == 'askarawale_b21@et.vjti.ac.in')
+      ) {
     status = "ADMIN";
   } else {
     status = "PARTICIPANT";

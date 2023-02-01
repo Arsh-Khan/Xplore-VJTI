@@ -81,7 +81,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                'Welcome\n${snapshot.data['name']}',
+                                'Welcome\n${snapshot.data['name'].substring(0, snapshot.data['name'].indexOf(' '))}',
                                 maxLines: 2,
                                 overflow: TextOverflow.fade,
                                 style: const TextStyle(

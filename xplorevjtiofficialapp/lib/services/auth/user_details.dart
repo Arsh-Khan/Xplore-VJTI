@@ -11,6 +11,7 @@ Future<dynamic> userDetails() async {
       'id': user.id,
       'regId': user.regId,
       'name': user.name,
+      'branch': user.branch,
       'dob': user.dob,
       'email': user.email,
       'password': user.password,

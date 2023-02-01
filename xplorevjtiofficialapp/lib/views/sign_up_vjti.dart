@@ -7,6 +7,7 @@ import 'package:xplorevjtiofficialapp/services/auth/auth_exceptions.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
 import 'package:xplorevjtiofficialapp/database/userDatabase/insert.dart';
 import 'package:xplorevjtiofficialapp/utilites/check_vjti_email.dart';
+import 'package:xplorevjtiofficialapp/utilites/reg_no_tod_diya_jaye.dart';
 import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
 
 class SignUpVJTI extends StatefulWidget {
@@ -427,7 +428,8 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                               final name = _name.text + " " + _lname.text;
                               final regId = _regID.text;
                               final dob = dateInput.text;
-                              final branch = branchesvalue;
+                              final regdata = detailsFromRegID(regId);
+                              final branch = regdata[1];
                               try {
                                 final isVJTIEmailID = emailCheck(email);
                                 final isPasswordSame =
