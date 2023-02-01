@@ -25,18 +25,20 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
 
   Future<void> getMessages() async {
     try {
-      List<Map<String, dynamic>> list1 = await MongoSeniorAdviceDatabase.getData();
+      List<Map<String, dynamic>> list1 =
+          await MongoSeniorAdviceDatabase.getData();
       _streamController.sink.add(list1);
     } catch (e) {
       throw "error";
     }
   }
 
-  closeStream () async{
+  closeStream() async {
     await _streamController.close();
   }
 
-  StreamController <List<Map<String, dynamic>>> _streamController = StreamController();
+  StreamController<List<Map<String, dynamic>>> _streamController =
+      StreamController();
 
   late final TextEditingController messageController;
   ScrollController controller = ScrollController();
@@ -50,12 +52,10 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     );
   }
 
-
   @override
   void initState() {
-    _timer = Timer.periodic(Duration(seconds: 2), (timer) {getMessages().onError((error, stackTrace) => timer.cancel());});
+
     messageController = TextEditingController();
-    super.initState();
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollController
@@ -73,14 +73,19 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
         );
       });
     });
+    _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+      getMessages().onError((error, stackTrace) => timer.cancel());
+    // scrollToBottom();
+    });
+    super.initState();
   }
 
   @override
   void dispose() {
-    if(mounted){
-    messageController.dispose();
-    closeStream();
-    _timer!.cancel();
+    if (mounted) {
+      messageController.dispose();
+      closeStream();
+      _timer!.cancel();
     }
     super.dispose();
   }
@@ -99,7 +104,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
             final position = _scrollController.position.maxScrollExtent;
             _scrollController.animateTo(
               position,
-              duration: Duration(seconds: 1),
+              duration: Duration(milliseconds: 500),
               curve: Curves.fastOutSlowIn,
             );
           }
@@ -144,7 +149,6 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                       color: Color.fromARGB(255, 124, 5, 5),
                       size: 30,
                     )),
-                
               ],
             ),
           ),
@@ -187,10 +191,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                     );
                   } else {
                     if (snapshot.hasData) {
-
                       var totalData =
                           snapshot.data!.length; //getting total length of data
-                      
 
                       print('Total Data' + totalData.toString());
 
@@ -213,7 +215,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                                   itemBuilder: (context, index) {
                                     return displayCard(
                                         MongoDbSeniorAdviceModel.fromJson(
-                                            snapshot.data![index]),data);
+                                            snapshot.data![index]),
+                                        data);
                                   }),
                             ),
                           ),
@@ -262,11 +265,11 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                         getMessages();
                         messageController.text = "";
                         WidgetsBinding.instance.addPostFrameCallback((_) {
-                          if (_scrollController.hasClients){
-
-                            _scrollController.jumpTo(_scrollController.position.maxScrollExtent+500);
-                          }
-                          else {
+                          if (_scrollController.hasClients) {
+                            _scrollController.jumpTo(
+                                _scrollController.position.maxScrollExtent +
+                                    500);
+                          } else {
                             setState(() {
                               return null;
                             });
@@ -295,14 +298,13 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     );
   }
 
-  Widget displayCard(MongoDbSeniorAdviceModel data,dynamic userdetails) {
+  Widget displayCard(MongoDbSeniorAdviceModel data, dynamic userdetails) {
     var color = Colors.white;
     if (data.status == 'ADMIN') {
       color = Color.fromRGBO(247, 233, 202, 1);
-    }else if(data.email == userdetails['email']){
+    } else if (data.email == userdetails['email']) {
       color = Color.fromARGB(255, 241, 239, 119);
-    }
-     else {
+    } else {
       color = Colors.white;
     }
     var userStatus = '';
@@ -379,13 +381,11 @@ Future<String> insertMessage(dynamic userdata, String message) async {
   final timeDetails = timeDecode(time);
 
   String status = "";
-  if (
-    (userdata['email'] == 'rsrao_b21@et.vjti.ac.in') ||
+  if ((userdata['email'] == 'rsrao_b21@et.vjti.ac.in') ||
       (userdata['email'] == 'afkhan_b21@et.vjti.ac.in') ||
       (userdata['email'] == 'rvjani_b21@et.vjti.ac.in') ||
       (userdata['email'] == 'afkhan_b21@el.vjti.ac.in') ||
-      (userdata['email'] == 'askarawale_b21@et.vjti.ac.in')
-      ) {
+      (userdata['email'] == 'askarawale_b21@et.vjti.ac.in')) {
     status = "ADMIN";
   } else {
     status = "PARTICIPANT";

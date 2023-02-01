@@ -26,8 +26,11 @@ class _ParticipantSeniorAdviceViewState
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, seniorAdviceRoute);
+            onPressed: () async {
+              final userdata = await userDetails();
+              Navigator.pushNamed(context, seniorAdviceRoute,
+              arguments: userdata,
+              );
             },
             icon: Icon(
               Icons.arrow_back_ios_sharp,
