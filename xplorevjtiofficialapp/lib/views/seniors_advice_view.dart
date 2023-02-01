@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -20,6 +21,22 @@ class SeniorAdviceView extends StatefulWidget {
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   ScrollController _scrollController = new ScrollController();
+  Timer? _timer;
+
+  Future<void> getMessages() async {
+    try {
+      List<Map<String, dynamic>> list1 = await MongoSeniorAdviceDatabase.getData();
+      _streamController.sink.add(list1);
+    } catch (e) {
+      throw "error";
+    }
+  }
+
+  closeStream () async{
+    await _streamController.close();
+  }
+
+  StreamController <List<Map<String, dynamic>>> _streamController = StreamController();
 
   late final TextEditingController messageController;
   ScrollController controller = ScrollController();
@@ -36,6 +53,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
 
   @override
   void initState() {
+    _timer = Timer.periodic(Duration(seconds: 2), (timer) {getMessages().onError((error, stackTrace) => timer.cancel());});
     messageController = TextEditingController();
     super.initState();
     _scrollController = ScrollController();
@@ -59,7 +77,11 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
 
   @override
   void dispose() {
+    if(mounted){
     messageController.dispose();
+    closeStream();
+    _timer!.cancel();
+    }
     super.dispose();
   }
 
@@ -122,19 +144,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                       color: Color.fromARGB(255, 124, 5, 5),
                       size: 30,
                     )),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        scrollToBottom();
-                      });
-                      scrollToBottom();
-                    },
-                    tooltip: 'Refresh Page',
-                    icon: Icon(
-                      Icons.refresh,
-                      size: 30,
-                      color: Color.fromARGB(255, 124, 5, 5),
-                    )),
+                
               ],
             ),
           ),
@@ -167,8 +177,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
             SafeArea(
                 child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 30, 10, 30),
-              child: FutureBuilder(
-                future: MongoSeniorAdviceDatabase.getData(),
+              child: StreamBuilder<List<Map<String, dynamic>>>(
+                stream: _streamController.stream,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
@@ -177,8 +187,10 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                     );
                   } else {
                     if (snapshot.hasData) {
+
                       var totalData =
                           snapshot.data!.length; //getting total length of data
+                      
 
                       print('Total Data' + totalData.toString());
 
@@ -243,13 +255,12 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                 suffixIcon: IconButton(
                     onPressed: () async {
                       int a = 0;
-                      // scrollToBottom();
+
                       final result =
                           await insertMessage(data, messageController.text);
                       if (result == 'Success') {
+                        getMessages();
                         messageController.text = "";
-                        // setState(() {
-                        //   scrollToBottom();
                         WidgetsBinding.instance.addPostFrameCallback((_) {
                           if (_scrollController.hasClients){
 
@@ -260,7 +271,6 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                               return null;
                             });
                           }
-                        // });
                         });
                         // scrollToBottom();
                       } else if (result == 'Empty Field') {
