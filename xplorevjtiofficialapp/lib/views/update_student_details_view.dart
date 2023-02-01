@@ -94,251 +94,276 @@ class _UpdateStudentDetailsState extends State<UpdateStudentDetails> {
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         child: SingleChildScrollView(
             child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const Text('Update your Details',
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(103, 236, 183, 183),
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                const Text('Update your Details',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 124, 5, 5),
+                    )),
+                const SizedBox(
+                  height: 80,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(85, 219, 112, 112),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: _name,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          labelText: 'Enter First Name',
+                          hintText: 'First Name',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 145, 38, 22),
+                          ),
+                          icon: Icon(Icons.person),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(85, 219, 112, 112),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: _lname,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          labelText: 'Enter Last Name',
+                          hintText: 'Last Name',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 145, 38, 22),
+                          ),
+                          icon: Icon(Icons.person),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color.fromARGB(85, 219, 112, 112),
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      height: MediaQuery.of(context).size.width / 3,
+                      child: Center(
+                          child: TextField(
+                        controller: dateInput,
+                        //editing controller of this TextField
+                        decoration: const InputDecoration(
+                            icon: Icon(Icons.calendar_today), //icon of text field
+                            labelText: "Date Of Birth" //label text of field
+                            ),
+                        readOnly: true,
+                        //set it true, so that user will not able to edit text
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1950),
+                              // DateTime.now() - not to allow to choose before today.
+                              lastDate: DateTime(2100));
+
+                          if (pickedDate != null) {
+                            print(
+                                pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                            String formattedDate =
+                                DateFormat('dd - MM - yyyy').format(pickedDate);
+                            print(
+                                formattedDate); //formatted date output using intl package =>  2021-03-16
+                            setState(() {
+                              dateInput.text =
+                                  formattedDate; //set output date to TextField value.
+                            });
+                          } else {}
+                        },
+                      ))),
+                ),
+
+                const SizedBox(height: 20),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(85, 219, 112, 112),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: _email,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          labelText: 'VJTI mail id',
+                          hintText: 'Enter your VJTI email id',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 145, 38, 22),
+                          ),
+                          icon: Icon(Icons.mail_outlined),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Registration Number
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(85, 219, 112, 112),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        controller: _regID,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: 'Reg. Number',
+                          hintText: 'Enter your Registration Number',
+                          hintStyle: TextStyle(
+                            color: Color.fromARGB(255, 145, 38, 22),
+                          ),
+                          icon: Icon(Icons.numbers_rounded),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Branch
+                const Text(
+                  'Select Branch',
                   style: TextStyle(
                     fontFamily: 'Poppins',
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 124, 5, 5),
-                  )),
-              const SizedBox(
-                height: 80,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(85, 219, 112, 112),
+                    fontSize: 18,
+                    color: Color.fromARGB(255, 145, 38, 22),
+                  ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: _name,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    keyboardType: TextInputType.name,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter First Name',
-                      hintText: 'First Name',
-                      hintStyle: TextStyle(
-                        color: Color.fromARGB(255, 145, 38, 22),
+                const SizedBox(height: 10),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(85, 219, 112, 112),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          DropdownButton(
+                            value: _branch.text,
+                            icon: const Icon(Icons.arrow_drop_down_rounded),
+                            items: branches.map((String branches) {
+                              return DropdownMenuItem(
+                                value: branches,
+                                child: Text(
+                                  branches,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (String? newval) {
+                              setState(() {
+                                _branch.text = newval!;
+                              });
+                            },
+                          ),
+                        ],
                       ),
-                      icon: Icon(Icons.person),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
+                Center(
+                  // child: ElevatedButton.icon(
+                  //     onPressed: () async {
+                  //       final updateData = MongoDbUserModel(
+                  //           id: data['id'],
+                  //           name: _name.text + " " + _lname.text,
+                  //           email: data['email'],
+                  //           regId: _regID.text,
+                  //           branch: _branch.text,
+                  //           dob: dateInput.text,
+                  //           password: data['password']);
+                  //       await MongoDatabase.updateUserData(updateData)
+                  //           .whenComplete(() => Navigator.pushNamedAndRemoveUntil(context, studentAccountRoute, (route) => false));
+                  //     },
+                  //     icon: Icon(Icons.update),
+                  //     label: Text('Update Details')),
 
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(85, 219, 112, 112),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: _lname,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    keyboardType: TextInputType.name,
-                    decoration: const InputDecoration(
-                      labelText: 'Enter Last Name',
-                      hintText: 'Last Name',
-                      hintStyle: TextStyle(
-                        color: Color.fromARGB(255, 145, 38, 22),
-                      ),
-                      icon: Icon(Icons.person),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(85, 219, 112, 112),
-                  ),
-                  padding: const EdgeInsets.all(8),
-                  height: MediaQuery.of(context).size.width / 3,
-                  child: Center(
-                      child: TextField(
-                    controller: dateInput,
-                    //editing controller of this TextField
-                    decoration: const InputDecoration(
-                        icon: Icon(Icons.calendar_today), //icon of text field
-                        labelText: "Date Of Birth" //label text of field
-                        ),
-                    readOnly: true,
-                    //set it true, so that user will not able to edit text
-                    onTap: () async {
-                      DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1950),
-                          // DateTime.now() - not to allow to choose before today.
-                          lastDate: DateTime(2100));
-
-                      if (pickedDate != null) {
-                        print(
-                            pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                        String formattedDate =
-                            DateFormat('dd - MM - yyyy').format(pickedDate);
-                        print(
-                            formattedDate); //formatted date output using intl package =>  2021-03-16
-                        setState(() {
-                          dateInput.text =
-                              formattedDate; //set output date to TextField value.
-                        });
-                      } else {}
+                  child: FloatingActionButton.extended(
+                    
+                    heroTag: 'btn-1',
+                    onPressed: () async {
+                      final regdata = detailsFromRegID(_regID.text);
+                      final updateData = MongoDbUserModel(
+                          id: data['id'],
+                          name: _name.text + " " + _lname.text,
+                          email: data['email'],
+                          regId: _regID.text,
+                          branch: regdata[1],
+                          dob: dateInput.text,
+                          password: data['password']);
+                      await MongoDatabase.updateUserData(updateData).whenComplete(
+                          () => Navigator.pushNamedAndRemoveUntil(
+                              context, studentAccountRoute, (route) => false));
                     },
-                  ))),
-
-              const SizedBox(height: 20),
-
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(85, 219, 112, 112),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                    controller: _email,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      labelText: 'VJTI mail id',
-                      hintText: 'Enter your VJTI email id',
-                      hintStyle: TextStyle(
-                        color: Color.fromARGB(255, 145, 38, 22),
-                      ),
-                      icon: Icon(Icons.mail_outlined),
+                    label: const Text(
+                      'Update Changes',
+                      style: TextStyle(fontFamily: 'Poppins'),
                     ),
+                    icon: const Icon(Icons.update_sharp),
+                    backgroundColor: const Color.fromARGB(255, 124, 5, 5),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-
-              // Registration Number
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(85, 219, 112, 112),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: _regID,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: 'Reg. Number',
-                      hintText: 'Enter your Registration Number',
-                      hintStyle: TextStyle(
-                        color: Color.fromARGB(255, 145, 38, 22),
-                      ),
-                      icon: Icon(Icons.numbers_rounded),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // Branch
-              const Text(
-                'Select Branch',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 18,
-                  color: Color.fromARGB(255, 145, 38, 22),
-                ),
-              ),
-              const SizedBox(height: 10),
-
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(85, 219, 112, 112),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      DropdownButton(
-                        value: _branch.text,
-                        icon: const Icon(Icons.arrow_drop_down_rounded),
-                        items: branches.map((String branches) {
-                          return DropdownMenuItem(
-                            value: branches,
-                            child: Text(
-                              branches,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Poppins',
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (String? newval) {
-                          setState(() {
-                            _branch.text = newval!;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Center(
-                // child: ElevatedButton.icon(
-                //     onPressed: () async {
-                //       final updateData = MongoDbUserModel(
-                //           id: data['id'],
-                //           name: _name.text + " " + _lname.text,
-                //           email: data['email'],
-                //           regId: _regID.text,
-                //           branch: _branch.text,
-                //           dob: dateInput.text,
-                //           password: data['password']);
-                //       await MongoDatabase.updateUserData(updateData)
-                //           .whenComplete(() => Navigator.pushNamedAndRemoveUntil(context, studentAccountRoute, (route) => false));
-                //     },
-                //     icon: Icon(Icons.update),
-                //     label: Text('Update Details')),
-
-                child: FloatingActionButton.extended(
-                  heroTag: 'btn-1',
-                  onPressed: () async {
-                    final regdata = detailsFromRegID(_regID.text);
-                    final updateData = MongoDbUserModel(
-                        id: data['id'],
-                        name: _name.text + " " + _lname.text,
-                        email: data['email'],
-                        regId: _regID.text,
-                        branch: regdata[1],
-                        dob: dateInput.text,
-                        password: data['password']);
-                    await MongoDatabase.updateUserData(updateData).whenComplete(
-                        () => Navigator.pushNamedAndRemoveUntil(
-                            context, studentAccountRoute, (route) => false));
-                  },
-                  label: const Text(
-                    'Update Details',
-                    style: TextStyle(fontFamily: 'Poppins'),
-                  ),
-                  icon: const Icon(Icons.update_sharp),
-                  backgroundColor: const Color.fromARGB(255, 124, 5, 5),
-                ),
-              ),
-              const SizedBox(height: 50),
-            ],
+                const SizedBox(height: 50),
+              ],
+            ),
           ),
         )),
       ),

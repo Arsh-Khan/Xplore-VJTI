@@ -48,12 +48,11 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
         child: Center(
           child: Center(
             child: Column(children: [
-              const Text('EXTRA CURRICULARS',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  )),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset('assets/extracurr.png',
+                ),
+              ),
               const SizedBox(height: 40),
 
               Row(

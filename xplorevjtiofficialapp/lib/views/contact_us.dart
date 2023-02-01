@@ -96,9 +96,9 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        '   Rushi V. Jani',
+                         'Rushi Jani',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'Poppins'
                         ),
                       ),
@@ -166,7 +166,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                       const Text(
                         'Arsh Khan',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'Poppins'
                         ),
                       ),
@@ -232,9 +232,9 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        ' Ruturaj Rao',
+                        'Ruturaj Rao',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: 'Poppins',
                           color: Colors.black,
                         ),

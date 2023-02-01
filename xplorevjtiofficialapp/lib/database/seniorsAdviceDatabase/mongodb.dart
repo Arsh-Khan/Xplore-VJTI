@@ -62,4 +62,8 @@ class MongoSeniorAdviceDatabase {
 
     return returnData;
   }
+   static delete() async {
+    await seniorAdviceCollection.deleteMany({});
+  }
+
 }

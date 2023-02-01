@@ -19,10 +19,12 @@ class SeniorAdviceView extends StatefulWidget {
 }
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
+  ScrollController _scrollController = new ScrollController();
+
+  late final TextEditingController messageController;
+  ScrollController controller = ScrollController();
   scrollToBottom() {
-    setState(() {
-      
-    });
+    Future.delayed(const Duration(milliseconds: 500));
     final position = _scrollController.position.maxScrollExtent;
     _scrollController.animateTo(
       position,
@@ -31,10 +33,6 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     );
   }
 
-  ScrollController _scrollController = new ScrollController();
-
-  late final TextEditingController messageController;
-  ScrollController controller = ScrollController();
 
   @override
   void initState() {
@@ -250,9 +248,21 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                           await insertMessage(data, messageController.text);
                       if (result == 'Success') {
                         messageController.text = "";
-                        // setState(() {});
-                        scrollToBottom();
+                        // setState(() {
+                        //   scrollToBottom();
+                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                          if (_scrollController.hasClients){
 
+                            _scrollController.jumpTo(_scrollController.position.maxScrollExtent+500);
+                          }
+                          else {
+                            setState(() {
+                              return null;
+                            });
+                          }
+                        // });
+                        });
+                        // scrollToBottom();
                       } else if (result == 'Empty Field') {
                       } else {
                         showErrorDiaglog(context, result);

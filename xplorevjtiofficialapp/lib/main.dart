@@ -35,6 +35,7 @@ void main() async {
   await MongoDatabase.connect();
   await MongoNotesAndPyqDatabase.connect();
   await MongoSeniorAdviceDatabase.connect();
+  // await MongoSeniorAdviceDatabase.delete();
   runApp(MaterialApp(
     home: SplashScreen(),
     routes: {
@@ -79,7 +80,7 @@ class HomePage extends StatelessWidget {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
-            AuthService.firebase().logOut();
+            // AuthService.firebase().logOut();
               final user = AuthService.firebase().currentUser;
               if (user != null) {
                 if (user.isEmailVerified) {
