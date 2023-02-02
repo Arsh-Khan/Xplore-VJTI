@@ -122,7 +122,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, dashBoardRoute);
+                Navigator.pushNamed(context, dashBoardRoute, arguments: userDetails());
               },
               icon: Icon(
                 Icons.arrow_back_ios_sharp,

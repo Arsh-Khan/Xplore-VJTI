@@ -178,7 +178,6 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                 obscureText: !_passwordVisibility,
                                 enableSuggestions: false,
                                 autocorrect: false,
-                                keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                   // border: OutlineInputBorder(),
                                   hintText: 'Enter Password',
