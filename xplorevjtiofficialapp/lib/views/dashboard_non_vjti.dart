@@ -99,7 +99,8 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                               height: 10,
                             ),
                             const Text(
-                              'How to get VJTI',
+                              'How to \nget VJTI',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.bold,
@@ -110,7 +111,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 70),
+                  const SizedBox(width: 80),
 
                   // ABOUT VJTI
                   Material(
@@ -142,7 +143,8 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                               height: 10,
                             ),
                             const Text(
-                              'About VJTI',
+                              'About \nVJTI',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.bold,
@@ -183,7 +185,7 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                   child: InkWell(
                     splashColor: Colors.transparent,
                     onTap: () {
-                      //
+                      Navigator.pushNamed(context, mapOfVJTIRoute);
                     },
                     child: Center(
                       child: Column(
@@ -203,7 +205,8 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                             height: 10,
                           ),
                           const Text(
-                            'Map of VJTI',
+                            'Map \nof VJTI',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.bold,
@@ -246,7 +249,8 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                             height: 10,
                           ),
                           const Text(
-                            'Extra Curriculars',
+                            'Extra \nCurriculars',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.bold,
