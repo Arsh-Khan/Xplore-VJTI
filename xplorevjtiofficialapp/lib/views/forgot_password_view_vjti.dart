@@ -103,17 +103,17 @@ class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
               bool isVJTIEmail = emailCheck(email);
               if (isVJTIEmail) {
                 if (password == confirmpassword) {
-                  final result = await updateUserPassword(email, password);
+                  // final result = await updateUserPassword(email, password);
                   await AuthService.firebase()
                       .reAuthenticateEmail(email: email, password: password);
                   final user = AuthService.firebase().currentUser;
-                  if (result != "" && user!.isEmailVerified) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(result)));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Something went Wrong')));
-                  }
+                  // if (result != "" && user!.isEmailVerified) {
+                  //   ScaffoldMessenger.of(context)
+                  //       .showSnackBar(SnackBar(content: Text(result)));
+                  // } else {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //       SnackBar(content: Text('Something went Wrong')));
+                  // }
                 } else {
                   showErrorDiaglog(context,
                       'New password and confirm password dosent matches');

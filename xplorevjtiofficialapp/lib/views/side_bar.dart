@@ -44,7 +44,7 @@ class _SideBarState extends State<SideBar> {
         ),
         actions: <Widget>[
           TextButton(
-            child: Text('Haan ji',
+            child: Text('Yes',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: "Poppins",
@@ -59,7 +59,7 @@ class _SideBarState extends State<SideBar> {
             },
           ),
           TextButton(
-            child: Text('Nahi',
+            child: Text('No',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: "Poppins",

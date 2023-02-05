@@ -99,6 +99,7 @@ class _ContactUsViewState extends State<ContactUsView> {
                     children: [
                       const Text(
                          'Rushi Jani',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Poppins'
@@ -166,7 +167,8 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        '    Arsh Khan',
+                        'Arsh Khan',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Poppins'
@@ -234,7 +236,8 @@ class _ContactUsViewState extends State<ContactUsView> {
                   child: Column(
                     children: [
                       const Text(
-                        '  Ruturaj Rao',
+                        'Ruturaj Rao',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Poppins',
@@ -282,6 +285,155 @@ class _ContactUsViewState extends State<ContactUsView> {
                 ),
               ),
             ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Container(
+                height: 120,
+                width: 500,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(71, 123, 21, 21),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  image: DecorationImage(
+                    image: ExactAssetImage('assets/aryan.png'),
+                    fit: BoxFit.contain,
+                    alignment: Alignment(-1, 0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(100, 10, 0, 0),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Aryan Karawale',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(70, 10, 0, 0),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              child: InkWell(
+                                onTap: () {
+                                  const url =
+                                      'https://www.linkedin.com/in/aryan-karawale-54b6b7233';
+                                  launch(url);
+                                },
+                                child: Image.asset('assets/linkedin.png'),
+                                //fit: BoxFit.contain
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 10, 0, 0),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              child: InkWell(
+                                onTap: () {
+                                  const url = 'https://github.com/Aryan-karawale';
+                                  launch(url);
+                                },
+                                child: Image.asset('assets/github.png'),
+                                //fit: BoxFit.contain
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(25, 50, 25, 0),
+              child: Text(
+                "This app was successfully developed in CoC's Inheritance 2k22 program under the mentorship and guidance of our mentor,",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
+                    color: Color.fromARGB(255, 124, 5, 5)
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Container(
+                height: 120,
+                width: 500,
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(71, 123, 21, 21),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Ananya Bangera',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Poppins',
+                          color: Colors.black,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              child: InkWell(
+                                onTap: () {
+                                  const url =
+                                      'https://www.linkedin.com/in/ananya-bangera-1647a9207';
+                                  launch(url);
+                                },
+                                child: Image.asset('assets/linkedin.png'),
+                                //fit: BoxFit.contain
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(30, 10, 0, 0),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              child: InkWell(
+                                onTap: () {
+                                  const url = 'https://github.com/ananya-bangera';
+                                  launch(url);
+                                },
+                                child: Image.asset('assets/github.png'),
+                                //fit: BoxFit.contain
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.fromLTRB(25, 50, 25, 0),
               child: Text(
@@ -306,61 +458,42 @@ class _ContactUsViewState extends State<ContactUsView> {
                 ),
               ),
             ),
-              // RichText(
-              //   text: TextSpan(
-              //     children: [
-              //       TextSpan(
-              //         style: TextStyle(
-              //           color: Color(0xff1D3BA7),
-              //           fontSize: 20,
-              //         ),
-              //         text: 'help.xplorevjti@gmail.com',
-              //         recognizer :TapGestureRecognizer()..onTap = ()async{
-              //           var url = "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSKhpbZBrCFftlpFwrdrkdxfdmhkxSQZXXMqqRKBcvnMJQDLrbMqGKFxDfkCpQxLwcqpdplf";
-              //           launch(url);
-              //           // if(await canLaunch(url)){
-              //           //   await launch(url);
-              //           // }else{
-              //           //   throw "Cannot launch url";
-              //           // }
-              //         }
-              //       )
-              //     ]
-              //   )
-              // ),
-            //),
-              // Linkify(
-              //   onOpen: (link){
-              //     print("Linkify link = ${link.url}");
-              //   },
-              //   text: "Linkify click - https://www.mail.google.com",
-              //   style: TextStyle(
-              //     color: Color(0xff1D3BA7),
-              //   ),
-              // ),
-            //   Text(
-            //     "help.xplorevjti@gmail.com",
-            //     textAlign: TextAlign.center,
-            //     style: TextStyle(
-            //       fontSize: 20,
-            //       decoration: TextDecoration.underline,
-            //       color: Color(0xff1D3BA7),
-            //     ),
-            //   ),
-            // ),
             const SizedBox(height: 20),
+            Text(
+              '- Special Thanks -',
+              style: TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Poppins',
+                    color: Colors.black,     
+                  ),
+            ),
+            
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
-              child: Text(
-                'Special thanks to the developers of \"VJTI Maps\" - Mr. Ravi Maurya and Ms. Sarah Tisekar for the implementation of locations within the campus',
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'Poppins',
-                  color: Color.fromARGB(255, 124, 5, 5)      
-                ),
+              padding: const EdgeInsets.fromLTRB(25, 10, 25, 50),
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: TextStyle(
+                    
+                    fontSize: 22,
+                    fontFamily: 'Poppins',
+                    color: Color.fromARGB(255, 124, 5, 5)      
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "Special Thanks to the developers of "
+                    ),
+                    TextSpan(
+                      text: "'VJTI Maps', \nMr. Ravi Maurya \nand \nMs. Sarah Tisekar",
+                      style: TextStyle(fontWeight: FontWeight.bold)
+                    ),
+                    TextSpan(
+                      text: " \nfor allowing us to link their app (VJTI Maps) in our app, Xplore VJTI for Location within the Campus"
+                    ),
+
+                  ]
+                )
               ),
-              //SizedBox(height: 10),
             ),
             SizedBox(height: 10,)
           ],
