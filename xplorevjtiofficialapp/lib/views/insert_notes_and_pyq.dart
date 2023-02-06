@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:flutter/material.dart';
+import 'package:xplorevjtiofficialapp/constants/app_constants.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/MongoDBNotesAndPyqModel.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
@@ -24,6 +25,18 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
   var timeofsubmissionController = new TextEditingController();
   var linkController = new TextEditingController();
   var _checkInsertUpdate = "Insert";
+  String dropdownvalue = 'Notes';
+  var notespyqs = [
+    'Notes',
+    'PYQs'
+  ];
+  String defaultyear = 'FY';
+  var selectyear = [
+    'FY',
+    'SY',
+    'TY',
+    'Final Year',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -96,53 +109,128 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                       children: [
                         Text(
                           _checkInsertUpdate,
-                          style: TextStyle(fontSize: 22,
-                          fontFamily: 'Poppins',
-                          color: Color.fromARGB(255, 124, 5, 5),),
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontFamily: 'Poppins',
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                        Text(
-                          "Time: ${timeofsubmissionController.text}",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16
-                          )
-                        ),
+                        Text("Time: ${timeofsubmissionController.text}",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16)),
                         const SizedBox(height: 20),
-                        Text(
-                          "Name: ${nameController.text}",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16
-                          )
-                        ),
+                        Text("Name: ${nameController.text}",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16)),
                         const SizedBox(height: 15),
-                        Text(
-                          "Email: ${emailController.text}",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16
-                          )
-                        ),
+                        Text("Email: ${emailController.text}",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16)),
                         const SizedBox(height: 15),
-                        Text(
-                          "Enter details: ",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 13
-                          )
-                        ),
-                        TextField(
-                          controller: typeController,
-                          decoration:
-                              InputDecoration(labelText: "NOTES or PYQ"),
-                        ),
-                        TextField(
-                          controller: yearController,
-                          decoration:
-                              InputDecoration(labelText: "Which Year Notes"),
+                        Text("Enter details: ",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 13)),
+                        // TextField(
+                        //   controller: typeController,
+                        //   decoration:
+                        //       InputDecoration(labelText: "NOTES or PYQ"),
+                        // ),
+
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Select Notes / PYQs : ',
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 124, 5, 5),
+                                        fontSize: 15,
+                                        fontFamily: 'Poppins'
+                                      )
+                                    ),
+                                    const SizedBox(width: 20),
+                                    DropdownButton(
+                                      value: dropdownvalue,
+                                      icon: const Icon(Icons.keyboard_arrow_down),
+                                      items: notespyqs.map((String items) {
+                                        return DropdownMenuItem(
+                                          value: items,
+                                          child: Text(items),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropdownvalue = newValue!;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Select branch : ',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 124, 5, 5),
+                                    fontSize: 15,
+                                    fontFamily: 'Poppins'
+                                  )
+                                ),
+                                const SizedBox(width: 20),
+                                DropdownButton(
+                                  value: branchesvalue,
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  items: branches.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      branchesvalue = newValue!;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Select year : ',
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 124, 5, 5),
+                                    fontSize: 15,
+                                    fontFamily: 'Poppins'
+                                  )
+                                ),
+                                const SizedBox(width: 20),
+                                DropdownButton(
+                                  value: defaultyear,
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  items: selectyear.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      defaultyear = newValue!;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                              ],
+                            ),
+                          ),
                         ),
                         TextField(
                           controller: subjectController,
@@ -167,52 +255,54 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         ),
                         Center(
                           child: Material(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(255, 124, 5, 5),
-                          child: InkWell(
-                            onTap: () {
-                              timeofsubmissionController.text =
-                                    DateTime.now().toString();
-                                if (_checkInsertUpdate == "Update" &&
-                                    (linkController.text != 'null' ||
-                                        linkController.text != "")) {
-                                  _updateData(
-                                      data.id,
-                                      nameController.text,
-                                      emailController.text,
-                                      typeController.text,
-                                      yearController.text,
-                                      subjectController.text,
-                                      topicController.text,
-                                      descriptionController.text,
-                                      timeofsubmissionController.text,
-                                      linkController.text);
-                                } else if (linkController.text != '' ||
-                                    linkController.text != 'null') {
-                                  _insertData(
-                                      nameController.text,
-                                      emailController.text,
-                                      typeController.text,
-                                      yearController.text,
-                                      subjectController.text,
-                                      topicController.text,
-                                      descriptionController.text,
-                                      timeofsubmissionController.text,
-                                      linkController.text);
-                                }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(_checkInsertUpdate,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 15,
-                                color: Colors.white,
-                              ),),
-                            )
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromARGB(255, 124, 5, 5),
+                            child: InkWell(
+                                onTap: () {
+                                  timeofsubmissionController.text =
+                                      DateTime.now().toString();
+                                  if (_checkInsertUpdate == "Update" &&
+                                      (linkController.text != 'null' ||
+                                          linkController.text != "")) {
+                                    _updateData(
+                                        data.id,
+                                        nameController.text,
+                                        emailController.text,
+                                        typeController.text,
+                                        yearController.text,
+                                        subjectController.text,
+                                        topicController.text,
+                                        descriptionController.text,
+                                        timeofsubmissionController.text,
+                                        linkController.text);
+                                  } else if (linkController.text != '' ||
+                                      linkController.text != 'null') {
+                                    _insertData(
+                                        nameController.text,
+                                        emailController.text,
+                                        typeController.text,
+                                        yearController.text,
+                                        subjectController.text,
+                                        topicController.text,
+                                        descriptionController.text,
+                                        timeofsubmissionController.text,
+                                        linkController.text);
+                                  }
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text(
+                                    _checkInsertUpdate,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )),
                           ),
-                            ),
-                        )],
+                        )
+                      ],
                     ),
                   )),
                 ),
