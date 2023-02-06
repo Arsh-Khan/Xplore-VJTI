@@ -32,6 +32,7 @@ class MongoNotesAndPyqDatabase {
     result['name'] = data.name;
     result['notesANDpyqs'] = data.notesANDpyqs;
     result['year'] = data.year;
+    result['branch'] = data.branch;
     result['subject'] = data.subject;
     result['topic'] = data.topic;
     result['description'] = data.description;
