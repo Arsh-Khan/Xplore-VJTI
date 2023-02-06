@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:flutter/material.dart';
+import 'package:xplorevjtiofficialapp/constants/app_constants.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/MongoDBNotesAndPyqModel.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
@@ -25,22 +26,6 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
   var timeofsubmissionController = new TextEditingController();
   var linkController = new TextEditingController();
   var _checkInsertUpdate = "Insert";
-
-  // @override
-  // void dispose() {
-  //   nameController.dispose();
-  //   emailController.dispose();
-  //   typeController.dispose();
-  //   yearController.dispose();
-  //   branchController.dispose();
-  //   subjectController.dispose();
-  //   topicController.dispose();
-  //   descriptionController.dispose();
-  //   timeofsubmissionController.dispose();
-  //   linkController.dispose();
-
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -138,15 +123,101 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         Text("Enter details: ",
                             style:
                                 TextStyle(fontFamily: 'Poppins', fontSize: 13)),
-                        TextField(
-                          controller: typeController,
-                          decoration:
-                              InputDecoration(labelText: "NOTES or PYQ"),
-                        ),
-                        TextField(
-                          controller: yearController,
-                          decoration:
-                              InputDecoration(labelText: "Which Year Notes"),
+                        // TextField(
+                        //   controller: typeController,
+                        //   decoration:
+                        //       InputDecoration(labelText: "NOTES or PYQ"),
+                        // ),
+
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text('Select Notes / PYQs : ',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 124, 5, 5),
+                                            fontSize: 15,
+                                            fontFamily: 'Poppins')),
+                                    const SizedBox(width: 20),
+                                    DropdownButton(
+                                      value: dropdownvalue,
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      items: notespyqs.map((String items) {
+                                        return DropdownMenuItem(
+                                          value: items,
+                                          child: Text(items),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          dropdownvalue = newValue!;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Select branch : ',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 124, 5, 5),
+                                            fontSize: 15,
+                                            fontFamily: 'Poppins')),
+                                    const SizedBox(width: 20),
+                                    DropdownButton(
+                                      value: branchesvalue,
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      items: branches.map((String items) {
+                                        return DropdownMenuItem(
+                                          value: items,
+                                          child: Text(items),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          branchesvalue = newValue!;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Select year : ',
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromARGB(255, 124, 5, 5),
+                                            fontSize: 15,
+                                            fontFamily: 'Poppins')),
+                                    const SizedBox(width: 20),
+                                    DropdownButton(
+                                      value: defaultyear,
+                                      icon:
+                                          const Icon(Icons.keyboard_arrow_down),
+                                      items: selectyear.map((String items) {
+                                        return DropdownMenuItem(
+                                          value: items,
+                                          child: Text(items),
+                                        );
+                                      }).toList(),
+                                      onChanged: (String? newValue) {
+                                        setState(() {
+                                          defaultyear = newValue!;
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         TextField(
                           controller: subjectController,

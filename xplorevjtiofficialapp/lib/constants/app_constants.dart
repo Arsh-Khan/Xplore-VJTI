@@ -59,14 +59,12 @@ var branchWithCode = {
 
 // Search notes
 
-var year = [
-  '1st YEAR',
-  '2nd YEAR',
-  '3rd YEAR',
-  '4th YEAR',
-];
-
-var notesandpyq = [
-  'NOTES',
-  'PYQ',
+String dropdownvalue = 'Notes';
+var notespyqs = ['Notes', 'PYQs'];
+String defaultyear = 'FY';
+var selectyear = [
+  'FY',
+  'SY',
+  'TY',
+  'Final Year',
 ];
