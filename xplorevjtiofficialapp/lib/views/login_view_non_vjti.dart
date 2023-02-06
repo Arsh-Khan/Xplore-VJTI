@@ -83,10 +83,10 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                   backgroundColor: Color.fromARGB(85, 219, 112, 112),
                   elevation: 0,
                   label: Text('Are you VJTIian?',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                  )),                   
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Poppins',
+                      )),
                   onPressed: () {
                     Navigator.pushNamed(context, loginVJTIRoute);
                   },
@@ -164,16 +164,18 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                                   color: Color.fromARGB(255, 145, 38, 22),
                                 ),
                                 suffixIcon: IconButton(
-                                    icon: Icon( _passwordVisibility1
-                                    ? Icons.visibility_sharp
-                                    : Icons.visibility_off_sharp,
-                                    color: Color.fromARGB(255, 124, 5, 5),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _passwordVisibility1 = !_passwordVisibility1;
-                                    });
-                                  }),
+                                    icon: Icon(
+                                      _passwordVisibility1
+                                          ? Icons.visibility_sharp
+                                          : Icons.visibility_off_sharp,
+                                      color: Color.fromARGB(255, 124, 5, 5),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _passwordVisibility1 =
+                                            !_passwordVisibility1;
+                                      });
+                                    }),
                                 icon: Icon(Icons.lock_outline_rounded),
                               ),
                             ),
@@ -181,9 +183,12 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                         ),
                         const SizedBox(height: 7),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                forgotPasswordRoute, (route) => false);
+                          },
                           child: const Text(
-                            'Password bhul gaye kya?',
+                            'Forgot Password',
                             style: TextStyle(
                               color: Colors.black,
                             ),
@@ -203,7 +208,8 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
 
                               if (user?.isEmailVerified ?? false) {
                                 Navigator.of(context).pushNamedAndRemoveUntil(
-                                    dashboardViewnonVJTIRoute, (route) => false);
+                                    dashboardViewnonVJTIRoute,
+                                    (route) => false);
                               } else {
                                 await AuthService.firebase()
                                     .sendEmailVerification();

@@ -28,6 +28,8 @@ var branches = [
   'Production'
 ];
 
+// Reg No
+
 final month = {
   '01': 'Jan',
   '02': 'Feb',
@@ -54,3 +56,17 @@ var branchWithCode = {
   '8': 'IT',
   '9': 'EXTC'
 };
+
+// Search notes
+
+var year = [
+  '1st YEAR',
+  '2nd YEAR',
+  '3rd YEAR',
+  '4th YEAR',
+];
+
+var notesandpyq = [
+  'NOTES',
+  'PYQ',
+];

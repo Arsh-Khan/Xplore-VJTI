@@ -45,7 +45,7 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                 )),
             const SizedBox(height: 20),
             SafeArea(
-              child: FutureBuilder(
+                child: FutureBuilder(
               future: MongoNotesAndPyqDatabase.getQueryData('email', email),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -56,8 +56,8 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                   if (snapshot.hasData) {
                     return Container(
                       decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40.0),
-                              color: const Color.fromARGB(103, 236, 183, 183),
+                        borderRadius: BorderRadius.circular(40.0),
+                        color: const Color.fromARGB(103, 236, 183, 183),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
@@ -74,7 +74,8 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                     );
                   } else {
                     return Container(
-                      child: const Text('Arey pehle notes toh daalo, fir delete karna '),
+                      child: const Text(
+                          'Arey pehle notes toh daalo, fir delete karna '),
                     );
                   }
                 }
@@ -91,9 +92,9 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
       padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Card(
         color: Color.fromARGB(222, 255, 255, 255),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
@@ -119,6 +120,10 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                     height: 5,
                   ),
                   Text("Year: ${data.year}"),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text("Year: ${data.branch}"),
                   SizedBox(
                     height: 5,
                   ),

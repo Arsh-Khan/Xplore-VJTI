@@ -29,11 +29,14 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, 
-          icon: Icon(Icons.arrow_back_ios_sharp,
-          color: Color.fromARGB(255, 124, 5, 5), 
-          size: 30,)
-          ),
+            onPressed: () {
+              Navigator.pushNamed(context, dashBoardRoute);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Color.fromARGB(255, 124, 5, 5),
+              size: 30,
+            )),
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
         title: const Text(
@@ -115,6 +118,15 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
                 child: IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(searchNotesAndPyqRoute);
+                    },
+                    tooltip: 'Search',
+                    icon: Icon(Icons.refresh, size: 40)),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
+                child: IconButton(
                     onPressed: () async {
                       Navigator.pushNamed(context, insertNotesAndPyqRoute,
                           arguments: MongoDbNotesAndPyqModel(
@@ -123,6 +135,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                               name: 'null',
                               notesANDpyqs: 'null',
                               year: 'null',
+                              branch: 'null',
                               subject: 'null',
                               topic: 'null',
                               description: 'null',
@@ -239,6 +252,16 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       )),
                   TextSpan(
                       text: "${data.year}", style: TextStyle(letterSpacing: 1)),
+                  TextSpan(
+                      text: "\nBranch: ",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 177, 8, 8),
+                      )),
+                  TextSpan(
+                      text: "${data.branch}",
+                      style: TextStyle(letterSpacing: 1)),
                   TextSpan(
                       text: '\nSubject: ',
                       style: TextStyle(

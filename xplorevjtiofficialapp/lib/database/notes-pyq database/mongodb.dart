@@ -54,7 +54,7 @@ class MongoNotesAndPyqDatabase {
   static Future<List<Map<String, dynamic>>> getQueryData(
       String query, String parameter) async {
     final data =
-        await notesandpyqCollection.find(where.eq('email', parameter)).toList();
+        await notesandpyqCollection.find(where.eq(query, parameter)).toList();
     log(data.toString());
     return data;
   }

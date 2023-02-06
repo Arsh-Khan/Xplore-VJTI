@@ -182,19 +182,21 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                   // border: OutlineInputBorder(),
                                   hintText: 'Enter Password',
                                   hintStyle: TextStyle(
-                                  color: Color.fromARGB(255, 145, 38, 22),
+                                    color: Color.fromARGB(255, 145, 38, 22),
                                   ),
                                   suffixIcon: IconButton(
-                                    icon: Icon( _passwordVisibility
-                                    ? Icons.visibility_sharp
-                                    : Icons.visibility_off_sharp,
-                                    color: Color.fromARGB(255, 124, 5, 5),
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _passwordVisibility = !_passwordVisibility;
-                                    });
-                                  },
+                                    icon: Icon(
+                                      _passwordVisibility
+                                          ? Icons.visibility_sharp
+                                          : Icons.visibility_off_sharp,
+                                      color: Color.fromARGB(255, 124, 5, 5),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _passwordVisibility =
+                                            !_passwordVisibility;
+                                      });
+                                    },
                                   ),
                                   icon: Icon(Icons.lock_outline_rounded),
                                 ),
@@ -208,71 +210,70 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                   forgotPasswordRoute, (route) => false);
                             },
                             child: const Text(
-                              'Password bhul gaye kya?',
+                              'Forgot Password',
                               style: TextStyle(
                                 color: Colors.black,
                               ),
                             ),
                           ),
                           const SizedBox(height: 20),
-                         
                           FloatingActionButton.extended(
-                          heroTag: 'btn-1',
-                          onPressed: () async {
-                            final email = _email.text;
-                                final password = _password.text;
-                                try {
-                                  // if (email.isEmpty || password.isEmpty) {
-                                  //   showErrorDiaglog(context,
-                                  //       'Email or Password field cannot be empty');
-                                  // }
-                                  final isVJTIEmailID = emailCheck(email);
+                            heroTag: 'btn-1',
+                            onPressed: () async {
+                              final email = _email.text;
+                              final password = _password.text;
+                              try {
+                                // if (email.isEmpty || password.isEmpty) {
+                                //   showErrorDiaglog(context,
+                                //       'Email or Password field cannot be empty');
+                                // }
+                                final isVJTIEmailID = emailCheck(email);
 
-                                  devtools.log(isVJTIEmailID.toString());
-                                  devtools.log('$email + $password');
-                                  if (isVJTIEmailID) {
-                                    await AuthService.firebase().logIn(
-                                        email: email, password: password);
-                                    final user =
-                                        AuthService.firebase().currentUser;
-                                    if (user?.isEmailVerified ?? false) {
-                                      // devtools.log(userCredential.toString());
-                                      Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                              dashBoardRoute, (route) => false);
-                                    } else {
-                                      await AuthService.firebase()
-                                          .sendEmailVerification();
-                                      Navigator.of(context)
-                                          .pushNamedAndRemoveUntil(
-                                              verifyEmailRoute,
-                                              (route) => false);
-                                    }
+                                devtools.log(isVJTIEmailID.toString());
+                                devtools.log('$email + $password');
+                                if (isVJTIEmailID) {
+                                  await AuthService.firebase()
+                                      .logIn(email: email, password: password);
+                                  final user =
+                                      AuthService.firebase().currentUser;
+                                  if (user?.isEmailVerified ?? false) {
+                                    // devtools.log(userCredential.toString());
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                            dashBoardRoute, (route) => false);
                                   } else {
-                                    showErrorDiaglog(
-                                        context, 'Enter a Valid VJTI ID');
+                                    await AuthService.firebase()
+                                        .sendEmailVerification();
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                            verifyEmailRoute, (route) => false);
                                   }
-                                } on UserNotFoundAuthException {
-                                  await showErrorDiaglog(
-                                    context,
-                                    'User not Found',
-                                  );
-                                } on WrongPasswordAuthException {
-                                  await showErrorDiaglog(
-                                    context,
-                                    'Wrong Credentials',
-                                  );
-                                } on GenericAuthExceptions {
-                                  await showErrorDiaglog(
-                                    context,
-                                    'Authentication Error',
-                                  );
+                                } else {
+                                  showErrorDiaglog(
+                                      context, 'Enter a Valid VJTI ID');
                                 }
-                          },
-                          label: const Text('Login'),
-                          icon: const Icon(Icons.laptop_mac_rounded),
-                          backgroundColor: const Color.fromARGB(255, 124, 5, 5),
-                        ),
+                              } on UserNotFoundAuthException {
+                                await showErrorDiaglog(
+                                  context,
+                                  'User not Found',
+                                );
+                              } on WrongPasswordAuthException {
+                                await showErrorDiaglog(
+                                  context,
+                                  'Wrong Credentials',
+                                );
+                              } on GenericAuthExceptions {
+                                await showErrorDiaglog(
+                                  context,
+                                  'Authentication Error',
+                                );
+                              }
+                            },
+                            label: const Text('Login'),
+                            icon: const Icon(Icons.laptop_mac_rounded),
+                            backgroundColor:
+                                const Color.fromARGB(255, 124, 5, 5),
+                          ),
                           const SizedBox(height: 10),
                           const Text(
                             'or',

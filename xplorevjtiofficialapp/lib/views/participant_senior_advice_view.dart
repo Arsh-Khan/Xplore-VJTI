@@ -28,8 +28,10 @@ class _ParticipantSeniorAdviceViewState
         leading: IconButton(
             onPressed: () async {
               final userdata = await userDetails();
-              Navigator.pushNamed(context, seniorAdviceRoute,
-              arguments: userdata,
+              Navigator.pushNamed(
+                context,
+                seniorAdviceRoute,
+                arguments: userdata,
               );
             },
             icon: Icon(

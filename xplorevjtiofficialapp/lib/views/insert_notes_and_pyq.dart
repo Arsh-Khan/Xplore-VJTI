@@ -18,12 +18,29 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
   var emailController = new TextEditingController();
   var typeController = new TextEditingController();
   var yearController = new TextEditingController();
+  var branchController = new TextEditingController();
   var subjectController = new TextEditingController();
   var topicController = new TextEditingController();
   var descriptionController = new TextEditingController();
   var timeofsubmissionController = new TextEditingController();
   var linkController = new TextEditingController();
   var _checkInsertUpdate = "Insert";
+
+  // @override
+  // void dispose() {
+  //   nameController.dispose();
+  //   emailController.dispose();
+  //   typeController.dispose();
+  //   yearController.dispose();
+  //   branchController.dispose();
+  //   subjectController.dispose();
+  //   topicController.dispose();
+  //   descriptionController.dispose();
+  //   timeofsubmissionController.dispose();
+  //   linkController.dispose();
+
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +62,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
       emailController.text = data.email!;
       typeController.text = data.notesANDpyqs!;
       yearController.text = data.year!;
+      branchController.text = data.branch!;
       subjectController.text = data.subject!;
       topicController.text = data.topic!;
       descriptionController.text = data.description!;
@@ -96,44 +114,30 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                       children: [
                         Text(
                           _checkInsertUpdate,
-                          style: TextStyle(fontSize: 22,
-                          fontFamily: 'Poppins',
-                          color: Color.fromARGB(255, 124, 5, 5),),
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontFamily: 'Poppins',
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                        Text(
-                          "Time: ${timeofsubmissionController.text}",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16
-                          )
-                        ),
+                        Text("Time: ${timeofsubmissionController.text}",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16)),
                         const SizedBox(height: 20),
-                        Text(
-                          "Name: ${nameController.text}",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16
-                          )
-                        ),
+                        Text("Name: ${nameController.text}",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16)),
                         const SizedBox(height: 15),
-                        Text(
-                          "Email: ${emailController.text}",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 16
-                          )
-                        ),
+                        Text("Email: ${emailController.text}",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 16)),
                         const SizedBox(height: 15),
-                        Text(
-                          "Enter details: ",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 13
-                          )
-                        ),
+                        Text("Enter details: ",
+                            style:
+                                TextStyle(fontFamily: 'Poppins', fontSize: 13)),
                         TextField(
                           controller: typeController,
                           decoration:
@@ -147,6 +151,10 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         TextField(
                           controller: subjectController,
                           decoration: InputDecoration(labelText: "Subject"),
+                        ),
+                        TextField(
+                          controller: branchController,
+                          decoration: InputDecoration(labelText: "Branch"),
                         ),
                         TextField(
                           controller: topicController,
@@ -167,52 +175,56 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         ),
                         Center(
                           child: Material(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(255, 124, 5, 5),
-                          child: InkWell(
-                            onTap: () {
-                              timeofsubmissionController.text =
-                                    DateTime.now().toString();
-                                if (_checkInsertUpdate == "Update" &&
-                                    (linkController.text != 'null' ||
-                                        linkController.text != "")) {
-                                  _updateData(
-                                      data.id,
-                                      nameController.text,
-                                      emailController.text,
-                                      typeController.text,
-                                      yearController.text,
-                                      subjectController.text,
-                                      topicController.text,
-                                      descriptionController.text,
-                                      timeofsubmissionController.text,
-                                      linkController.text);
-                                } else if (linkController.text != '' ||
-                                    linkController.text != 'null') {
-                                  _insertData(
-                                      nameController.text,
-                                      emailController.text,
-                                      typeController.text,
-                                      yearController.text,
-                                      subjectController.text,
-                                      topicController.text,
-                                      descriptionController.text,
-                                      timeofsubmissionController.text,
-                                      linkController.text);
-                                }
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(_checkInsertUpdate,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 15,
-                                color: Colors.white,
-                              ),),
-                            )
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromARGB(255, 124, 5, 5),
+                            child: InkWell(
+                                onTap: () {
+                                  timeofsubmissionController.text =
+                                      DateTime.now().toString();
+                                  if (_checkInsertUpdate == "Update" &&
+                                      (linkController.text != 'null' ||
+                                          linkController.text != "")) {
+                                    _updateData(
+                                        data.id,
+                                        nameController.text,
+                                        emailController.text,
+                                        typeController.text,
+                                        yearController.text,
+                                        branchController.text,
+                                        subjectController.text,
+                                        topicController.text,
+                                        descriptionController.text,
+                                        timeofsubmissionController.text,
+                                        linkController.text);
+                                  } else if (linkController.text != '' ||
+                                      linkController.text != 'null') {
+                                    _insertData(
+                                        nameController.text,
+                                        emailController.text,
+                                        typeController.text,
+                                        yearController.text,
+                                        branchController.text,
+                                        subjectController.text,
+                                        topicController.text,
+                                        descriptionController.text,
+                                        timeofsubmissionController.text,
+                                        linkController.text);
+                                  }
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text(
+                                    _checkInsertUpdate,
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )),
                           ),
-                            ),
-                        )],
+                        )
+                      ],
                     ),
                   )),
                 ),
@@ -232,6 +244,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
       String email,
       String notesANDpyqs,
       String year,
+      String branch,
       String subject,
       String topic,
       String description,
@@ -244,6 +257,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
         name: name,
         notesANDpyqs: notesANDpyqs,
         year: year,
+        branch: branch,
         subject: subject,
         topic: topic,
         description: description,
@@ -265,6 +279,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
       String email,
       String notesANDpyqs,
       String year,
+      String branch,
       String subject,
       String topic,
       String description,
@@ -276,6 +291,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
         name: name,
         notesANDpyqs: notesANDpyqs,
         year: year,
+        branch: branch,
         subject: subject,
         topic: topic,
         description: description,
@@ -295,5 +311,6 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
     descriptionController.text = "";
     timeofsubmissionController.text = "";
     linkController.text = "";
+    branchController.text = "";
   }
 }
