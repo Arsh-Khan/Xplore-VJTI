@@ -26,6 +26,15 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
   var timeofsubmissionController = new TextEditingController();
   var linkController = new TextEditingController();
   var _checkInsertUpdate = "Insert";
+  String dropdownvalue = 'Notes';
+  var notespyqs = ['Notes', 'PYQs'];
+  String defaultyear = 'FY';
+  var selectyear = [
+    'FY',
+    'SY',
+    'TY',
+    'Final Year',
+  ];
 
   @override
   Widget build(BuildContext context) {
