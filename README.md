@@ -31,9 +31,12 @@
 
 # 📝Description
 
-**Xplore VJTI** is the very important project not just for its developers but also for everyone who want to avail a detailed knowledge about one of the premium engineering institute of the nation - **VEERMATA JIJABAI TECHNOLOGICAL INSTITUTE (VJTI).** 
-The **difficulties** faced by us in our initial phase of college life, gave us a **strong motivation** to develop this application for the coming generations and all the concerned peoples. 
-Now in the further discussion, all the features being implimented will be briefly described in features.
+**Xplore VJTI** is the dream project of its developers as it was the first dev project for them. It is the application based interface which hosts all the shattered aspects of one of the finest technological institutes - **Veermata Jijabai Technological Institute (VJTI)**. The app is the collective outcome of our experience and the knowledge inherited from our seniors.
+The primary motive of this app is to build an interactive community of VJTIans and provide them a platform to discuss their doubts and queries and to share their knowledge to uplift the society. Also this interface would exponentially benefit the prospective students of VJTI as they would have a clear insight of their dream college.
+Thus, we would like to invite all the concerned peoples to our app and engrace it by their esteemed presence.
+
+Any queries or suggestion regarding this app can be sent us to :
+**help.xplorevjti@gmail.com**
 
 <!-- Add your **project description** here. Your project description should cover how your website/app works. That way you can convey what your project is without the need for anyone to view the code. A more *detailed README* in your project repository is encouraged, which can include build and use instructions etc. -->
 
