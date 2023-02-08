@@ -20,3 +20,4 @@ const updateStudentDetailsRoute = '/update-details/';
 const participantSeniorAdviceRoute = '/participant-senior-advice';
 const mapOfVJTIRoute = '/map-of-VJTI/';
 const searchNotesAndPyqRoute = '/search-notes-and-pyq';
+const searchNotesAndPyqDisplayRoute = '/display-search-notes-pyq';

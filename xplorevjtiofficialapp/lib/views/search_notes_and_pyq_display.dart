@@ -1,20 +1,17 @@
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:flutter/material.dart';
-import 'package:xplorevjtiofficialapp/constants/routes.dart';
-import 'package:xplorevjtiofficialapp/database/notes-pyq database/MongoDBNotesAndPyqModel.dart';
-import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
-import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:mongo_dart/mongo_dart.dart' as M;
+import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/MongoDBNotesAndPyqModel.dart';
+import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
 
-class NotesAndPyqView extends StatefulWidget {
-  const NotesAndPyqView({super.key});
+class SearchNotesAndPyqDisplay extends StatefulWidget {
+  const SearchNotesAndPyqDisplay({super.key});
 
   @override
-  State<NotesAndPyqView> createState() => _NotesAndPyqViewState();
+  State<SearchNotesAndPyqDisplay> createState() =>
+      _SearchNotesAndPyqDisplayState();
 }
 
-class _NotesAndPyqViewState extends State<NotesAndPyqView> {
+class _SearchNotesAndPyqDisplayState extends State<SearchNotesAndPyqDisplay> {
   launchUrl(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -25,166 +22,45 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
 
   @override
   Widget build(BuildContext context) {
+    final searchParameters =
+        ModalRoute.of(context)!.settings.arguments as dynamic;
     return Scaffold(
-      backgroundColor: Colors.deepOrange[50],
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, dashBoardRoute);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_sharp,
-              color: Color.fromARGB(255, 124, 5, 5),
-              size: 30,
-            )),
-        backgroundColor: Colors.deepOrange[50],
-        elevation: 0,
-        title: const Text(
-          'VJTI',
-          style: TextStyle(
-            fontFamily: 'Vollkorn',
-            fontSize: 50,
-            letterSpacing: 7,
-            color: Color.fromARGB(255, 124, 5, 5),
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            Text('Notes & PYQs',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 124, 5, 5),
-                )),
-            const SizedBox(height: 0),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 30, 10, 30),
-              child: FutureBuilder(
-                future: MongoNotesAndPyqDatabase.getData(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: Color.fromARGB(255, 124, 5, 5),
-                      ),
-                    );
-                  } else {
-                    if (snapshot.hasData) {
-                      var totalData =
-                          snapshot.data!.length; //getting total length of data
-
-                      print('Total Data' + totalData.toString());
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40.0),
-                          color: const Color.fromARGB(103, 236, 183, 183),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-                          child: ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (context, index) {
-                              return displayCard(
-                                  MongoDbNotesAndPyqModel.fromJson(
-                                      snapshot.data![index]));
-                            },
-                          ),
-                        ),
-                      );
-                    } else {
-                      return Center(
-                        child: Text("No data Available"),
-                      );
-                    }
-                  }
+      body: SafeArea(
+          child: FutureBuilder(
+        future: MongoNotesAndPyqDatabase.notesAndPyqSearch(
+            'notesANDpyqs',
+            searchParameters['notesANDpyqs'],
+            'year',
+            searchParameters['year'],
+            'branch',
+            searchParameters['branch']),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  return displayData(
+                      // MongoDbNotesAndPyqModel.fromJson(snapshot.data![index]));
+                      MongoDbNotesAndPyqModel.fromJson(snapshot.data![index]));
                 },
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-          color: Color.fromARGB(255, 227, 179, 179),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(searchNotesAndPyqRoute);
-                    },
-                    tooltip: 'Filter',
-                    icon: Icon(Icons.filter_alt_sharp, size: 40)),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      Navigator.pushNamed(context, insertNotesAndPyqRoute,
-                          arguments: MongoDbNotesAndPyqModel(
-                              id: M.ObjectId(),
-                              email: 'null',
-                              name: 'null',
-                              notesANDpyqs: 'null',
-                              year: 'null',
-                              branch: 'null',
-                              subject: 'null',
-                              topic: 'null',
-                              description: 'null',
-                              timeofsubmission: 'null',
-                              link: 'null'));
-                    },
-                    icon: Icon(Icons.add_box_outlined, size: 40),
-                    tooltip: 'Insert Notes or PYQ'),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      final userdata = await userDetails();
-                      Navigator.pushNamed(context, updateNotesAndPyqRoute,
-                          arguments: userdata['email'].toString());
-                    },
-                    tooltip: 'Update Notes or PYQ',
-                    icon: Icon(Icons.update, size: 40)),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      final userdata = await userDetails();
-                      Navigator.of(context).pushNamed(deleteNotesAndPyqRoute,
-                          arguments: userdata['email'].toString());
-                    },
-                    tooltip: 'Delete Notes',
-                    icon: Icon(Icons.delete, size: 40)),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, notesAndPyqRoute, (route) => false);
-                      });
-                    },
-                    tooltip: 'Refresh Page',
-                    icon: Icon(Icons.refresh, size: 40)),
-              ),
-            ],
-          )),
+              );
+            } else {
+              return Center(
+                child: Text("Data Not Found"),
+              );
+            }
+          }
+        },
+      )),
     );
   }
 
-  Widget displayCard(MongoDbNotesAndPyqModel data) {
+  Widget displayData(MongoDbNotesAndPyqModel data) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Card(
