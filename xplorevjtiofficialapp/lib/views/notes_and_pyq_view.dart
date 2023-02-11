@@ -117,67 +117,162 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(searchNotesAndPyqRoute);
-                    },
-                    tooltip: 'Search',
-                    icon: Icon(Icons.refresh, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed(searchNotesAndPyqRoute);
+                            },
+                            tooltip: 'Filter',
+                            icon: Icon(Icons.refresh, size: 40,
+                            color: Color.fromARGB(255, 124, 5, 5),)),
+                            Text(
+                          ' Filter',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 124, 5, 5),
+                            fontFamily: 'Poppins'
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      Navigator.pushNamed(context, insertNotesAndPyqRoute,
-                          arguments: MongoDbNotesAndPyqModel(
-                              id: M.ObjectId(),
-                              email: 'null',
-                              name: 'null',
-                              notesANDpyqs: 'null',
-                              year: 'null',
-                              branch: 'null',
-                              subject: 'null',
-                              topic: 'null',
-                              description: 'null',
-                              timeofsubmission: 'null',
-                              link: 'null'));
-                    },
-                    icon: Icon(Icons.add_box_outlined, size: 40),
-                    tooltip: 'Insert Notes or PYQ'),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              Navigator.pushNamed(context, insertNotesAndPyqRoute,
+                                  arguments: MongoDbNotesAndPyqModel(
+                                      id: M.ObjectId(),
+                                      email: 'null',
+                                      name: 'null',
+                                      notesANDpyqs: 'null',
+                                      year: 'null',
+                                      branch: 'null',
+                                      subject: 'null',
+                                      topic: 'null',
+                                      description: 'null',
+                                      timeofsubmission: 'null',
+                                      link: 'null'));
+                            },
+                            icon: Icon(
+                              Icons.add_box_outlined,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            ),
+                            tooltip: 'Insert Notes or PYQ'),
+                        Text(
+                          ' Insert',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      final userdata = await userDetails();
-                      Navigator.pushNamed(context, updateNotesAndPyqRoute,
-                          arguments: userdata['email'].toString());
-                    },
-                    tooltip: 'Update Notes or PYQ',
-                    icon: Icon(Icons.update, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              final userdata = await userDetails();
+                              Navigator.pushNamed(context, updateNotesAndPyqRoute,
+                                  arguments: userdata['email'].toString());
+                            },
+                            tooltip: 'Update Notes or PYQ',
+                            icon: Icon(
+                              Icons.update,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Update',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      final userdata = await userDetails();
-                      Navigator.of(context).pushNamed(deleteNotesAndPyqRoute,
-                          arguments: userdata['email'].toString());
-                    },
-                    tooltip: 'Delete Notes',
-                    icon: Icon(Icons.delete, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              final userdata = await userDetails();
+                              Navigator.of(context).pushNamed(
+                                  deleteNotesAndPyqRoute,
+                                  arguments: userdata['email'].toString());
+                            },
+                            tooltip: 'Delete Notes',
+                            icon: Icon(
+                              Icons.delete,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Delete',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, notesAndPyqRoute, (route) => false);
-                      });
-                    },
-                    tooltip: 'Refresh Page',
-                    icon: Icon(Icons.refresh, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, notesAndPyqRoute, (route) => false);
+                              });
+                            },
+                            tooltip: 'Refresh Page',
+                            icon: Icon(
+                              Icons.refresh,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Refresh',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           )),

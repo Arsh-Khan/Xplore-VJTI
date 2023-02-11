@@ -26,7 +26,6 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
             color: Color.fromARGB(255, 124, 5, 5),
           ),
         ),
-
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -51,19 +50,17 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                       maxLines: 2,
                       overflow: TextOverflow.fade,
                       style: TextStyle(
-                        fontSize: 30,
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2.5
-                      ),
+                          fontSize: 30,
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2.5),
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 30),
-
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
               child: Row(
@@ -158,20 +155,16 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  
                   const SizedBox(width: 90),
-                  
                 ],
               ),
             ),
             const SizedBox(height: 50),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -263,38 +256,36 @@ class _DashboardView_nonVJTIState extends State<DashboardView_nonVJTI> {
                 ),
               ],
             ),
-
             const SizedBox(height: 40),
-
             Material(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color.fromARGB(255, 124, 5, 5),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, loginNonVJTIRoute);
-                            },
-                            child: AnimatedContainer(
-                              duration: const Duration(seconds: 1),
-                              height: 50,
-                              width: 100,
-                              child: const Center(
-                                child: Text(
-                                  'Logout',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-
+              borderRadius: BorderRadius.circular(20),
+              color: const Color.fromARGB(255, 124, 5, 5),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(context, loginNonVJTIRoute, (route) => false);
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(seconds: 1),
+                  height: 50,
+                  width: 100,
+                  child: const Center(
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(height: 40),
           ],
         ),
       ),
-    );;
+    );
+    ;
   }
 }

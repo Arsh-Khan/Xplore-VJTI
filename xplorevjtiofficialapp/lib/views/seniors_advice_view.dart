@@ -21,6 +21,8 @@ class SeniorAdviceView extends StatefulWidget {
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   ScrollController _scrollController = new ScrollController();
+    final TextEditingController _textEditingController = TextEditingController();
+
   Timer? _timer;
 
   Future<void> getMessages() async {
@@ -54,7 +56,6 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
 
   @override
   void initState() {
-
     messageController = TextEditingController();
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -93,7 +94,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as dynamic;
-
+    double width = MediaQuery.of(context).size.width;
+      double height = MediaQuery.of(context).size.height;
     log(data.toString() + "hello");
 
     return Scaffold(
@@ -170,7 +172,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text('Seniors Advice',
+            Text('Seniors Connect',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 30,
@@ -244,52 +246,58 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           padding: MediaQuery.of(context).viewInsets,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              controller: messageController,
-              enableSuggestions: true,
-              autocorrect: false,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                fillColor: Color.fromARGB(255, 124, 5, 5),
-                hoverColor: Color.fromARGB(255, 124, 5, 5),
-                iconColor: Color.fromARGB(255, 124, 5, 5),
-                focusColor: Color.fromARGB(255, 124, 5, 5),
-                hintText: 'Message',
-                suffixIcon: IconButton(
-                    onPressed: () async {
-                      int a = 0;
-
-                      final result =
-                          await insertMessage(data, messageController.text);
-                      if (result == 'Success') {
-                        getMessages();
-                        messageController.text = "";
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          if (_scrollController.hasClients) {
-                            _scrollController.jumpTo(
-                                _scrollController.position.maxScrollExtent +
-                                    500);
-                          } else {
-                            setState(() {
-                              return null;
-                            });
-                          }
-                        });
-                        // scrollToBottom();
-                      } else if (result == 'Empty Field') {
-                      } else {
-                        showErrorDiaglog(context, result);
-                      }
-                      // final position =
-                      //     _scrollController.position.maxScrollExtent;
-                      // await _scrollController.animateTo(
-                      //   position,
-                      //   duration: Duration(seconds: 1),
-                      //   curve: Curves.fastOutSlowIn,
-                      // );
-                    },
-                    icon: Icon(Icons.send,
-                        color: Color.fromARGB(255, 124, 5, 5))),
+            child: ConstrainedBox(
+              constraints:  BoxConstraints(
+               maxHeight: height,//when it reach the max it will use scroll
+                maxWidth: width,
+              ),
+                child: TextField(
+                controller: messageController,
+                enableSuggestions: true,
+                autocorrect: false,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                minLines: 1,
+                decoration: InputDecoration(
+                  fillColor: Color.fromARGB(255, 124, 5, 5),
+                  hoverColor: Color.fromARGB(255, 124, 5, 5),
+                  iconColor: Color.fromARGB(255, 124, 5, 5),
+                  focusColor: Color.fromARGB(255, 124, 5, 5),
+                  hintText: 'Type your message',
+                  suffixIcon: IconButton(
+                      onPressed: () async {
+                        final result =
+                            await insertMessage(data, messageController.text);
+                        if (result == 'Success') {
+                          getMessages();
+                          messageController.text = "";
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            if (_scrollController.hasClients) {
+                              _scrollController.jumpTo(
+                                  _scrollController.position.maxScrollExtent +
+                                      500);
+                            } else {
+                              setState(() {
+                                return null;
+                              });
+                            }
+                          });
+                          // scrollToBottom();
+                        } else if (result == 'Empty Field') {
+                        } else {
+                          showErrorDiaglog(context, result);
+                        }
+                        // final position =
+                        //     _scrollController.position.maxScrollExtent;
+                        // await _scrollController.animateTo(
+                        //   position,
+                        //   duration: Duration(seconds: 1),
+                        //   curve: Curves.fastOutSlowIn,
+                        // );
+                      },
+                      icon: Icon(Icons.send,
+                          color: Color.fromARGB(255, 124, 5, 5))),
+                ),
               ),
             ),
           ),

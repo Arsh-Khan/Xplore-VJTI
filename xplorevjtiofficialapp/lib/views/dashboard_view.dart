@@ -13,12 +13,13 @@ class DashBoardView extends StatefulWidget {
 
 class _DashBoardViewState extends State<DashBoardView> {
   launchUrl(String url) async {
-    if (await canLaunch(url)){
+    if (await canLaunch(url)) {
       await launch(url);
-    } else{
+    } else {
       throw 'Could not launch $url';
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -56,7 +57,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                     color: Color.fromARGB(255, 124, 5, 5),
                   ),
                 ),
-
                 centerTitle: true,
               ),
               body: SingleChildScrollView(
@@ -71,30 +71,35 @@ class _DashBoardViewState extends State<DashBoardView> {
                         child: AnimatedContainer(
                           duration: const Duration(seconds: 0),
                           decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: Color.fromARGB(219, 124, 5, 5),
-                            borderRadius: BorderRadius.zero,
-                          ),
+                              shape: BoxShape.rectangle,
+                              color: Color.fromARGB(219, 124, 5, 5),
+                              borderRadius: BorderRadius.zero,
+                              image: DecorationImage(
+                                fit: BoxFit.fitWidth,
+                                  image:
+                                      AssetImage('assets/BlurWithLogo.jpeg'))),
                           height: 200,
                           width: 500,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              const SizedBox(width: 30),
                               Text(
                                 'Welcome\n${snapshot.data['name'].substring(0, snapshot.data['name'].indexOf(' '))}',
                                 maxLines: 2,
                                 overflow: TextOverflow.fade,
-                                style: const TextStyle(
-                                  fontSize: 25,
+                                style: TextStyle(
+                                  fontSize: 30,
                                   fontFamily: 'Poppins',
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.bold,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(5.0, 4.0),
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/VJTilogoforappbar.jpeg'),
-                                radius: 70,
                               ),
                             ],
                           ),
@@ -128,7 +133,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Image.asset(
-                                      'assets/advice.png',
+                                      'assets/connect.png',
                                       height: 100,
                                       width: 100,
                                       fit: BoxFit.fill,
@@ -138,7 +143,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Seniors\' \nAdvice',
+                                    'Seniors\' \nConnect',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -292,7 +297,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                       ],
                     ),
                     const SizedBox(height: 50),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -306,8 +310,10 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () {
-                              const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
-                              launch(url);
+                              // const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
+                              // launch(url);
+                              Navigator.pushNamed(
+                                  context, downloadOrOpenLocationsRoute);
                             },
                             child: Center(
                               child: Column(
@@ -342,8 +348,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                             ),
                           ),
                         ),
-                    
-                        
 
                         const SizedBox(width: 80),
                         // HOW TO GET VJTI
@@ -393,53 +397,50 @@ class _DashBoardViewState extends State<DashBoardView> {
                     ),
                     const SizedBox(height: 40),
                     Material(
-                          color: Colors.deepOrange[50],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(19),
-                            side: const BorderSide(color: Colors.transparent),
-                          ),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            onTap: () {
-                              Navigator.pushNamed(context, mapOfVJTIRoute);
-                            },
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 2),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/VJTITopView.png',
-                                      fit: BoxFit.fill,
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text(
-                                    'Map of \nVJTI',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                      color: Colors.deepOrange[50],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19),
+                        side: const BorderSide(color: Colors.transparent),
+                      ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        onTap: () {
+                          Navigator.pushNamed(context, mapOfVJTIRoute);
+                        },
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 2),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Image.asset(
+                                  'assets/VJTITopView.png',
+                                  fit: BoxFit.fill,
+                                  height: 100,
+                                  width: 100,
+                                ),
                               ),
-                            ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                'Map of \nVJTI',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(height: 50),
-                    
+                      ),
+                    ),
+                    const SizedBox(height: 50),
                   ],
-                  
                 ),
-                
               ),
             );
           } else {

@@ -52,36 +52,78 @@ class _ParticipantSeniorAdviceViewState
         ),
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: FutureBuilder(
-                future: MongoSeniorAdviceDatabase.distinctQueryData(),
-                builder: (context, snapshot) {
-                  log(snapshot.data.toString() + "why this null");
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    if (snapshot.hasData) {
-                      var totalData = snapshot.data!.length;
-                      log(totalData.toString());
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          return displayCard(MongoDbSeniorAdviceModel.fromJson(
-                              snapshot.data![index]));
-                        },
-                      );
-                    } else {
-                      return Center(
-                        child: Text('No data available'),
-                      );
-                    }
-                  }
-                })),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                child: Column(
+                  children: [
+                    FutureBuilder(
+                        future: MongoSeniorAdviceDatabase.distinctQueryData(),
+                        builder: (context, snapshot) {
+                          log(snapshot.data.toString() + "why this null");
+      
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Color.fromARGB(255, 124, 5, 5),
+                              ),
+                            );
+                          } else {
+                            if (snapshot.hasData) {
+                              var totalData = snapshot.data!.length;
+                              log(totalData.toString());
+                              return Container(
+                                  child: Center(
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.people_outline,
+                                            color: Color.fromARGB(255, 124, 5, 5),
+                                            size: 40,
+                                          ),
+                                          const SizedBox(width: 7),
+                                          Text(
+                                              '${snapshot.data.length}',
+                                              style: TextStyle(
+                                                color: Color.fromARGB(255, 124, 5, 5),
+                                                fontFamily: 'Poppins',
+                                                fontSize: 25,
+                                              ),
+                                              ),
+                                        ],
+                                      ),
+                                    ),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: snapshot.data!.length,
+                                      itemBuilder: (context, index) {
+                                        return displayCard(
+                                            MongoDbSeniorAdviceModel.fromJson(
+                                                snapshot.data![index]));
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ));
+                            } else {
+                              return Center(
+                                child: Text('No data available'),
+                              );
+                            }
+                          }
+                        }),
+                  ],
+                ),
+              )),
+        ),
       ),
     );
   }

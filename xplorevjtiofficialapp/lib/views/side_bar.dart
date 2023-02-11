@@ -12,6 +12,7 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
+  double fsize = 25.0;
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
@@ -86,12 +87,14 @@ class _SideBarState extends State<SideBar> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: userDetails(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            fsize = sizeAccToName(snapshot.data['name']);
             return Drawer(
               child: ListView(
                 padding: EdgeInsets.all(0),
@@ -104,10 +107,10 @@ class _SideBarState extends State<SideBar> {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
                           child: Text('${snapshot.data['name']}',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.black,
                                 fontFamily: 'Poppins',
-                                fontSize: 25,
+                                fontSize: fsize,
                                 fontWeight: FontWeight.bold,
                               )),
                         ),
@@ -201,5 +204,13 @@ class _SideBarState extends State<SideBar> {
             ));
           }
         });
+  }
+}
+
+double sizeAccToName(String name){
+  if (name.length > 11){
+    return 19.0;
+  } else{
+    return 25.0;
   }
 }
