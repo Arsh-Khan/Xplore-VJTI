@@ -6,6 +6,7 @@ import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/MongoDBNotesAndPyqModel.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
+import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
 
 class InsertNotesAndPyqView extends StatefulWidget {
   const InsertNotesAndPyqView({super.key});
@@ -26,15 +27,30 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
   var timeofsubmissionController = new TextEditingController();
   var linkController = new TextEditingController();
   var _checkInsertUpdate = "Insert";
-  String dropdownvalue = 'Notes';
-  var notespyqs = ['Notes', 'PYQs'];
-  String defaultyear = 'FY';
-  var selectyear = [
-    'FY',
-    'SY',
-    'TY',
-    'Final Year',
-  ];
+
+  // String dropdownvalue = 'Notes';
+  // var notespyqs = ['Notes', 'PYQs'];
+  // String defaultyear = 'FY';
+  // var selectyear = [
+  //   'FY',
+  //   'SY',
+  //   'TY',
+  //   'Final Year',
+  // ];
+  // @override
+  // void dispose() {
+  //   nameController.dispose();
+  //   emailController.dispose();
+  //   typeController.dispose();
+  //   yearController.dispose();
+  //   branchController.dispose();
+  //   subjectController.dispose();
+  //   topicController.dispose();
+  //   descriptionController.dispose();
+  //   timeofsubmissionController.dispose();
+  //   linkController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +60,33 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
     log(data.toString());
 
     if (data.name != 'null' &&
+        data.name != '' &&
         data.email != 'null' &&
+        data.email != '' &&
         data.notesANDpyqs != 'null' &&
+        data.notesANDpyqs != '' &&
         data.year != 'null' &&
+        data.year != '' &&
         data.subject != 'null' &&
+        data.subject != "" &&
         data.topic != 'null' &&
+        data.topic != "" &&
         data.description != 'null' &&
+        data.description != "" &&
         data.timeofsubmission != 'null' &&
-        data.link != 'null') {
+        data.timeofsubmission != "" &&
+        data.link != 'null' &&
+        data.link != "" &&
+        data.branch != '' &&
+        data.branch != 'null') {
       nameController.text = data.name!;
       emailController.text = data.email!;
       typeController.text = data.notesANDpyqs!;
+      // dropdownvalue = data.notesANDpyqs!;
       yearController.text = data.year!;
+      // defaultyear = data.year!;
       branchController.text = data.branch!;
+      // branchesvalue = data.branch!;
       subjectController.text = data.subject!;
       topicController.text = data.topic!;
       descriptionController.text = data.description!;
@@ -64,6 +94,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
       linkController.text = data.link!;
       _checkInsertUpdate = "Update";
     }
+    log(typeController.text);
     return FutureBuilder(
         future: userDetails(),
         builder: (context, snapshot) {
@@ -164,6 +195,8 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                       }).toList(),
                                       onChanged: (String? newValue) {
                                         setState(() {
+                                          // typeController.text = newValue!;
+                                          // log(typeController.text);
                                           dropdownvalue = newValue!;
                                         });
                                       },
@@ -192,6 +225,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                       onChanged: (String? newValue) {
                                         setState(() {
                                           branchesvalue = newValue!;
+                                          // branchController.text = newValue;
                                         });
                                       },
                                     ),
@@ -219,6 +253,8 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                       onChanged: (String? newValue) {
                                         setState(() {
                                           defaultyear = newValue!;
+                                          // yearController.text = newValue;
+                                          // log(yearController.text);
                                         });
                                       },
                                     ),
@@ -232,10 +268,10 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                           controller: subjectController,
                           decoration: InputDecoration(labelText: "Subject"),
                         ),
-                        TextField(
-                          controller: branchController,
-                          decoration: InputDecoration(labelText: "Branch"),
-                        ),
+                        // TextField(
+                        //   controller: branchController,
+                        //   decoration: InputDecoration(labelText: "Branch"),
+                        // ),
                         TextField(
                           controller: topicController,
                           decoration: InputDecoration(labelText: "Topic"),
@@ -261,9 +297,13 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                 onTap: () {
                                   timeofsubmissionController.text =
                                       DateTime.now().toString();
+                                  typeController.text = dropdownvalue;
+                                  yearController.text = defaultyear;
+                                  branchController.text = branchesvalue;
                                   if (_checkInsertUpdate == "Update" &&
                                       (linkController.text != 'null' ||
                                           linkController.text != "")) {
+                                    log(typeController.text);
                                     _updateData(
                                         data.id,
                                         nameController.text,
@@ -278,17 +318,25 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                         linkController.text);
                                   } else if (linkController.text != '' ||
                                       linkController.text != 'null') {
-                                    _insertData(
-                                        nameController.text,
-                                        emailController.text,
-                                        typeController.text,
-                                        yearController.text,
-                                        branchController.text,
-                                        subjectController.text,
-                                        topicController.text,
-                                        descriptionController.text,
-                                        timeofsubmissionController.text,
-                                        linkController.text);
+                                    if (yearController.text == "" &&
+                                        branchController.text == "" &&
+                                        typeController.text == "" &&
+                                        linkController.text == "") {
+                                      showErrorDiaglog(context,
+                                          "Select Type of Material \n Select Year \n Select Branch\nEnter Link");
+                                    } else {
+                                      _insertData(
+                                          nameController.text,
+                                          emailController.text,
+                                          typeController.text,
+                                          yearController.text,
+                                          branchController.text,
+                                          subjectController.text,
+                                          topicController.text,
+                                          descriptionController.text,
+                                          timeofsubmissionController.text,
+                                          linkController.text);
+                                    }
                                   }
                                 },
                                 child: Padding(

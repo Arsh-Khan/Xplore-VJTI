@@ -59,4 +59,28 @@ class MongoNotesAndPyqDatabase {
     log(data.toString());
     return data;
   }
+
+  static Future<List<Map<String, dynamic>>> notesAndPyqSearch(
+      String query1,
+      String parameter1,
+      String query2,
+      String parameter2,
+      String query3,
+      String parameter3) async {
+    final data = [
+      {'': ''}
+    ];
+    // final data = await notesandpyqCollection.find({
+    //   query1: {
+    //     "$in" : [parameter1]
+    //   },
+    //   query2: {
+    //     "$in": [parameter2]
+    //   },
+    //   query3: {
+    //     "$in": [parameter3]
+    //   },
+    // });
+    return data;
+  }
 }

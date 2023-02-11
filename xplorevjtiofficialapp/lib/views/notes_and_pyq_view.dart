@@ -128,7 +128,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                                   .pushNamed(searchNotesAndPyqRoute);
                             },
                             tooltip: 'Filter',
-                            icon: Icon(Icons.refresh, size: 40,
+                            icon: Icon(Icons.filter_alt_sharp, size: 40,
                             color: Color.fromARGB(255, 124, 5, 5),)),
                             Text(
                           ' Filter',
@@ -141,6 +141,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                     ),
                   ),
                 ),
+                
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),

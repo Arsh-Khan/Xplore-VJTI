@@ -62,9 +62,4 @@ var branchWithCode = {
 String dropdownvalue = 'Notes';
 var notespyqs = ['Notes', 'PYQs'];
 String defaultyear = 'FY';
-var selectyear = [
-  'FY',
-  'SY',
-  'TY',
-  'Final Year',
-];
+var selectyear = ['FY', 'SY', 'TY', 'Final Year', 'ALL'];
