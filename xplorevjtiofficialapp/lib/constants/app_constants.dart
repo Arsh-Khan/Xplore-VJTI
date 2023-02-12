@@ -25,7 +25,8 @@ var branches = [
   'Mechanical',
   'Civil',
   'Textile',
-  'Production'
+  'Production',
+  'ALL'
 ];
 
 // Reg No
@@ -62,4 +63,4 @@ var branchWithCode = {
 String dropdownvalue = 'Notes';
 var notespyqs = ['Notes', 'PYQs'];
 String defaultyear = 'FY';
-var selectyear = ['FY', 'SY', 'TY', 'Final Year', 'ALL'];
+var selectyear = ['FY', 'SY', 'TY', 'Final Year'];
