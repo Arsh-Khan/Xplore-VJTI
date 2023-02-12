@@ -75,7 +75,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                               color: Color.fromARGB(219, 124, 5, 5),
                               borderRadius: BorderRadius.zero,
                               image: DecorationImage(
-                                fit: BoxFit.fitWidth,
+                                fit: BoxFit.fill,
                                   image:
                                       AssetImage('assets/BlurWithLogo.jpeg'))),
                           height: 200,
