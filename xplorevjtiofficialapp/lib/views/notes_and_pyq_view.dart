@@ -128,20 +128,21 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                                   .pushNamed(searchNotesAndPyqRoute);
                             },
                             tooltip: 'Filter',
-                            icon: Icon(Icons.filter_alt_sharp, size: 40,
-                            color: Color.fromARGB(255, 124, 5, 5),)),
-                            Text(
+                            icon: Icon(
+                              Icons.filter_alt_sharp,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
                           ' Filter',
                           style: TextStyle(
-                            color: Color.fromARGB(255, 124, 5, 5),
-                            fontFamily: 'Poppins'
-                          ),
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
                         )
                       ],
                     ),
                   ),
                 ),
-                
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
@@ -152,7 +153,8 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       children: [
                         IconButton(
                             onPressed: () async {
-                              Navigator.pushNamed(context, insertNotesAndPyqRoute,
+                              Navigator.pushNamed(
+                                  context, insertNotesAndPyqRoute,
                                   arguments: MongoDbNotesAndPyqModel(
                                       id: M.ObjectId(),
                                       email: 'null',
@@ -193,7 +195,8 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                         IconButton(
                             onPressed: () async {
                               final userdata = await userDetails();
-                              Navigator.pushNamed(context, updateNotesAndPyqRoute,
+                              Navigator.pushNamed(
+                                  context, updateNotesAndPyqRoute,
                                   arguments: userdata['email'].toString());
                             },
                             tooltip: 'Update Notes or PYQ',
@@ -254,8 +257,8 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                         IconButton(
                             onPressed: () {
                               setState(() {
-                                Navigator.pushNamedAndRemoveUntil(
-                                    context, notesAndPyqRoute, (route) => false);
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    notesAndPyqRoute, (route) => false);
                               });
                             },
                             tooltip: 'Refresh Page',
@@ -458,6 +461,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
+                  heroTag: "h${data.id}",
                   onPressed: () {
                     // SfPdfViewer.network(data.link.toString());
                     final url = data.link.toString();

@@ -329,11 +329,11 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                                   value: branchesvalue,
                                   icon:
                                       const Icon(Icons.arrow_drop_down_rounded),
-                                  items: branches.map((String branches) {
+                                  items: branches.map((String signupBranches) {
                                     return DropdownMenuItem(
-                                      value: branches,
+                                      value: signupBranches,
                                       child: Text(
-                                        branches,
+                                        signupBranches,
                                         style: const TextStyle(
                                           color: Colors.black,
                                           fontFamily: 'Poppins',

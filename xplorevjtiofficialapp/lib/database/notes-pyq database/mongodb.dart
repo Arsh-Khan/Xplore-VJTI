@@ -67,20 +67,13 @@ class MongoNotesAndPyqDatabase {
       String parameter2,
       String query3,
       String parameter3) async {
-    final data = [
-      {'': ''}
-    ];
-    // final data = await notesandpyqCollection.find({
-    //   query1: {
-    //     "$in" : [parameter1]
-    //   },
-    //   query2: {
-    //     "$in": [parameter2]
-    //   },
-    //   query3: {
-    //     "$in": [parameter3]
-    //   },
-    // });
+    // final data = [
+    //   {'': ''}
+    // ];
+    final data = await notesandpyqCollection.find(
+        {query1: parameter1, query2: parameter2, query3: parameter3}).toList();
+
+    log(data.toString() + "Work");
     return data;
   }
 }
