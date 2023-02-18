@@ -97,7 +97,8 @@ class _SearchNotesAndPyqPreviewViewState
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-          Text('Search View',
+          const SizedBox(height: 20),
+          Text('Search',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 30,
@@ -109,173 +110,258 @@ class _SearchNotesAndPyqPreviewViewState
           ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Row(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(103, 236, 183, 183),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
                     children: [
-                      Text('Select Notes / PYQs : ',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 124, 5, 5),
-                              fontSize: 15,
-                              fontFamily: 'Poppins')),
-                      const SizedBox(width: 20),
-                      DropdownButton(
-                        value: dropdownvalue,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: notespyqs.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownvalue = newValue!;
-                            notesorpyq = newValue;
-                          });
-                        },
+                      Row(
+                        children: [
+                          Text('Select Notes / PYQs : ',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 124, 5, 5),
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins')),
+                          const SizedBox(width: 20),
+                          DropdownButton(
+                            dropdownColor: Colors.deepOrange[50],
+                            value: dropdownvalue,
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            items: notespyqs.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                                notesorpyq = newValue;
+                              });
+                            },
+                          ),
+                        ],
                       ),
+                      Row(
+                        children: [
+                          Text('Select branch : ',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 124, 5, 5),
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins')),
+                          const SizedBox(width: 20),
+                          DropdownButton(
+                            dropdownColor: Colors.deepOrange[50],
+                            value: branchesvalue,
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            items: branches.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                branchesvalue = newValue!;
+                                branch = newValue;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      const Text(
+                        'NOTE : Please select \'ALL\' if you are FY',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                          fontSize: 10,
+                        )
+                        ),
+                      Row(
+                        children: [
+                          Text('Select year : ',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 124, 5, 5),
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins')),
+                          const SizedBox(width: 20),
+                          DropdownButton(
+                            dropdownColor: Colors.deepOrange[50],
+                            value: defaultyear,
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            items: selectyear.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                defaultyear = newValue!;
+                                year = newValue;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
+                      // ElevatedButton.icon(
+                      //     onPressed: () {},
+                      //     icon: Icon(Icons.find_in_page),
+                      //     label: Text('Search')),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // Container(
+                      //   child: SafeArea(
+                      //       child: SingleChildScrollView(
+                      //     child: FutureBuilder(
+                      //       future: MongoNotesAndPyqDatabase.notesAndPyqSearch(
+                      //           'notesANDpyqs',
+                      //           _notesorpyq.text,
+                      //           'year',
+                      //           _year.text,
+                      //           'branch',
+                      //           _branch.text),
+                      //       builder: (context, snapshot) {
+                      //         if (snapshot.connectionState ==
+                      //             ConnectionState.waiting) {
+                      //           return Center(
+                      //             child: CircularProgressIndicator(),
+                      //           );
+                      //         } else {
+                      //           if (snapshot.data!.length == 0 &&
+                      //               _notesorpyq.text != '' &&
+                      //               _branch.text != '' &&
+                      //               _year.text != "") {
+                      //             return Center(
+                      //               child: Text("OOPS No Data Available!"),
+                      //             );
+                      //           } else if (snapshot.hasData) {
+                      //             return ListView.builder(
+                      //               physics: NeverScrollableScrollPhysics(),
+                      //               shrinkWrap: true,
+                      //               itemCount: snapshot.data!.length,
+                      //               itemBuilder: (context, index) {
+                      //                 return displayData(
+                      //                     // MongoDbNotesAndPyqModel.fromJson(snapshot.data![index]));
+                      //                     MongoDbNotesAndPyqModel.fromJson(
+                      //                         snapshot.data![index]));
+                      //               },
+                      //             );
+                      //           } else {
+                      //             return Center(
+                      //               child: Text("Data Not Found"),
+                      //             );
+                      //           }
+                      //         }
+                      //       },
+                      //     ),
+                      //   )),
+                      // )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text('Select branch : ',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 124, 5, 5),
-                              fontSize: 15,
-                              fontFamily: 'Poppins')),
-                      const SizedBox(width: 20),
-                      DropdownButton(
-                        value: branchesvalue,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: branches.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            branchesvalue = newValue!;
-                            branch = newValue;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text('Select year : ',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 124, 5, 5),
-                              fontSize: 15,
-                              fontFamily: 'Poppins')),
-                      const SizedBox(width: 20),
-                      DropdownButton(
-                        value: defaultyear,
-                        icon: const Icon(Icons.keyboard_arrow_down),
-                        items: selectyear.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Text(items),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            defaultyear = newValue!;
-                            year = newValue;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                  FloatingActionButton.extended(
-                    heroTag: 'btn-1',
-                    onPressed: () {
-                      if (notesorpyq == "" || branch == "" || year == "") {
-                        String error = "";
-                        if (notesorpyq == "") {
-                          error += "Select Notes or PYQ";
-                        }
-                        if (branch == "") {
-                          error += "\nSelect Branch";
-                        }
-                        if (year == "") {
-                          error += "\nSelect Year";
-                        }
-                        showErrorDiaglog(context, error);
-                      }
-                      setState(() {
-                        setState(() {
-                          _notesorpyq.text = notesorpyq;
-                          _branch.text = branch;
-                          _year.text = year;
-                        });
-                      });
-                    },
-                    label: const Text('Search'),
-                    icon: const Icon(Icons.find_in_page),
-                    backgroundColor: const Color.fromARGB(255, 124, 5, 5),
-                  ),
-                  // ElevatedButton.icon(
-                  //     onPressed: () {},
-                  //     icon: Icon(Icons.find_in_page),
-                  //     label: Text('Search')),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    child: SafeArea(
-                        child: SingleChildScrollView(
-                      child: FutureBuilder(
-                        future: MongoNotesAndPyqDatabase.notesAndPyqSearch(
-                            'notesANDpyqs',
-                            _notesorpyq.text,
-                            'year',
-                            _year.text,
-                            'branch',
-                            _branch.text),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            if (snapshot.data!.length == 0 &&
-                                _notesorpyq.text != '' &&
-                                _branch.text != '' &&
-                                _year.text != "") {
-                              return Center(
-                                child: Text("OOPS No Data Available!"),
-                              );
-                            } else if (snapshot.hasData) {
-                              return ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (context, index) {
-                                  return displayData(
-                                      // MongoDbNotesAndPyqModel.fromJson(snapshot.data![index]));
-                                      MongoDbNotesAndPyqModel.fromJson(
-                                          snapshot.data![index]));
-                                },
-                              );
-                            } else {
-                              return Center(
-                                child: Text("Data Not Found"),
-                              );
-                            }
-                          }
-                        },
-                      ),
-                    )),
-                  )
-                ],
+                ),
               ),
             ),
           ),
+          const SizedBox(height: 15),
+          FloatingActionButton.extended(
+            heroTag: 'btn-1',
+            onPressed: () {
+              if (notesorpyq == "" || branch == "" || year == "") {
+                String error = "";
+                if (notesorpyq == "") {
+                  error += "Select Notes or PYQ";
+                }
+                if (branch == "") {
+                  error += "\nSelect Branch";
+                }
+                if (year == "") {
+                  error += "\nSelect Year";
+                }
+                showErrorDiaglog(context, error);
+              }
+              setState(() {
+                setState(() {
+                  _notesorpyq.text = notesorpyq;
+                  _branch.text = branch;
+                  _year.text = year;
+                });
+              });
+            },
+            label: const Text('Search'),
+            icon: const Icon(Icons.find_in_page),
+            backgroundColor: const Color.fromARGB(255, 124, 5, 5),
+          ),
+          const SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 50),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(103, 236, 183, 183),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+                child: SafeArea(
+                    child: SingleChildScrollView(
+                  child: FutureBuilder(
+                    future: MongoNotesAndPyqDatabase.notesAndPyqSearch(
+                        'notesANDpyqs',
+                        _notesorpyq.text,
+                        'year',
+                        _year.text,
+                        'branch',
+                        _branch.text),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        if (snapshot.data!.length == 0 &&
+                            _notesorpyq.text != '' &&
+                            _branch.text != '' &&
+                            _year.text != "") {
+                          return Center(
+                            child: Text("OOPS No Data Available!",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins',
+                            )
+                            ),
+                          );
+                        } else if (snapshot.hasData) {
+                          return ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return displayData(
+                                  // MongoDbNotesAndPyqModel.fromJson(snapshot.data![index]));
+                                  MongoDbNotesAndPyqModel.fromJson(
+                                      snapshot.data![index]));
+                            },
+                          );
+                        } else {
+                          return Center(
+                            child: Text("Data Not Found"),
+                          );
+                        }
+                      }
+                    },
+                  ),
+                )),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
         ]),
       ),
     );

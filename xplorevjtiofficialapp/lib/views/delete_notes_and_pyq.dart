@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/MongoDBNotesAndPyqModel.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
 
@@ -19,6 +20,15 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, notesAndPyqRoute);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Color.fromARGB(255, 124, 5, 5),
+              size: 30,
+            )),
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
         title: const Text(

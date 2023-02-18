@@ -118,7 +118,7 @@ class _SideBarState extends State<SideBar> {
                     ),
                     accountEmail: Text('${snapshot.data['email']}',
                         style: const TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold)),
+                            color: Color.fromARGB(255, 124, 5, 5), fontWeight: FontWeight.bold)),
                     currentAccountPicture: const CircleAvatar(
                       backgroundImage: ExactAssetImage(
                         'assets/VJTilogoforappbar.jpeg',
