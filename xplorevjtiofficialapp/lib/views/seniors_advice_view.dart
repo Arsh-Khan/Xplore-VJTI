@@ -26,7 +26,7 @@ class SeniorAdviceView extends StatefulWidget {
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   ScrollController _scrollController = new ScrollController();
-    final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   Timer? _timer;
 
@@ -81,59 +81,68 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     });
     _timer = Timer.periodic(Duration(seconds: 2), (timer) {
       getMessages().onError((error, stackTrace) => timer.cancel());
-    // scrollToBottom();
+      // scrollToBottom();
     });
-    void main(){
+    void main() {
       var givenValue = stdin.readLineSync();
 
-      if(givenValue != null){
+      if (givenValue != null) {
         var parsedValue = int.parse(givenValue);
       }
     }
+
     super.initState();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message){
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
-      if(notification != null && android != null){
+      if (notification != null && android != null) {
         flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              //channel.description,
-              color: Colors.blue,
-              playSound: true,
-              icon: '@mimap/ic_launcher',
-            ),
-          )
-        );
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                //channel.description,
+                color: Colors.blue,
+                playSound: true,
+                icon: '@mimap/ic_launcher',
+              ),
+            ));
       }
     });
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message){
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('A new onMessageOpenedApp event was published!');
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
-      if(notification != null && android != null){
-        showDialog(context: context, builder: (_){
-          return AlertDialog(
-            title: Text('Xplore VJTI Seniors Connect'),
-            content: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("New messages waiting for you!!\nTap to view"),
-                ],
-              ),
-            ),
-          );
-        });
+      if (notification != null && android != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text('Xplore VJTI Seniors Connect',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 124, 5, 5),
+                      fontFamily: 'Poppins',
+                    )),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("New messages waiting for you!!\nTap to view",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 124, 5, 5),
+                            fontFamily: 'Poppins',
+                          )),
+                    ],
+                  ),
+                ),
+              );
+            });
       }
     });
   }
-
 
   @override
   void dispose() {
@@ -149,7 +158,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as dynamic;
     double width = MediaQuery.of(context).size.width;
-      double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     log(data.toString() + "hello");
 
     return Scaffold(
@@ -178,7 +187,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, dashBoardRoute, arguments: userDetails());
+                Navigator.pushNamed(context, dashBoardRoute,
+                    arguments: userDetails());
               },
               icon: Icon(
                 Icons.arrow_back_ios_sharp,
@@ -301,11 +311,11 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: ConstrainedBox(
-              constraints:  BoxConstraints(
-               maxHeight: height,//when it reach the max it will use scroll
+              constraints: BoxConstraints(
+                maxHeight: height, //when it reach the max it will use scroll
                 maxWidth: width,
               ),
-                child: TextField(
+              child: TextField(
                 controller: messageController,
                 enableSuggestions: true,
                 autocorrect: false,

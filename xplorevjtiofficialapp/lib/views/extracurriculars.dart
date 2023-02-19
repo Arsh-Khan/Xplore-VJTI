@@ -44,13 +44,14 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
       ),
       body: SingleChildScrollView(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(8, 20, 8, 40),
+        padding: const EdgeInsets.fromLTRB(0, 20, 0, 40),
         child: Center(
           child: Center(
             child: Column(children: [
               Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: Image.asset('assets/extracurr.png',
+                fit: BoxFit.fitWidth,
                 ),
               ),
               const SizedBox(height: 40),

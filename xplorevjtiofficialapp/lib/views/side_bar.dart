@@ -96,6 +96,7 @@ class _SideBarState extends State<SideBar> {
           if (snapshot.hasData) {
             fsize = sizeAccToName(snapshot.data['name']);
             return Drawer(
+              backgroundColor: Color.fromARGB(255, 255, 255, 255),
               child: ListView(
                 padding: EdgeInsets.all(0),
                 children: [
@@ -119,17 +120,17 @@ class _SideBarState extends State<SideBar> {
                     accountEmail: Text('${snapshot.data['email']}',
                         style: const TextStyle(
                             color: Color.fromARGB(255, 124, 5, 5), fontWeight: FontWeight.bold)),
-                    currentAccountPicture: const CircleAvatar(
-                      backgroundImage: ExactAssetImage(
-                        'assets/VJTilogoforappbar.jpeg',
-                      ),
-                      radius: 200,
-                    ),
+                    // currentAccountPicture: const CircleAvatar(
+                    //   backgroundImage: ExactAssetImage(
+                    //     'assets/VJTilogoforappbar.jpeg',
+                    //   ),
+                    //   radius: 200,
+                    // ),
                     decoration: BoxDecoration(
                       color: Colors.deepOrange[50],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 40),
                   ListTile(
                     leading: const Icon(Icons.person_rounded),
                     title: const Text(
@@ -194,6 +195,7 @@ class _SideBarState extends State<SideBar> {
                       _showMyDialog();
                     },
                   ),
+                  
                 ],
               ),
             );
