@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
+import 'package:xplorevjtiofficialapp/main.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
@@ -78,8 +83,57 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
       getMessages().onError((error, stackTrace) => timer.cancel());
     // scrollToBottom();
     });
+    void main(){
+      var givenValue = stdin.readLineSync();
+
+      if(givenValue != null){
+        var parsedValue = int.parse(givenValue);
+      }
+    }
     super.initState();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message){
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if(notification != null && android != null){
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              //channel.description,
+              color: Colors.blue,
+              playSound: true,
+              icon: '@mimap/ic_launcher',
+            ),
+          )
+        );
+      }
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message){
+      print('A new onMessageOpenedApp event was published!');
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if(notification != null && android != null){
+        showDialog(context: context, builder: (_){
+          return AlertDialog(
+            title: Text('Xplore VJTI Seniors Connect'),
+            content: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("New messages waiting for you!!\nTap to view"),
+                ],
+              ),
+            ),
+          );
+        });
+      }
+    });
   }
+
 
   @override
   void dispose() {
