@@ -384,6 +384,87 @@ class _ExtraCurricularsState extends State<ExtraCurriculars> {
                   )
                 ],
               ),
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Enthusia
+
+                  Material(
+                    color: Colors.deepOrange[50],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(19),
+                      side: BorderSide(color: Colors.transparent),
+                    ),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      onTap: () {
+                        const url = 'https://aerovjti.co.in';
+                    launch(url);
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 2),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Image.asset('assets/aero.jpeg',
+                                height: 100, width: 100),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text('Aero',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  ))
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(width: 65),
+
+                  // Rangawardhan
+
+                  Material(
+                    color: Colors.deepOrange[50],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(19),
+                      side: BorderSide(color: Colors.transparent),
+                    ),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      onTap: () {
+                        const url = 'https://sites.google.com/ce.vjti.ac.in/digital-vjti/';
+                    launch(url);
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 2),
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Image.asset('assets/digital.png',
+                                height: 100, width: 100),
+                          ),
+                          const SizedBox(height: 10),
+                          const Text('Digital VJTI',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  ),  
+                                )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
 
               const SizedBox(height: 50),
 
