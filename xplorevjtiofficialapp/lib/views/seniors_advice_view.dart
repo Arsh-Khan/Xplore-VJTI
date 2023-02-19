@@ -203,7 +203,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(85, 219, 112, 112),
+                              color: Color.fromARGB(103, 236, 183, 183),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Padding(
