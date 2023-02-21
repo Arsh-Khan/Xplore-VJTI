@@ -13,10 +13,11 @@ List<String> branchesCode = [
   'me'
 ];
 
-// SignUp VJTI
-String branchesvalue = 'EXTC';
+// Notes PYQs
+String branchesvalue = '--';
 
 var branches = [
+  '--',
   'EXTC',
   'CS',
   'IT',
@@ -27,6 +28,23 @@ var branches = [
   'Textile',
   'Production',
   'ALL'
+];
+
+// Signup VJTI
+
+String signupbranchesvalue = '--';
+
+var signupbranches = [
+  '--',
+  'EXTC',
+  'CS',
+  'IT',
+  'Electronics',
+  'Electrical',
+  'Mechanical',
+  'Civil',
+  'Textile',
+  'Production',
 ];
 
 // Reg No
@@ -60,7 +78,7 @@ var branchWithCode = {
 
 // Search notes
 
-String dropdownvalue = 'Notes';
-var notespyqs = ['Notes', 'PYQs'];
-String defaultyear = 'FY';
-var selectyear = ['FY', 'SY', 'TY', 'Final Year'];
+String dropdownvalue = '--';
+var notespyqs = ['Notes', 'PYQs', '--'];
+String defaultyear = '--';
+var selectyear = ['FY', 'SY', 'TY', 'Final Year', '--'];

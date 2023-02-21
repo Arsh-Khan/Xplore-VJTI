@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
@@ -19,7 +21,7 @@ class _SideBarState extends State<SideBar> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          elevation: 10,
+          elevation: 100,
           backgroundColor: Colors.deepOrange[50],
           title: Text(
             'Sure Logout?',
@@ -78,7 +80,7 @@ class _SideBarState extends State<SideBar> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, dashBoardRoute);
+                Navigator.pop(context);
               },
             ),
           ],
@@ -86,7 +88,6 @@ class _SideBarState extends State<SideBar> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,107 +97,157 @@ class _SideBarState extends State<SideBar> {
           if (snapshot.hasData) {
             fsize = sizeAccToName(snapshot.data['name']);
             return Drawer(
-              backgroundColor: Color.fromARGB(255, 255, 255, 255),
-              child: ListView(
-                padding: EdgeInsets.all(0),
-                children: [
-                  UserAccountsDrawerHeader(
-                    // backgroundColor: Colors.black,
-                    accountName: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                          child: Text('${snapshot.data['name']}',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Poppins',
-                                fontSize: fsize,
-                                fontWeight: FontWeight.bold,
-                              )),
+              elevation: 100,
+              backgroundColor:
+                  Color.fromARGB(0, 255, 255, 255).withOpacity(0.9),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                    // sigmaX: 2.0,
+                    // sigmaY: 2.0,
+                    ),
+                child: ListView(
+                  padding: EdgeInsets.all(0),
+                  children: [
+                    // UserAccountsDrawerHeader(
+                    //   accountName: Padding(
+                    //     padding: const EdgeInsets.all(0),
+                    //     child: Container(
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+                    //         child: Text('${snapshot.data['name']}',
+                    //             style: TextStyle(
+                    //               color: Colors.black,
+                    //               fontFamily: 'Poppins',
+                    //               fontSize: fsize,
+                    //               fontWeight: FontWeight.bold,
+                    //             )),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   accountEmail: Text('${snapshot.data['email']}',
+                    //       style: const TextStyle(
+                    //           color: Color.fromARGB(255, 124, 5, 5), fontWeight: FontWeight.bold)),
+                    //   // currentAccountPicture: const CircleAvatar(
+                    //   //   backgroundImage: ExactAssetImage(
+                    //   //     'assets/VJTilogoforappbar.jpeg',
+                    //   //   ),
+                    //   //   radius: 200,
+                    //   // ),
+                    //   decoration: BoxDecoration(
+                    //     color: Colors.deepOrange[50]?.withOpacity(0.75),
+                    //     borderRadius: BorderRadius.horizontal(right: Radius.circular(15))
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 100),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Container(
+                          
+                          decoration: BoxDecoration(
+                            
+                              color: Colors.deepOrange[50]?.withOpacity(1),
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10)),
+                                  ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 40),
+                                Image.asset(
+                                  'assets/VJTilogoforappbar.jpeg',
+                                  height: 100,
+                                ),
+                                Text('\t${snapshot.data['name']}',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Poppins',
+                                      fontSize: fsize,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                const SizedBox(height: 5),
+                                Text('\t ${snapshot.data['email']}',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 124, 5, 5),
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                const SizedBox(height: 20),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    accountEmail: Text('${snapshot.data['email']}',
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 124, 5, 5), fontWeight: FontWeight.bold)),
-                    // currentAccountPicture: const CircleAvatar(
-                    //   backgroundImage: ExactAssetImage(
-                    //     'assets/VJTilogoforappbar.jpeg',
-                    //   ),
-                    //   radius: 200,
-                    // ),
-                    decoration: BoxDecoration(
-                      color: Colors.deepOrange[50],
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  ListTile(
-                    leading: const Icon(Icons.person_rounded),
-                    title: const Text(
-                      'View Profile',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(context, studentAccountRoute);
-                    },
-                  ),
-                  ListTile(
-                      leading: const Icon(Icons.share),
+                    const SizedBox(height: 40),
+                    ListTile(
+                      leading: const Icon(Icons.person_rounded),
                       title: const Text(
-                        'Share App',
+                        'View Profile',
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 20,
                         ),
                       ),
                       onTap: () {
-                        Share.share(
-                            "https://play.google.com/apps/details?id=com.instructivetech.testapp");
-                      }),
-                  // ListTile(
-                  //   leading: const Icon(Icons.star),
-                  //   title: const Text(
-                  //     'Rate App',
-                  //     style: TextStyle(
-                  //       fontFamily: 'Poppins',
-                  //       fontSize: 20,
-                  //     ),
-                  //   ),
-                  //   onTap: () => null,
-                  // ),
-                  ListTile(
-                    leading: const Icon(Icons.contact_phone),
-                    title: const Text(
-                      'Contact Us',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                      ),
+                        Navigator.pushNamed(context, studentAccountRoute);
+                      },
                     ),
-                    onTap: () {
-                      Navigator.pushNamed(context, contactUsRoute);
-                    },
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.logout),
-                    title: const Text(
-                      'Logout',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
+                    ListTile(
+                        leading: const Icon(Icons.share),
+                        title: const Text(
+                          'Share App',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 20,
+                          ),
+                        ),
+                        onTap: () {
+                          Share.share(
+                              "https://play.google.com/apps/details?id=com.instructivetech.testapp");
+                        }),
+                    // ListTile(
+                    //   leading: const Icon(Icons.star),
+                    //   title: const Text(
+                    //     'Rate App',
+                    //     style: TextStyle(
+                    //       fontFamily: 'Poppins',
+                    //       fontSize: 20,
+                    //     ),
+                    //   ),
+                    //   onTap: () => null,
+                    // ),
+                    ListTile(
+                      leading: const Icon(Icons.contact_phone),
+                      title: const Text(
+                        'Contact Us',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                        ),
                       ),
+                      onTap: () {
+                        Navigator.pushNamed(context, contactUsRoute);
+                      },
                     ),
-                    onTap: () {
-                      // Navigator.pushNamed(context, loginVJTIRoute);
-                      _showMyDialog();
-                    },
-                  ),
-                  
-                ],
+                    ListTile(
+                      leading: const Icon(Icons.logout),
+                      title: const Text(
+                        'Logout',
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 20,
+                        ),
+                      ),
+                      onTap: () {
+                        // Navigator.pushNamed(context, loginVJTIRoute);
+                        _showMyDialog();
+                      },
+                    ),
+                  ],
+                ),
               ),
             );
           } else {
@@ -209,10 +260,10 @@ class _SideBarState extends State<SideBar> {
   }
 }
 
-double sizeAccToName(String name){
-  if (name.length > 11){
+double sizeAccToName(String name) {
+  if (name.length > 11) {
     return 19.0;
-  } else{
+  } else {
     return 25.0;
   }
 }

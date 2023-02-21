@@ -136,7 +136,7 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: const Color.fromARGB(85, 219, 112, 112),
+                              color: Color.fromARGB(54, 219, 112, 112),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -164,7 +164,7 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: const Color.fromARGB(85, 219, 112, 112),
+                              color: const Color.fromARGB(54, 219, 112, 112),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),

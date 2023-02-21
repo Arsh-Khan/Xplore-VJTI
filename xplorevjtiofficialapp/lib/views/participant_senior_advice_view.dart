@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/MongoDBSeniorAdvicesModel.dart';
 import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/mongodb.dart';
@@ -19,6 +20,7 @@ class _ParticipantSeniorAdviceViewState
     extends State<ParticipantSeniorAdviceView> {
   @override
   Widget build(BuildContext context) {
+    
     final data = ModalRoute.of(context)!.settings.arguments as dynamic;
     log(data.toString());
 
@@ -102,6 +104,7 @@ class _ParticipantSeniorAdviceViewState
                                       ),
                                     ),
                                     ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount: snapshot.data!.length,
                                       itemBuilder: (context, index) {
@@ -110,6 +113,7 @@ class _ParticipantSeniorAdviceViewState
                                                 snapshot.data![index]));
                                       },
                                     ),
+                                    const SizedBox(height: 50),
                                   ],
                                 ),
                               ));
@@ -150,17 +154,13 @@ class _ParticipantSeniorAdviceViewState
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          
+          // SizedBox(
+          //   height: 5,
+          // ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              // Text('${data.id}'),
-            ],
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "${data.name}",
@@ -172,14 +172,6 @@ class _ParticipantSeniorAdviceViewState
               ),
               Text(
                 "${data.year}",
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 15,
-                  color: Color.fromARGB(255, 124, 5, 5),
-                ),
-              ),
-              Text(
-                '$userStatus',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 15,

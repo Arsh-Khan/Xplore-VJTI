@@ -58,6 +58,7 @@ dependencies:
   android_intent_plus: ^3.1.6
   firebase_messaging: ^14.2.2
   flutter_local_notifications: ^13.0.0
+  blurrycontainer: ^1.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

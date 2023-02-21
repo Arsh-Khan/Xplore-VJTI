@@ -56,6 +56,12 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){Navigator.pushNamed(context, loginVJTIRoute);}, 
+          icon: Icon(Icons.arrow_back_ios_sharp,
+          color: Color.fromARGB(255, 124, 5, 5), 
+          size: 30,)
+          ),
         title: const Text(
           'VJTI',
           style: TextStyle(
@@ -101,7 +107,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                 const SizedBox(height: 30),
                 FloatingActionButton.extended(
                   heroTag: 'btn-1',
-                  backgroundColor: const Color.fromARGB(85, 219, 112, 112),
+                  backgroundColor: const Color.fromARGB(54, 219, 112, 112),
                   elevation: 0,
                   label: const Text('Not yet VJTIian?',
                       style: TextStyle(
@@ -164,7 +170,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -189,7 +195,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -214,7 +220,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: const Color.fromARGB(85, 219, 112, 112),
+                              color: const Color.fromARGB(54, 219, 112, 112),
                             ),
                             padding: const EdgeInsets.all(8),
                             height: MediaQuery.of(context).size.width / 3,
@@ -259,7 +265,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -285,7 +291,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -319,17 +325,17 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
                                 DropdownButton(
-                                  value: branchesvalue,
+                                  value: signupbranchesvalue,
                                   icon:
                                       const Icon(Icons.arrow_drop_down_rounded),
-                                  items: branches.map((String signupBranches) {
+                                  items: signupbranches.map((String signupBranches) {
                                     return DropdownMenuItem(
                                       value: signupBranches,
                                       child: Text(
@@ -345,7 +351,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                                   }).toList(),
                                   onChanged: (String? newval) {
                                     setState(() {
-                                      branchesvalue = newval!;
+                                      signupbranchesvalue = newval!;
                                     });
                                   },
                                 ),
@@ -368,7 +374,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -395,7 +401,7 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

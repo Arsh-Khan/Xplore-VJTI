@@ -48,6 +48,12 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){Navigator.pushNamed(context, loginNonVJTIRoute);}, 
+          icon: Icon(Icons.arrow_back_ios_sharp,
+          color: Color.fromARGB(255, 124, 5, 5), 
+          size: 30,)
+          ),
         title: const Text(
           'VJTI',
           style: TextStyle(
@@ -93,7 +99,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                 ),
                 const SizedBox(height: 40),
                 FloatingActionButton.extended(
-                  backgroundColor: Color.fromARGB(85, 219, 112, 112),
+                  backgroundColor: Color.fromARGB(54, 219,112, 112),
                   elevation: 0,
                   label: Text('Are you VJTIian?',
                   style: TextStyle(
@@ -153,7 +159,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219,112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -178,7 +184,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219,112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -203,7 +209,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                         Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: const Color.fromARGB(85, 219, 112, 112),
+                              color: const Color.fromARGB(54, 219,112, 112),
                             ),
                             padding: const EdgeInsets.all(8),
                             height: MediaQuery.of(context).size.width / 3,
@@ -248,7 +254,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219,112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -286,7 +292,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219,112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -313,7 +319,7 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219,112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

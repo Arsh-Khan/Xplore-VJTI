@@ -92,7 +92,7 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                   },
                 ),
                 const SizedBox(height: 40),
-                const Text('-- non VJTI --',
+                const Text('Non - VJTI Students',
                     style: TextStyle(
                       color: Colors.black,
                       fontFamily: 'Poppins',
@@ -125,7 +125,7 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -148,7 +148,7 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                         Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: const Color.fromARGB(85, 219, 112, 112),
+                            color: const Color.fromARGB(54, 219, 112, 112),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),

@@ -179,7 +179,7 @@ class _SearchNotesAndPyqPreviewViewState
                         style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Poppins',
-                          fontSize: 10,
+                          fontSize: 12,
                         )
                         ),
                       Row(
