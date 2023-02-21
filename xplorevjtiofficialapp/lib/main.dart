@@ -10,6 +10,7 @@ import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
 import 'package:xplorevjtiofficialapp/views/delete_notes_and_pyq.dart';
 import 'package:xplorevjtiofficialapp/views/download_or_open_locations_view.dart';
+import 'package:xplorevjtiofficialapp/views/forgot_password_view_nonvjti.dart';
 import 'package:xplorevjtiofficialapp/views/forgot_password_view_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/extracurriculars.dart';
 import 'package:xplorevjtiofficialapp/views/how_to_get_vjti.dart';
@@ -42,17 +43,20 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
   importance: Importance.high,
   playSound: true,
 );
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async{
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('A bg message just showed up: ${message.messageId}');
 }
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
@@ -91,6 +95,7 @@ void main() async {
       // searchNotesAndPyqRoute:(context) => const SearchNotesAndPyqView(),
       downloadOrOpenLocationsRoute: (context) => const LocationsView(),
       searchNotesAndPyqRoute: (context) => const SearchNotesAndPyqPreviewView(),
+      forgotPasswordNonVjtiRoute: (context) => const ForgotPasswordNonVJTIView()
     },
   ));
 }

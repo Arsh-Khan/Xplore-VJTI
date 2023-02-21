@@ -322,7 +322,9 @@ class _SearchNotesAndPyqPreviewViewState
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: Color.fromARGB(255, 124, 5, 5),
+                          ),
                         );
                       } else {
                         if (snapshot.data!.length == 0 &&
@@ -331,11 +333,10 @@ class _SearchNotesAndPyqPreviewViewState
                             _year.text != "") {
                           return Center(
                             child: Text("OOPS No Data Available!",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 124, 5, 5),
-                              fontFamily: 'Poppins',
-                            )
-                            ),
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 124, 5, 5),
+                                  fontFamily: 'Poppins',
+                                )),
                           );
                         } else if (snapshot.hasData) {
                           return ListView.builder(

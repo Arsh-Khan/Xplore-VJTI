@@ -153,14 +153,82 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
               ),
               IconButton(
                   onPressed: () async {
-                    await MongoNotesAndPyqDatabase.delete(data);
-                    setState(() {});
+                    _showMyDialog(data);
                   },
                   icon: Icon(Icons.delete))
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(dynamic data) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          elevation: 10,
+          backgroundColor: Colors.deepOrange[50],
+          title: Text(
+            'Sure Delete?',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 20,
+              color: Color.fromARGB(255, 124, 5, 5),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Are you sure you want to Delete?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'Yes',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 15,
+                  color: Colors.red,
+                ),
+              ),
+              onPressed: () async {
+                await MongoNotesAndPyqDatabase.delete(data);
+                Navigator.pop(context);
+                setState(() {});
+              },
+            ),
+            TextButton(
+              child: Text(
+                'No',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 15,
+                  color: Colors.red,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

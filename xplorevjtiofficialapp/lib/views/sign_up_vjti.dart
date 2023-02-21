@@ -106,8 +106,8 @@ class _SignUpVJTIState extends State<SignUpVJTI> {
                 ),
                 const SizedBox(height: 30),
                 FloatingActionButton.extended(
-                  heroTag: 'btn-1',
-                  backgroundColor: const Color.fromARGB(54, 219, 112, 112),
+                  heroTag: 'sign_up-vjti',
+                  backgroundColor: const Color.fromARGB(85, 219, 112, 112),
                   elevation: 0,
                   label: const Text('Not yet VJTIian?',
                       style: TextStyle(

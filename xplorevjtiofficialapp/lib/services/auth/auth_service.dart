@@ -41,9 +41,8 @@ class AuthService implements AuthProvider {
   Future<void> initalize() => provider.initalize();
 
   @override
-  Future<AuthUser> reAuthenticateEmail(
-          {required String email, required String password}) =>
-      provider.reAuthenticateEmail(email: email, password: password);
+  Future<void> reAuthenticateEmail({required String email}) =>
+      provider.reAuthenticateEmail(email: email);
 
   // @override
   // Future<void> facebookSignIn({required BuildContext context}) =>

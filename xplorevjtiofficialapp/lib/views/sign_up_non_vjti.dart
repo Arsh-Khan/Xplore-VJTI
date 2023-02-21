@@ -102,10 +102,10 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                   backgroundColor: Color.fromARGB(54, 219,112, 112),
                   elevation: 0,
                   label: Text('Are you VJTIian?',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                  )),                   
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Poppins',
+                      )),
                   onPressed: () {
                     Navigator.pushNamed(context, signUpVJTIRoute);
                   },
@@ -367,7 +367,8 @@ class _SignUpNonVJTIState extends State<SignUpNonVJTI> {
                                     // devtools.log(userCredential.toString());
                                     Navigator.of(context)
                                         .pushNamedAndRemoveUntil(
-                                            dashboardViewnonVJTIRoute, (route) => false);
+                                            dashboardViewnonVJTIRoute,
+                                            (route) => false);
                                   } else {
                                     await AuthService.firebase()
                                         .sendEmailVerification();

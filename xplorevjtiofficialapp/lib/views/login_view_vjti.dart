@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
+import 'package:xplorevjtiofficialapp/database/userDatabase/update.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_exceptions.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
@@ -238,6 +242,20 @@ class _LoginViewVJTIState extends State<LoginViewVJTI> {
                                       AuthService.firebase().currentUser;
                                   if (user?.isEmailVerified ?? false) {
                                     // devtools.log(userCredential.toString());
+                                    final userData = await userDetails();
+                                    log(userData.toString() + "rutu");
+                                    var updatedPassword = "";
+                                    if (userData['password'] !=
+                                        _password.text.hashCode) {
+                                      updatedPassword = _password.text;
+                                    } else {
+                                      updatedPassword = userData['password'];
+                                    }
+                                    log(updatedPassword);
+                                    final response = await updateUserPassword(
+                                        userData['email'], updatedPassword);
+                                    log(response);
+
                                     Navigator.of(context)
                                         .pushNamedAndRemoveUntil(
                                             dashBoardRoute, (route) => false);
