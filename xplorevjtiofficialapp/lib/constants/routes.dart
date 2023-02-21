@@ -23,3 +23,4 @@ const searchNotesAndPyqRoute = '/search-notes-and-pyq';
 const downloadOrOpenLocationsRoute = '/download-or-open-VJTI-Maps';
 const searchNotesAndPyqDisplayRoute = '/display-search-notes-pyq';
 const forgotPasswordNonVjtiRoute = '/forgot-password-non-vjti';
+const deleteSeniorsMessagesRoute = '/delete-seniors-messages-view';

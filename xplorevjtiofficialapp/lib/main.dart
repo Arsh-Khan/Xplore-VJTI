@@ -9,6 +9,7 @@ import 'package:xplorevjtiofficialapp/views/contact_us.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_non_vjti.dart';
 import 'package:xplorevjtiofficialapp/views/dashboard_view.dart';
 import 'package:xplorevjtiofficialapp/views/delete_notes_and_pyq.dart';
+import 'package:xplorevjtiofficialapp/views/delete_seniors_msg_view.dart';
 import 'package:xplorevjtiofficialapp/views/download_or_open_locations_view.dart';
 import 'package:xplorevjtiofficialapp/views/forgot_password_view_nonvjti.dart';
 import 'package:xplorevjtiofficialapp/views/forgot_password_view_vjti.dart';
@@ -97,7 +98,8 @@ void main() async {
      // searchNotesAndPyqRoute:(context) => const SearchNotesAndPyqView(),
      downloadOrOpenLocationsRoute: (context) => const LocationsView(),
      searchNotesAndPyqRoute: (context) => const SearchNotesAndPyqPreviewView(),
-     forgotPasswordNonVjtiRoute: (context) => const ForgotPasswordNonVJTIView()
+     forgotPasswordNonVjtiRoute: (context) => const ForgotPasswordNonVJTIView(),
+     deleteSeniorsMessagesRoute:(context) => const DeleteSeniorsMessages(),
    },
  ));
 }

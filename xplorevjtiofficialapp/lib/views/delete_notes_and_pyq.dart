@@ -60,7 +60,9 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Color.fromARGB(255, 124, 5, 5),
+                    ),
                   );
                 } else {
                   if (snapshot.hasData) {
