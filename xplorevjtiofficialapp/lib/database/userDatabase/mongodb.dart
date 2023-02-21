@@ -30,7 +30,10 @@ class MongoDatabase {
 
   static Future<String> updatePassword(
       MongoDbUserModel data, String password) async {
-    var result = await userCollection.findOne({"email": data.email});
+    log("hello");
+    var result = await userCollection.findOne({"_id": data.id});
+    // result = result.last;
+    log("mouse");
     result['password'] = password;
 
     var response = await userCollection.save(result);
@@ -47,6 +50,13 @@ class MongoDatabase {
     log(data.toString());
     return data;
   }
+
+  // static Future<List<Map<String, dynamic>>> getUserIDQueryData(
+  //     String id) async {
+  //   final data = await userCollection.find(where.eq('_id', id)).toList();
+  //   log(data.toString());
+  //   return data;
+  // }
 
   static Future<String> deleteUserData(MongoDbUserModel user) async {
     try {
@@ -67,5 +77,4 @@ class MongoDatabase {
     var response = await userCollection.save(result);
     inspect(response);
   }
-  
 }

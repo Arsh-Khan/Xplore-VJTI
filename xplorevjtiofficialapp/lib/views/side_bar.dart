@@ -78,7 +78,7 @@ class _SideBarState extends State<SideBar> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, dashBoardRoute);
+                Navigator.pop(context);
               },
             ),
           ],
@@ -86,7 +86,6 @@ class _SideBarState extends State<SideBar> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +118,8 @@ class _SideBarState extends State<SideBar> {
                     ),
                     accountEmail: Text('${snapshot.data['email']}',
                         style: const TextStyle(
-                            color: Color.fromARGB(255, 124, 5, 5), fontWeight: FontWeight.bold)),
+                            color: Color.fromARGB(255, 124, 5, 5),
+                            fontWeight: FontWeight.bold)),
                     // currentAccountPicture: const CircleAvatar(
                     //   backgroundImage: ExactAssetImage(
                     //     'assets/VJTilogoforappbar.jpeg',
@@ -195,7 +195,6 @@ class _SideBarState extends State<SideBar> {
                       _showMyDialog();
                     },
                   ),
-                  
                 ],
               ),
             );
@@ -209,10 +208,10 @@ class _SideBarState extends State<SideBar> {
   }
 }
 
-double sizeAccToName(String name){
-  if (name.length > 11){
+double sizeAccToName(String name) {
+  if (name.length > 11) {
     return 19.0;
-  } else{
+  } else {
     return 25.0;
   }
 }

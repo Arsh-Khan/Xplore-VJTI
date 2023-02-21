@@ -1,19 +1,16 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
-import 'package:xplorevjtiofficialapp/database/userDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/services/auth/auth_service.dart';
-import 'package:xplorevjtiofficialapp/utilites/check_vjti_email.dart';
-import 'package:xplorevjtiofficialapp/utilites/show_error_dialog.dart';
 
-class ForgotPasswordVJTIView extends StatefulWidget {
-  const ForgotPasswordVJTIView({super.key});
+class ForgotPasswordNonVJTIView extends StatefulWidget {
+  const ForgotPasswordNonVJTIView({super.key});
 
   @override
-  State<ForgotPasswordVJTIView> createState() => _ForgotPasswordVJTIViewState();
+  State<ForgotPasswordNonVJTIView> createState() =>
+      _ForgotPasswordNonVJTIViewState();
 }
 
-class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
+class _ForgotPasswordNonVJTIViewState extends State<ForgotPasswordNonVJTIView> {
   late final TextEditingController _email;
 
   @override
@@ -34,7 +31,7 @@ class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, loginVJTIRoute);
+              Navigator.pushNamed(context, loginNonVJTIRoute);
             },
             icon: Icon(
               Icons.arrow_back_ios_sharp,
@@ -76,40 +73,6 @@ class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
             const SizedBox(
               height: 40,
             ),
-            // TextFormField(
-            //   controller: _password,
-            //   obscureText: true,
-            //   enableSuggestions: false,
-            //   autocorrect: false,
-            //   keyboardType: TextInputType.emailAddress,
-            //   decoration: const InputDecoration(
-            //     // border: OutlineInputBorder(),
-            //     hintText: 'Enter New Password',
-            //     hintStyle: TextStyle(
-            //       color: Color.fromARGB(255, 145, 38, 22),
-            //     ),
-            //     icon: Icon(Icons.lock_outline_rounded),
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 40,
-            // ),
-            // TextFormField(
-            //   controller: _confirmpassword,
-            //   obscureText: true,
-            //   enableSuggestions: false,
-            //   autocorrect: false,
-            //   keyboardType: TextInputType.emailAddress,
-            //   decoration: const InputDecoration(
-            //     // border: OutlineInputBorder(),
-            //     hintText: 'Enter New Confirm Password',
-            //     hintStyle: TextStyle(
-            //       color: Color.fromARGB(255, 145, 38, 22),
-            //     ),
-            //     icon: Icon(Icons.lock_outline_rounded),
-            //   ),
-            // ),
-
             const Text(
               'Open your mailbox',
               style: TextStyle(
@@ -123,30 +86,12 @@ class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
               height: 60,
             ),
             FloatingActionButton.extended(
-              heroTag: 'fp-1',
+              heroTag: 'fpnv-1',
               onPressed: () async {
                 // final user = await FirebaseAuth.instance.currentUser;
                 // log(user.toString());
                 final email = _email.text;
-                bool isVJTIEmail = emailCheck(email);
-                log(isVJTIEmail.toString());
-                if (isVJTIEmail) {
-                  final data = await MongoDatabase.getUserQueryData(email);
-                  log(data.toString());
-                  if (data.isNotEmpty) {
-                    await AuthService.firebase()
-                        .reAuthenticateEmail(email: email);
-                    // final user = AuthService.firebase().currentUser;
-                    // if (user!.isEmailVerified) {
-                    // } else {
-                    //   AuthService.firebase().sendEmailVerification();
-                    // }
-                  } else {
-                    showErrorDiaglog(context, 'User Dosent Exists');
-                  }
-                } else {
-                  showErrorDiaglog(context, 'Not a Valid VJTI Email ID');
-                }
+                await AuthService.firebase().reAuthenticateEmail(email: email);
               },
               label: const Text('Done?'),
               icon: const Icon(Icons.done),
@@ -156,9 +101,9 @@ class _ForgotPasswordVJTIViewState extends State<ForgotPasswordVJTIView> {
               height: 50,
             ),
             FloatingActionButton.extended(
-              heroTag: 'fp-2',
+              heroTag: 'fpnv-2',
               onPressed: () async {
-                Navigator.pushNamed(context, loginVJTIRoute);
+                Navigator.pushNamed(context, loginNonVJTIRoute);
               },
               label: const Text('Return to Login Page'),
               icon: const Icon(Icons.arrow_back_ios_new_sharp),

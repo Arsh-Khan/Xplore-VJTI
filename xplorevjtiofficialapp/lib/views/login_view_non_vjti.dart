@@ -185,7 +185,7 @@ class _LoginViewNonVJTIState extends State<LoginViewNonVJTI> {
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                                forgotPasswordRoute, (route) => false);
+                                forgotPasswordNonVjtiRoute, (route) => false);
                           },
                           child: const Text(
                             'Forgot Password',

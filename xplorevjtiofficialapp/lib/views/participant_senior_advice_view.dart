@@ -1,11 +1,10 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/MongoDBSeniorAdvicesModel.dart';
 import 'package:xplorevjtiofficialapp/database/seniorsAdviceDatabase/mongodb.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
-import 'package:xplorevjtiofficialapp/utilites/reg_no_tod_diya_jaye.dart';
+// import 'package:xplorevjtiofficialapp/utilites/reg_no_tod_diya_jaye.dart';
 
 class ParticipantSeniorAdviceView extends StatefulWidget {
   const ParticipantSeniorAdviceView({super.key});
@@ -63,7 +62,7 @@ class _ParticipantSeniorAdviceViewState
                         future: MongoSeniorAdviceDatabase.distinctQueryData(),
                         builder: (context, snapshot) {
                           log(snapshot.data.toString() + "why this null");
-      
+
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             return Center(
@@ -80,24 +79,28 @@ class _ParticipantSeniorAdviceViewState
                                 child: Column(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(10, 20, 10, 20),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 20, 10, 20),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.people_outline,
-                                            color: Color.fromARGB(255, 124, 5, 5),
+                                            color:
+                                                Color.fromARGB(255, 124, 5, 5),
                                             size: 40,
                                           ),
                                           const SizedBox(width: 7),
                                           Text(
-                                              '${snapshot.data.length}',
-                                              style: TextStyle(
-                                                color: Color.fromARGB(255, 124, 5, 5),
-                                                fontFamily: 'Poppins',
-                                                fontSize: 25,
-                                              ),
-                                              ),
+                                            '${snapshot.data.length}',
+                                            style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 124, 5, 5),
+                                              fontFamily: 'Poppins',
+                                              fontSize: 25,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),

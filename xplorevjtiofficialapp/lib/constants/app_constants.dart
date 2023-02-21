@@ -29,6 +29,18 @@ var branches = [
   'ALL'
 ];
 
+var signupBranches = [
+  'EXTC',
+  'CS',
+  'IT',
+  'Electronics',
+  'Electrical',
+  'Mechanical',
+  'Civil',
+  'Textile',
+  'Production'
+];
+
 // Reg No
 
 final month = {

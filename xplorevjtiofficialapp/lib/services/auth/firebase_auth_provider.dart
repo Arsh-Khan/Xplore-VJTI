@@ -194,22 +194,22 @@ class FirebaseAuthProvider implements AuthProvider {
   }
 
   @override
-  Future<AuthUser> reAuthenticateEmail(
-      {required String email, required String password}) async {
+  Future<void> reAuthenticateEmail({required String email}) async {
     try {
-      // Create a credential
-      AuthCredential credential =
-          EmailAuthProvider.credential(email: email, password: password);
+      // final authCredential = EmailAuthProvider.credentialWithLink(
+      //   email: email,
+      //   emailLink: "noreply@xplorevjtiofficialapp.firebaseapp.com",
+      // );
+      // await FirebaseAuth.instance.currentUser
+      //     ?.reauthenticateWithCredential(authCredential);
 
-      // Reauthenticate
-      await FirebaseAuth.instance.currentUser!
-          .reauthenticateWithCredential(credential);
-      final user = currentUser;
-      if (user != null) {
-        return user;
-      } else {
-        throw UserNotLoggedInAuthException();
-      }
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      // final user = currentUser;
+      // if (user != null) {
+      //   return user;
+      // } else {
+      //   throw UserNotLoggedInAuthException();
+      // }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw UserNotFoundAuthException();
