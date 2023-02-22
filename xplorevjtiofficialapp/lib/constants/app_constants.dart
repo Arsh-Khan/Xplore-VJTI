@@ -19,7 +19,7 @@ String branchesvalue = '--';
 var branches = [
   '--',
   'EXTC',
-  'CS',
+  'CE',
   'IT',
   'Electronics',
   'Electrical',
@@ -37,7 +37,7 @@ String signupbranchesvalue = '--';
 var signupbranches = [
   '--',
   'EXTC',
-  'CS',
+  'CE',
   'IT',
   'Electronics',
   'Electrical',
@@ -71,7 +71,7 @@ var branchWithCode = {
   '4': 'Production',
   '5': 'Textile',
   '6': 'Electronics',
-  '7': 'CS',
+  '7': 'CE',
   '8': 'IT',
   '9': 'EXTC'
 };
