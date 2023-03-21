@@ -14,15 +14,17 @@ class DeleteSeniorsMessages extends StatefulWidget {
 }
 
 class _DeleteSeniorsMessagesState extends State<DeleteSeniorsMessages> {
-ScrollController _scrollController = ScrollController();
-scrollToBottom() {
+  ScrollController _scrollController = ScrollController();
+  scrollToBottom() {
     Future.delayed(const Duration(milliseconds: 500));
     final position = _scrollController.position.maxScrollExtent;
     _scrollController.animateTo(
       position,
       duration: Duration(seconds: 1),
       curve: Curves.fastOutSlowIn,
-    );}
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     _scrollController = ScrollController();
@@ -47,9 +49,11 @@ scrollToBottom() {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () async {
-              final userdetails = await userDetails();
-              Navigator.pushNamed(context, seniorAdviceRoute,
-                  arguments: userdetails);
+              setState(() async {
+                final userdetails = await userDetails();
+                Navigator.pushNamed(context, seniorAdviceRoute,
+                    arguments: userdetails);
+              });
             },
             icon: Icon(
               Icons.arrow_back_ios_sharp,
@@ -138,9 +142,7 @@ scrollToBottom() {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child:
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch, 
-                children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -161,11 +163,11 @@ scrollToBottom() {
                   ),
                 ),
                 IconButton(
-                  onPressed: () async {
-                    await MongoSeniorAdviceDatabase.deleteMessage(data);
-                    setState(() { });
-                  },
-                  icon: Icon(Icons.delete_outline_rounded))
+                    onPressed: () async {
+                      await MongoSeniorAdviceDatabase.deleteMessage(data);
+                      setState(() {});
+                    },
+                    icon: Icon(Icons.delete_outline_rounded))
               ],
             ),
             const SizedBox(height: 10),

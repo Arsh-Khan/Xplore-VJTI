@@ -56,7 +56,9 @@ class _SearchNotesAndPyqPreviewViewState
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, notesAndPyqRoute);
+              setState(() {
+                Navigator.pushNamed(context, notesAndPyqRoute);
+              });
             },
             icon: Icon(
               Icons.arrow_back_ios_sharp,
@@ -454,10 +456,11 @@ class _SearchNotesAndPyqPreviewViewState
                   TextSpan(
                       text: '${data.subject}',
                       style: TextStyle(
-                          letterSpacing: 1, 
-                          fontWeight: FontWeight.bold, 
-                          fontSize: 14,
-                          color: Color.fromARGB(255, 59, 5, 5),)),
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Color.fromARGB(255, 59, 5, 5),
+                      )),
                   TextSpan(
                       text: '\nTopic: ',
                       style: TextStyle(
@@ -467,7 +470,10 @@ class _SearchNotesAndPyqPreviewViewState
                       )),
                   TextSpan(
                       text: '${data.topic}',
-                      style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 15)),
+                      style: TextStyle(
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15)),
                   TextSpan(
                       text: '\nDescription: ',
                       style: TextStyle(

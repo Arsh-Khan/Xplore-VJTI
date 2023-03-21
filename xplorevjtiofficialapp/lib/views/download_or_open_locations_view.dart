@@ -13,8 +13,6 @@ class LocationsView extends StatefulWidget {
 }
 
 class _LocationsViewState extends State<LocationsView> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,8 +78,7 @@ class _LocationsViewState extends State<LocationsView> {
                       onTap: () async {
                         await LaunchApp.openApp(
                             androidPackageName: 'com.raviowl.vjtimaps',
-                            openStore: true
-                          );
+                            openStore: true);
                       },
                       child: Center(
                         child: Column(

@@ -124,8 +124,10 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       children: [
                         IconButton(
                             onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed(searchNotesAndPyqRoute);
+                              setState(() {
+                                Navigator.of(context)
+                                    .pushNamed(searchNotesAndPyqRoute);
+                              });
                             },
                             tooltip: 'Filter',
                             icon: Icon(
@@ -153,29 +155,31 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       children: [
                         IconButton(
                             onPressed: () async {
-                              Navigator.pushNamed(
-                                  context, insertNotesAndPyqRoute,
-                                  arguments: MongoDbNotesAndPyqModel(
-                                      id: M.ObjectId(),
-                                      email: 'null',
-                                      name: 'null',
-                                      notesANDpyqs: 'null',
-                                      year: 'null',
-                                      branch: 'null',
-                                      subject: 'null',
-                                      topic: 'null',
-                                      description: 'null',
-                                      timeofsubmission: 'null',
-                                      link: 'null'));
+                              setState(() {
+                                Navigator.pushNamed(
+                                    context, insertNotesAndPyqRoute,
+                                    arguments: MongoDbNotesAndPyqModel(
+                                        id: M.ObjectId(),
+                                        email: 'null',
+                                        name: 'null',
+                                        notesANDpyqs: 'null',
+                                        year: 'null',
+                                        branch: 'null',
+                                        subject: 'null',
+                                        topic: 'null',
+                                        description: 'null',
+                                        timeofsubmission: 'null',
+                                        link: 'null'));
+                              });
                             },
                             icon: Icon(
                               Icons.add_box_outlined,
                               size: 40,
                               color: Color.fromARGB(255, 124, 5, 5),
                             ),
-                            tooltip: 'Insert Notes or PYQ'),
+                            tooltip: 'Publish Notes or PYQ'),
                         Text(
-                          ' Insert',
+                          ' Publish',
                           style: TextStyle(
                               color: Color.fromARGB(255, 124, 5, 5),
                               fontFamily: 'Poppins'),
@@ -194,10 +198,12 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       children: [
                         IconButton(
                             onPressed: () async {
-                              final userdata = await userDetails();
-                              Navigator.pushNamed(
-                                  context, updateNotesAndPyqRoute,
-                                  arguments: userdata['email'].toString());
+                              setState(() async {
+                                final userdata = await userDetails();
+                                Navigator.pushNamed(
+                                    context, updateNotesAndPyqRoute,
+                                    arguments: userdata['email'].toString());
+                              });
                             },
                             tooltip: 'Update Notes or PYQ',
                             icon: Icon(
@@ -225,10 +231,12 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       children: [
                         IconButton(
                             onPressed: () async {
-                              final userdata = await userDetails();
-                              Navigator.of(context).pushNamed(
-                                  deleteNotesAndPyqRoute,
-                                  arguments: userdata['email'].toString());
+                              setState(() async {
+                                final userdata = await userDetails();
+                                Navigator.of(context).pushNamed(
+                                    deleteNotesAndPyqRoute,
+                                    arguments: userdata['email'].toString());
+                              });
                             },
                             tooltip: 'Delete Notes',
                             icon: Icon(
@@ -371,7 +379,9 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                   TextSpan(
                       text: '${data.subject}',
                       style: TextStyle(
-                          letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 14)),
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14)),
                   TextSpan(
                       text: '\nTopic: ',
                       style: TextStyle(
@@ -381,7 +391,10 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                       )),
                   TextSpan(
                       text: '${data.topic}',
-                      style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 14)),
+                      style: TextStyle(
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14)),
                   TextSpan(
                       text: '\nDescription: ',
                       style: TextStyle(

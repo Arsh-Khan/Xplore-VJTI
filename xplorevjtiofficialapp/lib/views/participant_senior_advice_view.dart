@@ -19,7 +19,6 @@ class _ParticipantSeniorAdviceViewState
     extends State<ParticipantSeniorAdviceView> {
   @override
   Widget build(BuildContext context) {
-    
     final data = ModalRoute.of(context)!.settings.arguments as dynamic;
     log(data.toString());
 
@@ -28,12 +27,14 @@ class _ParticipantSeniorAdviceViewState
       appBar: AppBar(
         leading: IconButton(
             onPressed: () async {
-              final userdata = await userDetails();
-              Navigator.pushNamed(
-                context,
-                seniorAdviceRoute,
-                arguments: userdata,
-              );
+              setState(() async {
+                final userdata = await userDetails();
+                Navigator.pushNamed(
+                  context,
+                  seniorAdviceRoute,
+                  arguments: userdata,
+                );
+              });
             },
             icon: Icon(
               Icons.arrow_back_ios_sharp,
@@ -157,7 +158,6 @@ class _ParticipantSeniorAdviceViewState
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          
           // SizedBox(
           //   height: 5,
           // ),

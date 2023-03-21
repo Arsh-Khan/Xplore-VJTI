@@ -16,11 +16,14 @@ class _MapVJTIState extends State<MapVJTI> {
         backgroundColor: Colors.deepOrange[50],
         appBar: AppBar(
           leading: IconButton(
-          onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, 
-          icon: Icon(Icons.arrow_back_ios_sharp,
-          color: Color.fromARGB(255, 124, 5, 5), 
-          size: 30,)
-          ),
+              onPressed: () {
+                Navigator.pushNamed(context, dashBoardRoute);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios_sharp,
+                color: Color.fromARGB(255, 124, 5, 5),
+                size: 30,
+              )),
           title: const Text(
             'VJTI',
             style: TextStyle(
@@ -50,23 +53,19 @@ class _MapVJTIState extends State<MapVJTI> {
                   panEnabled: true,
                   boundaryMargin: EdgeInsets.all(100),
                   minScale: 0.5,
-                  maxScale: 2,
+                  maxScale: 3,
                   child: Image.asset(
                     'assets/CampusMap.png',
-                    width: 350,
-                    height: 900,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              Text(
-                'Index',
-                style: TextStyle(
-                  fontFamily: "Poppins",
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                )
-              ),
+              Text('Index',
+                  style: TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  )),
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(20.0),

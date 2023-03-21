@@ -23,7 +23,9 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, notesAndPyqRoute);
+              setState(() {
+                Navigator.pushNamed(context, notesAndPyqRoute);
+              });
             },
             icon: Icon(
               Icons.arrow_back_ios_sharp,

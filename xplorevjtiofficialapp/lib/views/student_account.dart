@@ -263,8 +263,8 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontSize: 18,
-                                              color:
-                                                  Color.fromARGB(255, 124, 5, 5),
+                                              color: Color.fromARGB(
+                                                  255, 124, 5, 5),
                                             ),
                                           ),
                                         ),
@@ -276,8 +276,8 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                             style: TextStyle(
                                               fontFamily: 'Poppins',
                                               fontSize: 20,
-                                              color:
-                                                  Color.fromARGB(255, 124, 5, 5),
+                                              color: Color.fromARGB(
+                                                  255, 124, 5, 5),
                                             ),
                                           ),
                                         )
@@ -378,17 +378,20 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                     color: const Color.fromARGB(255, 124, 5, 5),
                                     child: InkWell(
                                         onTap: () async {
-                                          final userdetails =
-                                              await userDetails();
-                                          // Navigator.of(context)
-                                          //     .pushNamedAndRemoveUntil(
-                                          //         updateStudentDetailsRoute,
-                                          //         arguments: userdetails,
-                                          //         ((route) => false));
-                                          Navigator.pushNamed(context, 
-                                          updateStudentDetailsRoute,
-                                          arguments: snapshot.data,
-                                          );
+                                          setState(() async {
+                                            final userdetails =
+                                                await userDetails();
+                                            // Navigator.of(context)
+                                            //     .pushNamedAndRemoveUntil(
+                                            //         updateStudentDetailsRoute,
+                                            //         arguments: userdetails,
+                                            //         ((route) => false));
+                                            Navigator.pushNamed(
+                                              context,
+                                              updateStudentDetailsRoute,
+                                              arguments: snapshot.data,
+                                            );
+                                          });
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),

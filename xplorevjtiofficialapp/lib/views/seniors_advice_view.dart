@@ -134,8 +134,10 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, dashBoardRoute,
-                    arguments: userDetails());
+                setState(() {
+                  Navigator.pushNamed(context, dashBoardRoute,
+                      arguments: userDetails());
+                });
               },
               icon: Icon(
                 Icons.arrow_back_ios_sharp,
@@ -158,14 +160,16 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                           userdatails['email'] == 'rsrao_b21@et.vjti.ac.in' ||
                           userdatails['email'] == 'rvjani_b21@et.vjti.ac.in' ||
                           userdatails['email'] ==
-                              'askarawale_b21@et.vjti.ac.in'){
-                                Navigator.of(context).pushNamed(deleteSeniorsMessagesRoute);
-                              }
-                      else {
-                        final userdetails = data;
-                        Navigator.of(context).pushNamed(
-                          participantSeniorAdviceRoute,
-                          arguments: userdetails);
+                              'askarawale_b21@et.vjti.ac.in') {
+                        Navigator.of(context)
+                            .pushNamed(deleteSeniorsMessagesRoute);
+                      } else {
+                        setState(() {
+                          final userdetails = data;
+                          Navigator.of(context).pushNamed(
+                              participantSeniorAdviceRoute,
+                              arguments: userdetails);
+                        });
                       }
                     },
                     child: AnimatedContainer(
@@ -179,10 +183,12 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                 IconButton(
                     onPressed: () async {
                       //pushnamed to header view
-                      final userdetails = data;
-                      Navigator.of(context).pushNamed(
-                          participantSeniorAdviceRoute,
-                          arguments: userdetails);
+                      setState(() {
+                        final userdetails = data;
+                        Navigator.of(context).pushNamed(
+                            participantSeniorAdviceRoute,
+                            arguments: userdetails);
+                      });
                     },
                     tooltip: 'Participants',
                     icon: const Icon(

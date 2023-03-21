@@ -16,17 +16,17 @@ class InsertNotesAndPyqView extends StatefulWidget {
 }
 
 class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
-  var nameController = new TextEditingController();
-  var emailController = new TextEditingController();
-  var typeController = new TextEditingController();
-  var yearController = new TextEditingController();
-  var branchController = new TextEditingController();
-  var subjectController = new TextEditingController();
-  var topicController = new TextEditingController();
-  var descriptionController = new TextEditingController();
-  var timeofsubmissionController = new TextEditingController();
-  var linkController = new TextEditingController();
-  var _checkInsertUpdate = "Insert";
+  late final TextEditingController nameController;
+  late final TextEditingController emailController;
+  late final TextEditingController typeController;
+  late final TextEditingController yearController;
+  late final TextEditingController branchController;
+  late final TextEditingController subjectController;
+  late final TextEditingController topicController;
+  late final TextEditingController descriptionController;
+  late final TextEditingController timeofsubmissionController;
+  late final TextEditingController linkController;
+  var _checkInsertUpdate = "Publish";
 
   // String dropdownvalue = 'Notes';
   // var notespyqs = ['Notes', 'PYQs'];
@@ -37,20 +37,38 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
   //   'TY',
   //   'Final Year',
   // ];
-  // @override
-  // void dispose() {
-  //   nameController.dispose();
-  //   emailController.dispose();
-  //   typeController.dispose();
-  //   yearController.dispose();
-  //   branchController.dispose();
-  //   subjectController.dispose();
-  //   topicController.dispose();
-  //   descriptionController.dispose();
-  //   timeofsubmissionController.dispose();
-  //   linkController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void initState() {
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    typeController = TextEditingController();
+    yearController = TextEditingController();
+    branchController = TextEditingController();
+    subjectController = TextEditingController();
+    topicController = TextEditingController();
+    descriptionController = TextEditingController();
+    timeofsubmissionController = TextEditingController();
+    linkController = TextEditingController();
+    yearController.text = defaultyear;
+    branchController.text = branchesvalue;
+    typeController.text = dropdownvalue;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    typeController.dispose();
+    yearController.dispose();
+    branchController.dispose();
+    subjectController.dispose();
+    topicController.dispose();
+    descriptionController.dispose();
+    timeofsubmissionController.dispose();
+    linkController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +136,10 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                 appBar: AppBar(
                   leading: IconButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, notesAndPyqRoute);
+                        setState(() {
+                          Navigator.pushNamed(context, notesAndPyqRoute);
+                        });
+                        dispose();
                       },
                       icon: Icon(
                         Icons.arrow_back_ios_sharp,
@@ -193,7 +214,8 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                             fontFamily: 'Poppins')),
                                     const SizedBox(width: 20),
                                     DropdownButton(
-                                      value: dropdownvalue,
+                                      // value: dropdownvalue,
+                                      value: typeController.text,
                                       icon:
                                           const Icon(Icons.keyboard_arrow_down),
                                       items: notespyqs.map((String items) {
@@ -204,9 +226,9 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                       }).toList(),
                                       onChanged: (String? newValue) {
                                         setState(() {
-                                          // typeController.text = newValue!;
                                           // log(typeController.text);
-                                          dropdownvalue = newValue!;
+                                          // dropdownvalue = newValue!;
+                                          typeController.text = newValue!;
                                         });
                                       },
                                     ),
@@ -222,7 +244,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                             fontFamily: 'Poppins')),
                                     const SizedBox(width: 20),
                                     DropdownButton(
-                                      value: branchesvalue,
+                                      value: branchController.text,
                                       icon:
                                           const Icon(Icons.keyboard_arrow_down),
                                       items: branches.map((String items) {
@@ -233,8 +255,8 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                       }).toList(),
                                       onChanged: (String? newValue) {
                                         setState(() {
-                                          branchesvalue = newValue!;
-                                          // branchController.text = newValue;
+                                          // branchesvalue = newValue!;
+                                          branchController.text = newValue!;
                                         });
                                       },
                                     ),
@@ -257,7 +279,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                             fontFamily: 'Poppins')),
                                     const SizedBox(width: 20),
                                     DropdownButton(
-                                      value: defaultyear,
+                                      value: yearController.text,
                                       icon:
                                           const Icon(Icons.keyboard_arrow_down),
                                       items: selectyear.map((String items) {
@@ -268,8 +290,8 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                       }).toList(),
                                       onChanged: (String? newValue) {
                                         setState(() {
-                                          defaultyear = newValue!;
-                                          // yearController.text = newValue;
+                                          // defaultyear = newValue!;
+                                          yearController.text = newValue!;
                                           // log(yearController.text);
                                         });
                                       },
@@ -282,7 +304,8 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         ),
                         TextField(
                           controller: subjectController,
-                          decoration: InputDecoration(labelText: "Subject (prefer short forms)"),
+                          decoration: InputDecoration(
+                              labelText: "Subject (prefer short forms)"),
                         ),
                         // TextField(
                         //   controller: branchController,
@@ -299,8 +322,9 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         ),
                         TextField(
                           controller: linkController,
-                          decoration:
-                              InputDecoration(labelText: "Link of Notes"),
+                          decoration: InputDecoration(
+                              labelText:
+                                  "Link of Notes (Make sure the link is public!)"),
                         ),
                         const SizedBox(
                           height: 30,
@@ -313,9 +337,17 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                 onTap: () {
                                   timeofsubmissionController.text =
                                       DateTime.now().toString();
-                                  typeController.text = dropdownvalue;
-                                  yearController.text = defaultyear;
-                                  branchController.text = branchesvalue;
+
+                                  final lastpos = timeofsubmissionController
+                                      .text
+                                      .lastIndexOf(':');
+
+                                  timeofsubmissionController.text =
+                                      timeofsubmissionController.text
+                                          .substring(0, lastpos + 2);
+                                  // typeController.text = dropdownvalue;
+                                  // yearController.text = defaultyear;
+                                  // branchController.text = branchesvalue;
                                   if (_checkInsertUpdate == "Update" &&
                                       (linkController.text != 'null' ||
                                           linkController.text != "")) {
@@ -332,27 +364,60 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                         descriptionController.text,
                                         timeofsubmissionController.text,
                                         linkController.text);
-                                  } else if (linkController.text != '' ||
-                                      linkController.text != 'null') {
-                                    if (yearController.text == "" &&
-                                        branchController.text == "" &&
-                                        typeController.text == "" &&
-                                        linkController.text == "") {
-                                      showErrorDiaglog(context,
-                                          "Select Type of Material \n Select Year \n Select Branch\nEnter Link");
-                                    } else {
-                                      _insertData(
-                                          nameController.text,
-                                          emailController.text,
-                                          typeController.text,
-                                          yearController.text,
-                                          branchController.text,
-                                          subjectController.text,
-                                          topicController.text,
-                                          descriptionController.text,
-                                          timeofsubmissionController.text,
-                                          linkController.text);
+                                  } else if (descriptionController.text == '' ||
+                                      descriptionController.text == 'null' ||
+                                      topicController.text == '' ||
+                                      topicController.text == 'null' ||
+                                      subjectController.text == '' ||
+                                      subjectController.text == 'null' ||
+                                      linkController.text == 'null' ||
+                                      yearController.text == "--" ||
+                                      branchController.text == "--" ||
+                                      typeController.text == "--" ||
+                                      linkController.text == "") {
+                                    var error = "";
+                                    if (linkController.text != 'null' ||
+                                        linkController.text == '') {
+                                      error += "Enter Link";
                                     }
+                                    if (yearController.text == '--' ||
+                                        yearController.text == '') {
+                                      error += "\nEnter Year";
+                                    }
+                                    if (branchController.text == '--' ||
+                                        branchController.text == '') {
+                                      error += "\nEnter Year";
+                                    }
+                                    if (typeController.text == '--' ||
+                                        typeController.text == '') {
+                                      error += "\nEnter Notes or PYQ";
+                                    }
+                                    if (subjectController.text == '' ||
+                                        subjectController.text == 'null') {
+                                      error += '\nEnter Subject';
+                                    }
+                                    if (topicController.text == '' ||
+                                        topicController.text == 'null') {
+                                      error += "\nEnter Topic";
+                                    }
+                                    if (descriptionController.text == '' ||
+                                        descriptionController.text == 'null') {
+                                      error += "\nEnter Description";
+                                    }
+
+                                    showErrorDiaglog(context, error);
+                                  } else {
+                                    _insertData(
+                                        nameController.text,
+                                        emailController.text,
+                                        typeController.text,
+                                        yearController.text,
+                                        branchController.text,
+                                        subjectController.text,
+                                        topicController.text,
+                                        descriptionController.text,
+                                        timeofsubmissionController.text,
+                                        linkController.text);
                                   }
                                 },
                                 child: Padding(
@@ -412,9 +477,11 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
 
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text("Added ID" + _id.$oid)));
-    _clearAll();
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil(notesAndPyqRoute, (route) => false);
+    // _clearAll();
+    setState(() {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(notesAndPyqRoute, (route) => false);
+    });
   }
 
   Future<void> _updateData(
@@ -445,16 +512,16 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
         .whenComplete(() => Navigator.pop(context));
   }
 
-  void _clearAll() {
-    nameController.text = "";
-    emailController.text = "";
-    typeController.text = "";
-    yearController.text = "";
-    subjectController.text = "";
-    topicController.text = "";
-    descriptionController.text = "";
-    timeofsubmissionController.text = "";
-    linkController.text = "";
-    branchController.text = "";
-  }
+  // void _clearAll() {
+  //   nameController.text = "";
+  //   emailController.text = "";
+  //   typeController.text = "";
+  //   yearController.text = "";
+  //   subjectController.text = "";
+  //   topicController.text = "";
+  //   descriptionController.text = "";
+  //   timeofsubmissionController.text = "";
+  //   linkController.text = "";
+  //   branchController.text = "";
+  // }
 }
