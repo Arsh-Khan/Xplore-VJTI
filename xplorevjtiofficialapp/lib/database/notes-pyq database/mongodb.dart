@@ -45,7 +45,7 @@ class MongoNotesAndPyqDatabase {
 
   static Future<List<Map<String, dynamic>>> getData() async {
     final arrData = await notesandpyqCollection.find().toList();
-    return arrData;
+    return arrData..shuffle();
   }
 
   static delete(MongoDbNotesAndPyqModel user) async {

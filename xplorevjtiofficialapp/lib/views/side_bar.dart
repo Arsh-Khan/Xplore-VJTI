@@ -98,8 +98,7 @@ class _SideBarState extends State<SideBar> {
             fsize = sizeAccToName(snapshot.data['name']);
             return Drawer(
               elevation: 100,
-              backgroundColor:
-                  Color.fromARGB(0, 255, 255, 255).withOpacity(0.9),
+              backgroundColor: Color.fromARGB(0, 255, 255, 255).withOpacity(1),
               child: BackdropFilter(
                 filter: ImageFilter.blur(
                     // sigmaX: 2.0,
@@ -143,13 +142,11 @@ class _SideBarState extends State<SideBar> {
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: Container(
-                          
                           decoration: BoxDecoration(
-                            
-                              color: Colors.deepOrange[50]?.withOpacity(1),
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10)),
-                                  ),
+                            color: Colors.deepOrange[50]?.withOpacity(1),
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(10)),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(10, 0, 0, 20),
                             child: Column(

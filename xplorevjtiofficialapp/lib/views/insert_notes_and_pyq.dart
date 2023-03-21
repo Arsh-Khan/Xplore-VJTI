@@ -117,14 +117,14 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                 backgroundColor: Colors.deepOrange[50],
                 appBar: AppBar(
                   leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, notesAndPyqRoute);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_sharp,
-              color: Color.fromARGB(255, 124, 5, 5),
-              size: 30,
-            )),
+                      onPressed: () {
+                        Navigator.pushNamed(context, notesAndPyqRoute);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios_sharp,
+                        color: Color.fromARGB(255, 124, 5, 5),
+                        size: 30,
+                      )),
                   title: const Text(
                     'VJTI',
                     style: TextStyle(
@@ -240,14 +240,13 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                                     ),
                                   ],
                                 ),
-                                 const Text(
-                        'NOTE : Please select \'ALL\' if you are FY',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Poppins',
-                          fontSize: 10,
-                        )
-                        ),
+                                const Text(
+                                    'NOTE : Please select \'ALL\' if you are FY',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'Poppins',
+                                      fontSize: 10,
+                                    )),
                                 Row(
                                   children: [
                                     Text('Select year : ',

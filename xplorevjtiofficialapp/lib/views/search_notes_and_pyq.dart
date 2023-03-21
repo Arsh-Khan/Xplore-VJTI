@@ -98,7 +98,7 @@ class _SearchNotesAndPyqPreviewViewState
       body: SingleChildScrollView(
         child: Column(children: [
           const SizedBox(height: 20),
-          Text('Search',
+          Text('Search Notes & PYQ',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 30,
@@ -174,14 +174,12 @@ class _SearchNotesAndPyqPreviewViewState
                           ),
                         ],
                       ),
-                      const Text(
-                        'NOTE : Please select \'ALL\' if you are FY',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Poppins',
-                          fontSize: 12,
-                        )
-                        ),
+                      const Text('NOTE : Please select \'ALL\' if you are FY',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Poppins',
+                            fontSize: 12,
+                          )),
                       Row(
                         children: [
                           Text('Select year : ',
