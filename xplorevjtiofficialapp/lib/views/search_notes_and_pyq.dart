@@ -449,22 +449,25 @@ class _SearchNotesAndPyqPreviewViewState
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
-                        color: Color.fromARGB(255, 177, 8, 8),
+                        color: Color.fromARGB(255, 124, 5, 5),
                       )),
                   TextSpan(
                       text: '${data.subject}',
                       style: TextStyle(
-                          letterSpacing: 1, fontWeight: FontWeight.bold)),
+                          letterSpacing: 1, 
+                          fontWeight: FontWeight.bold, 
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 59, 5, 5),)),
                   TextSpan(
                       text: '\nTopic: ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
-                        color: Color.fromARGB(255, 177, 8, 8),
+                        color: Color.fromARGB(255, 124, 5, 5),
                       )),
                   TextSpan(
                       text: '${data.topic}',
-                      style: TextStyle(letterSpacing: 1)),
+                      style: TextStyle(letterSpacing: 1, fontWeight: FontWeight.bold, fontSize: 15)),
                   TextSpan(
                       text: '\nDescription: ',
                       style: TextStyle(

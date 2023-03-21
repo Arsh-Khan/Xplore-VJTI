@@ -282,7 +282,7 @@ class _InsertNotesAndPyqViewState extends State<InsertNotesAndPyqView> {
                         ),
                         TextField(
                           controller: subjectController,
-                          decoration: InputDecoration(labelText: "Subject"),
+                          decoration: InputDecoration(labelText: "Subject (prefer short forms)"),
                         ),
                         // TextField(
                         //   controller: branchController,
