@@ -29,11 +29,14 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){Navigator.pushNamed(context, dashBoardRoute);}, 
-          icon: Icon(Icons.arrow_back_ios_sharp,
-          color: Color.fromARGB(255, 124, 5, 5), 
-          size: 30,)
-          ),
+            onPressed: () {
+              Navigator.pushNamed(context, dashBoardRoute);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Color.fromARGB(255, 124, 5, 5),
+              size: 30,
+            )),
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
         title: const Text(
@@ -114,57 +117,174 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      Navigator.pushNamed(context, insertNotesAndPyqRoute,
-                          arguments: MongoDbNotesAndPyqModel(
-                              id: M.ObjectId(),
-                              email: 'null',
-                              name: 'null',
-                              notesANDpyqs: 'null',
-                              year: 'null',
-                              subject: 'null',
-                              topic: 'null',
-                              description: 'null',
-                              timeofsubmission: 'null',
-                              link: 'null'));
-                    },
-                    icon: Icon(Icons.add_box_outlined, size: 40),
-                    tooltip: 'Insert Notes or PYQ'),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                Navigator.of(context)
+                                    .pushNamed(searchNotesAndPyqRoute);
+                              });
+                            },
+                            tooltip: 'Filter',
+                            icon: Icon(
+                              Icons.filter_alt_sharp,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Filter',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      final userdata = await userDetails();
-                      Navigator.pushNamed(context, updateNotesAndPyqRoute,
-                          arguments: userdata['email'].toString());
-                    },
-                    tooltip: 'Update Notes or PYQ',
-                    icon: Icon(Icons.update, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              setState(() {
+                                Navigator.pushNamed(
+                                    context, insertNotesAndPyqRoute,
+                                    arguments: MongoDbNotesAndPyqModel(
+                                        id: M.ObjectId(),
+                                        email: 'null',
+                                        name: 'null',
+                                        notesANDpyqs: 'null',
+                                        year: 'null',
+                                        branch: 'null',
+                                        subject: 'null',
+                                        topic: 'null',
+                                        description: 'null',
+                                        timeofsubmission: 'null',
+                                        link: 'null'));
+                              });
+                            },
+                            icon: Icon(
+                              Icons.add_box_outlined,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            ),
+                            tooltip: 'Publish Notes or PYQ'),
+                        Text(
+                          ' Publish',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () async {
-                      final userdata = await userDetails();
-                      Navigator.of(context).pushNamed(deleteNotesAndPyqRoute,
-                          arguments: userdata['email'].toString());
-                    },
-                    tooltip: 'Delete Notes',
-                    icon: Icon(Icons.delete, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              setState(() async {
+                                final userdata = await userDetails();
+                                Navigator.pushNamed(
+                                    context, updateNotesAndPyqRoute,
+                                    arguments: userdata['email'].toString());
+                              });
+                            },
+                            tooltip: 'Update Notes or PYQ',
+                            icon: Icon(
+                              Icons.update,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Update',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
-                child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, notesAndPyqRoute, (route) => false);
-                      });
-                    },
-                    tooltip: 'Refresh Page',
-                    icon: Icon(Icons.refresh, size: 40)),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () async {
+                              setState(() async {
+                                final userdata = await userDetails();
+                                Navigator.of(context).pushNamed(
+                                    deleteNotesAndPyqRoute,
+                                    arguments: userdata['email'].toString());
+                              });
+                            },
+                            tooltip: 'Delete Notes',
+                            icon: Icon(
+                              Icons.delete,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Delete',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 5, 7, 20),
+                child: Container(
+                  height: 80,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              setState(() {
+                                Navigator.pushNamedAndRemoveUntil(context,
+                                    notesAndPyqRoute, (route) => false);
+                              });
+                            },
+                            tooltip: 'Refresh Page',
+                            icon: Icon(
+                              Icons.refresh,
+                              size: 40,
+                              color: Color.fromARGB(255, 124, 5, 5),
+                            )),
+                        Text(
+                          ' Refresh',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 124, 5, 5),
+                              fontFamily: 'Poppins'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           )),
@@ -240,26 +360,41 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
                   TextSpan(
                       text: "${data.year}", style: TextStyle(letterSpacing: 1)),
                   TextSpan(
-                      text: '\nSubject: ',
+                      text: "\nBranch: ",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                         color: Color.fromARGB(255, 177, 8, 8),
                       )),
                   TextSpan(
+                      text: "${data.branch}",
+                      style: TextStyle(letterSpacing: 1)),
+                  TextSpan(
+                      text: '\nSubject: ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: Color.fromARGB(255, 124, 5, 5),
+                      )),
+                  TextSpan(
                       text: '${data.subject}',
                       style: TextStyle(
-                          letterSpacing: 1, fontWeight: FontWeight.bold)),
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14)),
                   TextSpan(
                       text: '\nTopic: ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
-                        color: Color.fromARGB(255, 177, 8, 8),
+                        color: Color.fromARGB(255, 124, 5, 5),
                       )),
                   TextSpan(
                       text: '${data.topic}',
-                      style: TextStyle(letterSpacing: 1)),
+                      style: TextStyle(
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14)),
                   TextSpan(
                       text: '\nDescription: ',
                       style: TextStyle(
@@ -339,6 +474,7 @@ class _NotesAndPyqViewState extends State<NotesAndPyqView> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
+                  heroTag: "h${data.id}",
                   onPressed: () {
                     // SfPdfViewer.network(data.link.toString());
                     final url = data.link.toString();

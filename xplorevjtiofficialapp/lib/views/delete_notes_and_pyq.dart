@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:xplorevjtiofficialapp/constants/routes.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/MongoDBNotesAndPyqModel.dart';
 import 'package:xplorevjtiofficialapp/database/notes-pyq%20database/mongodb.dart';
 
@@ -19,6 +20,17 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
     return Scaffold(
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              setState(() {
+                Navigator.pushNamed(context, notesAndPyqRoute);
+              });
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Color.fromARGB(255, 124, 5, 5),
+              size: 30,
+            )),
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
         title: const Text(
@@ -45,19 +57,21 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                 )),
             const SizedBox(height: 20),
             SafeArea(
-              child: FutureBuilder(
+                child: FutureBuilder(
               future: MongoNotesAndPyqDatabase.getQueryData('email', email),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Color.fromARGB(255, 124, 5, 5),
+                    ),
                   );
                 } else {
                   if (snapshot.hasData) {
                     return Container(
                       decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40.0),
-                              color: const Color.fromARGB(103, 236, 183, 183),
+                        borderRadius: BorderRadius.circular(40.0),
+                        color: const Color.fromARGB(103, 236, 183, 183),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
@@ -74,7 +88,8 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                     );
                   } else {
                     return Container(
-                      child: const Text('Arey pehle notes toh daalo, fir delete karna '),
+                      child: const Text(
+                          'Arey pehle notes toh daalo, fir delete karna '),
                     );
                   }
                 }
@@ -91,9 +106,9 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
       padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Card(
         color: Color.fromARGB(222, 255, 255, 255),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
@@ -122,6 +137,10 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
                   SizedBox(
                     height: 5,
                   ),
+                  Text("Year: ${data.branch}"),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text('Subject: ${data.subject}'),
                   SizedBox(
                     height: 5,
@@ -138,14 +157,82 @@ class _DeleteNotesAndPyqViewState extends State<DeleteNotesAndPyqView> {
               ),
               IconButton(
                   onPressed: () async {
-                    await MongoNotesAndPyqDatabase.delete(data);
-                    setState(() {});
+                    _showMyDialog(data);
                   },
                   icon: Icon(Icons.delete))
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(dynamic data) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          elevation: 10,
+          backgroundColor: Colors.deepOrange[50],
+          title: Text(
+            'Sure Delete?',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 20,
+              color: Color.fromARGB(255, 124, 5, 5),
+            ),
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Are you sure you want to Delete?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'Yes',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 15,
+                  color: Colors.red,
+                ),
+              ),
+              onPressed: () async {
+                await MongoNotesAndPyqDatabase.delete(data);
+                Navigator.pop(context);
+                setState(() {});
+              },
+            ),
+            TextButton(
+              child: Text(
+                'No',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 15,
+                  color: Colors.red,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -249,37 +249,40 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                   ),
                                   height: 100,
                                   width: 500,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(10, 10, 0, 0),
-                                        child: Text(
-                                          'Mail ID',
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 18,
-                                            color:
-                                                Color.fromARGB(255, 124, 5, 5),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 10, 0, 0),
+                                          child: Text(
+                                            'Mail ID',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 18,
+                                              color: Color.fromARGB(
+                                                  255, 124, 5, 5),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            10, 0, 0, 0),
-                                        child: Text(
-                                          '${snapshot.data['email']}',
-                                          style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 20,
-                                            color:
-                                                Color.fromARGB(255, 124, 5, 5),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              10, 0, 0, 0),
+                                          child: Text(
+                                            '${snapshot.data['email']}',
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 20,
+                                              color: Color.fromARGB(
+                                                  255, 124, 5, 5),
+                                            ),
                                           ),
-                                        ),
-                                      )
-                                    ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 20),
@@ -375,17 +378,20 @@ class _StudentVJTIState extends State<StudentVJTI> {
                                     color: const Color.fromARGB(255, 124, 5, 5),
                                     child: InkWell(
                                         onTap: () async {
-                                          final userdetails =
-                                              await userDetails();
-                                          // Navigator.of(context)
-                                          //     .pushNamedAndRemoveUntil(
-                                          //         updateStudentDetailsRoute,
-                                          //         arguments: userdetails,
-                                          //         ((route) => false));
-                                          Navigator.pushNamed(context, 
-                                          updateStudentDetailsRoute,
-                                          arguments: snapshot.data,
-                                          );
+                                          setState(() async {
+                                            final userdetails =
+                                                await userDetails();
+                                            // Navigator.of(context)
+                                            //     .pushNamedAndRemoveUntil(
+                                            //         updateStudentDetailsRoute,
+                                            //         arguments: userdetails,
+                                            //         ((route) => false));
+                                            Navigator.pushNamed(
+                                              context,
+                                              updateStudentDetailsRoute,
+                                              arguments: snapshot.data,
+                                            );
+                                          });
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(15.0),

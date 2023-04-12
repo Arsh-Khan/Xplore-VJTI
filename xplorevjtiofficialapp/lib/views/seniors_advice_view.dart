@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
-
+import 'dart:io';
+import 'package:xplorevjtiofficialapp/main.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart' as M;
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
@@ -21,6 +25,8 @@ class SeniorAdviceView extends StatefulWidget {
 
 class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   ScrollController _scrollController = new ScrollController();
+  final TextEditingController _textEditingController = TextEditingController();
+
   Timer? _timer;
 
   Future<void> getMessages() async {
@@ -54,7 +60,6 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
 
   @override
   void initState() {
-
     messageController = TextEditingController();
     _scrollController = ScrollController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -75,9 +80,15 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
     });
     _timer = Timer.periodic(Duration(seconds: 2), (timer) {
       getMessages().onError((error, stackTrace) => timer.cancel());
-    // scrollToBottom();
+      // scrollToBottom();
     });
-    super.initState();
+    void main() {
+      var givenValue = stdin.readLineSync();
+
+      if (givenValue != null) {
+        var parsedValue = int.parse(givenValue);
+      }
+    }
   }
 
   @override
@@ -93,7 +104,8 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as dynamic;
-
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     log(data.toString() + "hello");
 
     return Scaffold(
@@ -122,7 +134,10 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, dashBoardRoute, arguments: userDetails());
+                setState(() {
+                  Navigator.pushNamed(context, dashBoardRoute,
+                      arguments: userDetails());
+                });
               },
               icon: Icon(
                 Icons.arrow_back_ios_sharp,
@@ -135,13 +150,45 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
             padding: const EdgeInsets.fromLTRB(7, 5, 20, 0),
             child: Row(
               children: [
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onLongPress: () async {
+                      final userdatails = await userDetails();
+                      if (userdatails['email'] == 'afkhan_b21@et.vjti.ac.in' ||
+                          userdatails['email'] == 'afkhan_b21@el.vjti.ac.in' ||
+                          userdatails['email'] == 'rsrao_b21@et.vjti.ac.in' ||
+                          userdatails['email'] == 'rvjani_b21@et.vjti.ac.in' ||
+                          userdatails['email'] ==
+                              'askarawale_b21@et.vjti.ac.in') {
+                        Navigator.of(context)
+                            .pushNamed(deleteSeniorsMessagesRoute);
+                      } else {
+                        setState(() {
+                          final userdetails = data;
+                          Navigator.of(context).pushNamed(
+                              participantSeniorAdviceRoute,
+                              arguments: userdetails);
+                        });
+                      }
+                    },
+                    child: AnimatedContainer(
+                      height: 20,
+                      width: 20,
+                      duration: Duration(seconds: 0),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
                 IconButton(
                     onPressed: () async {
                       //pushnamed to header view
-                      final userdetails = data;
-                      Navigator.of(context).pushNamed(
-                          participantSeniorAdviceRoute,
-                          arguments: userdetails);
+                      setState(() {
+                        final userdetails = data;
+                        Navigator.of(context).pushNamed(
+                            participantSeniorAdviceRoute,
+                            arguments: userdetails);
+                      });
                     },
                     tooltip: 'Participants',
                     icon: const Icon(
@@ -170,7 +217,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text('Seniors Advice',
+            Text('Seniors Connect',
                 style: TextStyle(
                   fontFamily: 'Poppins',
                   fontSize: 30,
@@ -201,7 +248,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(85, 219, 112, 112),
+                              color: Color.fromARGB(54, 219, 112, 112),
                               borderRadius: BorderRadius.circular(30),
                             ),
                             child: Padding(
@@ -244,52 +291,58 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
           padding: MediaQuery.of(context).viewInsets,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              controller: messageController,
-              enableSuggestions: true,
-              autocorrect: false,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                fillColor: Color.fromARGB(255, 124, 5, 5),
-                hoverColor: Color.fromARGB(255, 124, 5, 5),
-                iconColor: Color.fromARGB(255, 124, 5, 5),
-                focusColor: Color.fromARGB(255, 124, 5, 5),
-                hintText: 'Message',
-                suffixIcon: IconButton(
-                    onPressed: () async {
-                      int a = 0;
-
-                      final result =
-                          await insertMessage(data, messageController.text);
-                      if (result == 'Success') {
-                        getMessages();
-                        messageController.text = "";
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          if (_scrollController.hasClients) {
-                            _scrollController.jumpTo(
-                                _scrollController.position.maxScrollExtent +
-                                    500);
-                          } else {
-                            setState(() {
-                              return null;
-                            });
-                          }
-                        });
-                        // scrollToBottom();
-                      } else if (result == 'Empty Field') {
-                      } else {
-                        showErrorDiaglog(context, result);
-                      }
-                      // final position =
-                      //     _scrollController.position.maxScrollExtent;
-                      // await _scrollController.animateTo(
-                      //   position,
-                      //   duration: Duration(seconds: 1),
-                      //   curve: Curves.fastOutSlowIn,
-                      // );
-                    },
-                    icon: Icon(Icons.send,
-                        color: Color.fromARGB(255, 124, 5, 5))),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: height, //when it reach the max it will use scroll
+                maxWidth: width,
+              ),
+              child: TextField(
+                controller: messageController,
+                enableSuggestions: true,
+                autocorrect: false,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                minLines: 1,
+                decoration: InputDecoration(
+                  fillColor: Color.fromARGB(255, 124, 5, 5),
+                  hoverColor: Color.fromARGB(255, 124, 5, 5),
+                  iconColor: Color.fromARGB(255, 124, 5, 5),
+                  focusColor: Color.fromARGB(255, 124, 5, 5),
+                  hintText: 'Type your message',
+                  suffixIcon: IconButton(
+                      onPressed: () async {
+                        final result =
+                            await insertMessage(data, messageController.text);
+                        if (result == 'Success') {
+                          getMessages();
+                          messageController.text = "";
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            if (_scrollController.hasClients) {
+                              _scrollController.jumpTo(
+                                  _scrollController.position.maxScrollExtent +
+                                      500);
+                            } else {
+                              setState(() {
+                                return null;
+                              });
+                            }
+                          });
+                          // scrollToBottom();
+                        } else if (result == 'Empty Field') {
+                        } else {
+                          showErrorDiaglog(context, result);
+                        }
+                        // final position =
+                        //     _scrollController.position.maxScrollExtent;
+                        // await _scrollController.animateTo(
+                        //   position,
+                        //   duration: Duration(seconds: 1),
+                        //   curve: Curves.fastOutSlowIn,
+                        // );
+                      },
+                      icon: Icon(Icons.send,
+                          color: Color.fromARGB(255, 124, 5, 5))),
+                ),
               ),
             ),
           ),
@@ -314,7 +367,7 @@ class _SeniorAdviceViewState extends State<SeniorAdviceView> {
       userStatus = '';
     }
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+      padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
       child: Card(
         color: color,
         shape: RoundedRectangleBorder(

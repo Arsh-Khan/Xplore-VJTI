@@ -66,4 +66,8 @@ class MongoSeniorAdviceDatabase {
     await seniorAdviceCollection.deleteMany({});
   }
 
+  static deleteMessage(MongoDbSeniorAdviceModel data) async {
+    await seniorAdviceCollection.remove(where.id(data.id));
+  }
+
 }

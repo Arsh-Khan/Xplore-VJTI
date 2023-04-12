@@ -22,11 +22,16 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
       backgroundColor: Colors.deepOrange[50],
       appBar: AppBar(
         leading: IconButton(
-          onPressed: (){Navigator.pushNamed(context, notesAndPyqRoute);}, 
-          icon: Icon(Icons.arrow_back_ios_sharp,
-          color: Color.fromARGB(255, 124, 5, 5), 
-          size: 30,)
-          ),
+            onPressed: () {
+              setState(() {
+                Navigator.pushNamed(context, notesAndPyqRoute);
+              });
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_sharp,
+              color: Color.fromARGB(255, 124, 5, 5),
+              size: 30,
+            )),
         backgroundColor: Colors.deepOrange[50],
         elevation: 0,
         title: const Text(
@@ -54,36 +59,36 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
             FutureBuilder(
               future: MongoNotesAndPyqDatabase.getQueryData('email', email),
               builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              if (snapshot.hasData) {
-                return Container(
-                  decoration: BoxDecoration(
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  if (snapshot.hasData) {
+                    return Container(
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40.0),
                         color: const Color.fromARGB(103, 236, 183, 183),
                       ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
-                    child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return displayCard(MongoDbNotesAndPyqModel.fromJson(
-                            snapshot.data![index]));
-                      },
-                    ),
-                  ),
-                );
-              } else {
-                return Center(
-                  child: const Text('No Data Found'),
-                );
-              }
-            }
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 10, 5, 10),
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return displayCard(MongoDbNotesAndPyqModel.fromJson(
+                                snapshot.data![index]));
+                          },
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: const Text('No Data Found'),
+                    );
+                  }
+                }
               },
             ),
           ],
@@ -95,9 +100,9 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
   Widget displayCard(MongoDbNotesAndPyqModel data) {
     return Card(
       color: Color.fromARGB(222, 255, 255, 255),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
@@ -123,6 +128,10 @@ class _UpdateNotesAndPyqViewState extends State<UpdateNotesAndPyqView> {
                   height: 5,
                 ),
                 Text("Year: ${data.year}"),
+                SizedBox(
+                  height: 5,
+                ),
+                Text("Branch: ${data.branch}"),
                 SizedBox(
                   height: 5,
                 ),

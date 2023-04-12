@@ -32,6 +32,7 @@ class MongoNotesAndPyqDatabase {
     result['name'] = data.name;
     result['notesANDpyqs'] = data.notesANDpyqs;
     result['year'] = data.year;
+    result['branch'] = data.branch;
     result['subject'] = data.subject;
     result['topic'] = data.topic;
     result['description'] = data.description;
@@ -44,7 +45,7 @@ class MongoNotesAndPyqDatabase {
 
   static Future<List<Map<String, dynamic>>> getData() async {
     final arrData = await notesandpyqCollection.find().toList();
-    return arrData;
+    return arrData..shuffle();
   }
 
   static delete(MongoDbNotesAndPyqModel user) async {
@@ -54,8 +55,25 @@ class MongoNotesAndPyqDatabase {
   static Future<List<Map<String, dynamic>>> getQueryData(
       String query, String parameter) async {
     final data =
-        await notesandpyqCollection.find(where.eq('email', parameter)).toList();
+        await notesandpyqCollection.find(where.eq(query, parameter)).toList();
     log(data.toString());
+    return data;
+  }
+
+  static Future<List<Map<String, dynamic>>> notesAndPyqSearch(
+      String query1,
+      String parameter1,
+      String query2,
+      String parameter2,
+      String query3,
+      String parameter3) async {
+    // final data = [
+    //   {'': ''}
+    // ];
+    final data = await notesandpyqCollection.find(
+        {query1: parameter1, query2: parameter2, query3: parameter3}).toList();
+
+    log(data.toString() + "Work");
     return data;
   }
 }

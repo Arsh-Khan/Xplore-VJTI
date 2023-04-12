@@ -1,8 +1,13 @@
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:xplorevjtiofficialapp/constants/routes.dart';
+import 'package:xplorevjtiofficialapp/main.dart';
 import 'package:xplorevjtiofficialapp/services/auth/user_details.dart';
 import 'package:xplorevjtiofficialapp/views/side_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class DashBoardView extends StatefulWidget {
   const DashBoardView({super.key});
@@ -13,12 +18,60 @@ class DashBoardView extends StatefulWidget {
 
 class _DashBoardViewState extends State<DashBoardView> {
   launchUrl(String url) async {
-    if (await canLaunch(url)){
+    if (await canLaunch(url)) {
       await launch(url);
-    } else{
+    } else {
       throw 'Could not launch $url';
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                //channel.description,
+                color: Colors.blue,
+                playSound: true,
+                icon: '@mimap/ic_launcher',
+              ),
+            ));
+      }
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      if (notification != null && android != null) {
+        showDialog(
+            context: context,
+            builder: (_) {
+              return AlertDialog(
+                title: Text(notification.title!),
+                content: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(notification.body!),
+                    ],
+                  ),
+                ),
+              );
+            });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -56,7 +109,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                     color: Color.fromARGB(255, 124, 5, 5),
                   ),
                 ),
-
                 centerTitle: true,
               ),
               body: SingleChildScrollView(
@@ -66,35 +118,42 @@ class _DashBoardViewState extends State<DashBoardView> {
                       color: Colors.deepOrange[50],
                       child: InkWell(
                         onTap: () async {
-                          Navigator.pushNamed(context, studentAccountRoute);
+                          setState(() {
+                            Navigator.pushNamed(context, studentAccountRoute);
+                          });
                         },
                         child: AnimatedContainer(
                           duration: const Duration(seconds: 0),
                           decoration: const BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            color: Color.fromARGB(219, 124, 5, 5),
-                            borderRadius: BorderRadius.zero,
-                          ),
+                              shape: BoxShape.rectangle,
+                              color: Color.fromARGB(219, 124, 5, 5),
+                              borderRadius: BorderRadius.zero,
+                              image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:
+                                      AssetImage('assets/BlurWithLogo.jpeg'))),
                           height: 200,
                           width: 500,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              const SizedBox(width: 30),
                               Text(
                                 'Welcome\n${snapshot.data['name'].substring(0, snapshot.data['name'].indexOf(' '))}',
                                 maxLines: 2,
                                 overflow: TextOverflow.fade,
-                                style: const TextStyle(
-                                  fontSize: 25,
+                                style: TextStyle(
+                                  fontSize: 30,
                                   fontFamily: 'Poppins',
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.bold,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(5.0, 4.0),
+                                      blurRadius: 3.0,
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              const SizedBox(width: 10),
-                              CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/VJTilogoforappbar.jpeg'),
-                                radius: 70,
                               ),
                             ],
                           ),
@@ -115,9 +174,11 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () async {
-                              final userdata = await userDetails();
-                              Navigator.pushNamed(context, seniorAdviceRoute,
-                                  arguments: userdata);
+                              setState(() async {
+                                final userdata = await userDetails();
+                                Navigator.pushNamed(context, seniorAdviceRoute,
+                                    arguments: userdata);
+                              });
                             },
                             child: Center(
                               child: Column(
@@ -128,7 +189,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Image.asset(
-                                      'assets/advice.png',
+                                      'assets/connect.png',
                                       height: 100,
                                       width: 100,
                                       fit: BoxFit.fill,
@@ -138,7 +199,7 @@ class _DashBoardViewState extends State<DashBoardView> {
                                     height: 10,
                                   ),
                                   const Text(
-                                    'Seniors\' \nAdvice',
+                                    'Seniors\' \nConnect',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
@@ -211,7 +272,10 @@ class _DashBoardViewState extends State<DashBoardView> {
                           child: InkWell(
                             splashColor: Colors.transparent,
                             onTap: () {
-                              Navigator.of(context).pushNamed(notesAndPyqRoute);
+                              setState(() {
+                                Navigator.of(context)
+                                    .pushNamed(notesAndPyqRoute);
+                              });
                             },
                             child: Center(
                               child: Column(
@@ -292,7 +356,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                       ],
                     ),
                     const SizedBox(height: 50),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -305,9 +368,14 @@ class _DashBoardViewState extends State<DashBoardView> {
                           ),
                           child: InkWell(
                             splashColor: Colors.transparent,
-                            onTap: () {
-                              const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
-                              launch(url);
+                            onTap: () async {
+                              // const url = 'https://play.google.com/store/apps/details?id=com.raviowl.vjtimaps';
+                              // launch(url);
+                              //  Navigator.pushNamed(
+                              //      context, downloadOrOpenLocationsRoute);
+                              await LaunchApp.openApp(
+                                  androidPackageName: 'com.raviowl.vjtimaps',
+                                  openStore: true);
                             },
                             child: Center(
                               child: Column(
@@ -342,8 +410,6 @@ class _DashBoardViewState extends State<DashBoardView> {
                             ),
                           ),
                         ),
-                    
-                        
 
                         const SizedBox(width: 80),
                         // HOW TO GET VJTI
@@ -393,53 +459,50 @@ class _DashBoardViewState extends State<DashBoardView> {
                     ),
                     const SizedBox(height: 40),
                     Material(
-                          color: Colors.deepOrange[50],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(19),
-                            side: const BorderSide(color: Colors.transparent),
-                          ),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            onTap: () {
-                              Navigator.pushNamed(context, mapOfVJTIRoute);
-                            },
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(width: 2),
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: Image.asset(
-                                      'assets/VJTITopView.png',
-                                      fit: BoxFit.fill,
-                                      height: 100,
-                                      width: 100,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text(
-                                    'Map of \nVJTI',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                      color: Colors.deepOrange[50],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19),
+                        side: const BorderSide(color: Colors.transparent),
+                      ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        onTap: () {
+                          Navigator.pushNamed(context, mapOfVJTIRoute);
+                        },
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 2),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Image.asset(
+                                  'assets/VJTITopView.png',
+                                  fit: BoxFit.fill,
+                                  height: 100,
+                                  width: 100,
+                                ),
                               ),
-                            ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                'Map of \nVJTI',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(height: 50),
-                    
+                      ),
+                    ),
+                    const SizedBox(height: 50),
                   ],
-                  
                 ),
-                
               ),
             );
           } else {

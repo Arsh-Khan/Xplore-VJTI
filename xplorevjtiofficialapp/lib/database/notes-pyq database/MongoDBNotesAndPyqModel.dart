@@ -19,6 +19,7 @@ class MongoDbNotesAndPyqModel {
     required this.name,
     required this.notesANDpyqs,
     required this.year,
+    required this.branch,
     required this.subject,
     required this.topic,
     required this.description,
@@ -31,6 +32,7 @@ class MongoDbNotesAndPyqModel {
   String? name;
   String? notesANDpyqs;
   String? year;
+  String? branch;
   String? subject;
   String? topic;
   String? description;
@@ -44,6 +46,7 @@ class MongoDbNotesAndPyqModel {
         name: json['name'],
         notesANDpyqs: json["notesANDpyqs"],
         year: json["year"],
+        branch: json["branch"],
         subject: json["subject"],
         topic: json["topic"],
         description: json["description"],
@@ -57,6 +60,7 @@ class MongoDbNotesAndPyqModel {
         "name": name,
         "notesANDpyqs": notesANDpyqs,
         "year": year,
+        "branch": branch,
         "subject": subject,
         "topic": topic,
         "description": description,

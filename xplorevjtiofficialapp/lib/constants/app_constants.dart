@@ -13,20 +13,41 @@ List<String> branchesCode = [
   'me'
 ];
 
-// SignUp VJTI
-String branchesvalue = 'EXTC';
+// Notes PYQs
+String branchesvalue = '--';
 
 var branches = [
+  '--',
   'EXTC',
-  'CS',
+  'CE',
   'IT',
   'Electronics',
   'Electrical',
   'Mechanical',
   'Civil',
   'Textile',
-  'Production'
+  'Production',
+  'ALL'
 ];
+
+// Signup VJTI
+
+String signupbranchesvalue = '--';
+
+var signupbranches = [
+  '--',
+  'EXTC',
+  'CE',
+  'IT',
+  'Electronics',
+  'Electrical',
+  'Mechanical',
+  'Civil',
+  'Textile',
+  'Production',
+];
+
+// Reg No
 
 final month = {
   '01': 'Jan',
@@ -50,7 +71,14 @@ var branchWithCode = {
   '4': 'Production',
   '5': 'Textile',
   '6': 'Electronics',
-  '7': 'CS',
+  '7': 'CE',
   '8': 'IT',
   '9': 'EXTC'
 };
+
+// Search notes
+
+String dropdownvalue = '--';
+var notespyqs = ['Notes', 'PYQs', '--'];
+String defaultyear = '--';
+var selectyear = ['FY', 'SY', 'TY', 'Final Year', '--'];
