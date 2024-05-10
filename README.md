@@ -208,6 +208,7 @@ A one stop location to cater to all needs of a freshie Or a seasoned VJTIian.
 - [Rushi Jani](https://github.com/Rushi-Jani): rvjani22@gmail.com 
 - [Arsh Khan](https://github.com/Arsh-Khan): khanarsh0124@gmail.com
 - [Ruturaj Rao](https://github.com/Rutu2004): rsrao_b21@et.vjti.ac.in
+- [Himanshu Singh](https://github.com/Himanshu-singh04): hsingh_b21@et.vjti.ac.in
 
 ## 👨‍🏫Mentors
 
